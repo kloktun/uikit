@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useMemo, useState } from "react";
+import React, { Ref, SelectHTMLAttributes, createContext, forwardRef, useContext, useMemo, useState } from "react";
 import { ControlSize, ControlsProps } from "../../common/controls.type";
 import classnames from "classnames";
 import Icon, { IconProp } from "../icon";
@@ -24,20 +24,17 @@ const useSelectContext = () => useContext(SelectContext);
 
 type SelectType = "default" | "primary" | "plain" | "borderless" | "text";
 
-interface Props<T> extends ControlsProps {
+interface Props<T> extends Omit<SelectHTMLAttributes<T>, "value"|"size">, ControlsProps {
 
     value: T;
-    onChange: (value: T) => void;
-
     type?: SelectType;
     children: React.ReactElement | React.ReactElement[];
     placeholder?: string;
     icon?: IconProp;
-    disabled?: boolean;
 
 }
 
-const Select = <T=unknown>(props: Props<T>) => {
+const Select = forwardRef(<T=unknown>(props: Props<T>, ref: Ref<HTMLSelectElement>) => {
 
     const { children, value, onChange, size, disabled } = props;
     
@@ -83,7 +80,17 @@ const Select = <T=unknown>(props: Props<T>) => {
     const handleChange = (value: T) => {
 
         hide();
-        onChange(value);
+        
+        if(onChange){
+            
+            const event = {
+                target: {
+                    value,
+                },
+            } as React.ChangeEvent<any>;
+
+            onChange(event);
+        }
 
     }
     
@@ -91,7 +98,7 @@ const Select = <T=unknown>(props: Props<T>) => {
 
         <SelectContext.Provider value={{ value, options, size, onChange: handleChange }}>
 
-            <Dropdown button={<SelectButton {...props} onClick={toggle} open={open} ></SelectButton>} show={open} onClickOutside={hide}>
+            <Dropdown button={<SelectButton {...props} onClick={toggle} open={open} disabled={disabled} ></SelectButton>} show={open} onClickOutside={hide}>
                 <div className={classnames("max-h-80 overflow-y-auto", {
                     'py-3': size == 'large',
                     'py-2.5': size == 'medium',
@@ -108,7 +115,7 @@ const Select = <T=unknown>(props: Props<T>) => {
 
     );
 
-}
+});
 
 
 interface SelectButtonProps<T> extends Props<T> {
