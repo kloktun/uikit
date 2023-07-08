@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { forwardRef, useMemo, useRef, useState } from "react";
 import classnames from "classnames";
 import { ControlSize, ControlsProps } from "../../common/controls.type";
 import Icon, { IconProp } from "../icon";
@@ -6,13 +6,13 @@ import IconButton from "../icon-button";
 import EyeIcon from "../../icons/eye-icon";
 import EyeSlashIcon from "../../icons/eye-slash-icon";
 import CloseIcon from "../../icons/close-icon";
+import { useCombinedRefs } from "../../hooks/combinedrefs";
 
 type PropPrependAppend = string | React.ReactElement;
 
-interface Props extends Omit<React.HTMLProps<HTMLInputElement>, "onChange"|"size"|"prefix">, ControlsProps  {
+interface Props extends Omit<React.HTMLProps<HTMLInputElement>, "size"|"prefix">, ControlsProps  {
 
     value?: string;
-    onChange?: (value: string) => void;
     onDebounce?: (value: string) => void;
 
     debounceTimeout?: number;
@@ -129,14 +129,14 @@ const InputClearButton = ({ size, onClear }: InputClearButtonProps) => {
 
 
 
-const Input = ({ value, onChange, onDebounce, debounceTimeout = 200, size = 'default', disabled, success, warning, error, prepend, prefix, prefixIcon, prefixText, prefixPlaceholder, suffixPlaceholder, suffixText, suffixIcon, suffix, append, clearable, togglePassword, type, ...restProps }: Props) => {
+const Input = forwardRef<HTMLInputElement, Props>(({ value, onChange, onDebounce, debounceTimeout = 200, size = 'default', disabled, success, warning, error, prepend, prefix, prefixIcon, prefixText, prefixPlaceholder, suffixPlaceholder, suffixText, suffixIcon, suffix, append, clearable, togglePassword, type, ...restProps }, ref: React.Ref<HTMLInputElement>) => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
         const value = e.target.value;
 
         if(onChange){
-            onChange(value);
+            onChange(e);
         }
         
         handleDebounce(value);
@@ -163,18 +163,11 @@ const Input = ({ value, onChange, onDebounce, debounceTimeout = 200, size = 'def
 
     }
 
-    const handleClear = () => {
-
-        if(onChange){
-            onChange("");
-        }
-
-    }
-
     const inputZeroPaddingLeft = prefixPlaceholder && prefixPlaceholder.length > 0;
     const inputZeroPaddingRight = suffixPlaceholder && suffixPlaceholder.length > 0;
 
     const inputEl = useRef<HTMLInputElement>(null);
+    const combinedRef = useCombinedRefs<HTMLInputElement>(inputEl, ref);
 
     const focusInput = () => inputEl.current?.focus();
 
@@ -194,18 +187,21 @@ const Input = ({ value, onChange, onDebounce, debounceTimeout = 200, size = 'def
 
     }
 
-    const isClearButtonVisible = value != null && value.length > 0 && clearable;
+    const isClearButtonVisible = useMemo(() => {
+
+        console.log(value, clearable);
+
+        return value != null && value.length > 0 && clearable;
+    }, [value, clearable]);
     const clear = () => {
 
         if(inputEl.current){
             inputEl.current.value = "";
-        }
-
-        if(onChange != null){
-            onChange("");
+            inputEl.current.dispatchEvent(new Event('change'));
         }
 
     }
+    
 
     return (
         <div onFocus={handleFocus} onBlur={handleBlur} className={
@@ -260,7 +256,8 @@ const Input = ({ value, onChange, onDebounce, debounceTimeout = 200, size = 'def
 
                     <input
 
-                        ref={inputEl}
+                        ref={combinedRef}
+                        
 
                         value={value}
                         onChange={handleChange}
@@ -299,6 +296,6 @@ const Input = ({ value, onChange, onDebounce, debounceTimeout = 200, size = 'def
         </div>
     );
 
-};
+});
 
 export default Input;
