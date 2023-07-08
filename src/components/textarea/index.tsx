@@ -1,27 +1,20 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { forwardRef, useCallback, useEffect, useRef, useState } from "react";
 import classnames from "classnames";
 import { ControlsProps } from "../../common/controls.type";
+import { useCombinedRefs } from "../../hooks/combinedrefs";
 
-interface Props extends Omit<React.HTMLProps<HTMLTextAreaElement> & ControlsProps, "onChange">  {
+interface Props extends Omit<React.HTMLProps<HTMLTextAreaElement> & ControlsProps, "">  {
 
     value?: string;
-    onChange?: (value: string) => void;
-
     autosize?: boolean | { minRows?: number, maxRows?: number },
 
 }
 
-const Textarea = ({ value, onChange, disabled, success, warning, error, autosize = { minRows: 2, maxRows: 5 }, ...restProps }: Props) => {
+const Textarea = forwardRef<HTMLTextAreaElement, Props>(({ value, onChange, disabled, success, warning, error, autosize = { minRows: 2, maxRows: 5 }, ...restProps }, ref) => {
 
-    const [textareaElement, setTextareaElement] = useState<HTMLTextAreaElement>();
-
-    const el = useCallback((node: HTMLTextAreaElement) => {
-        if (node !== null) {
-            setTextareaElement(node);
-        }
-    }, []);
-
-
+    const textareaElement = useRef<HTMLTextAreaElement>(null);
+    const combinedRef = useCombinedRefs<HTMLTextAreaElement>(textareaElement, ref);
+   
     useEffect(() => {
 
         updateSize();
@@ -30,10 +23,8 @@ const Textarea = ({ value, onChange, disabled, success, warning, error, autosize
 
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
 
-        const value = e.target.value;
-
         if(onChange){
-            onChange(value);
+            onChange(e);
         }
 
         updateSize();
@@ -46,20 +37,20 @@ const Textarea = ({ value, onChange, disabled, success, warning, error, autosize
             return;
         }
 
-        if(!textareaElement){
+        if(!textareaElement.current){
             console.log("Textarea null")
             return;
         }
     
         setupHeightLimits();
         
-        const styles = getComputedStyle(textareaElement);
+        const styles = getComputedStyle(textareaElement.current);
         const borderTopWidth = parseInt(styles.borderTopWidth);
         const borderBottomWidth = parseInt(styles.borderBottomWidth);
         const borderVeritalWidth = borderTopWidth + borderBottomWidth;
 
-        textareaElement.style.height = "0";
-        textareaElement.style.height = `${textareaElement.scrollHeight + borderVeritalWidth}px`;
+        textareaElement.current.style.height = "0";
+        textareaElement.current.style.height = `${textareaElement.current.scrollHeight + borderVeritalWidth}px`;
     
     }
     
@@ -69,11 +60,11 @@ const Textarea = ({ value, onChange, disabled, success, warning, error, autosize
             return;
         }
         
-        if(!textareaElement){
+        if(!textareaElement.current){
             return;
         }
     
-        const styles = getComputedStyle(textareaElement);
+        const styles = getComputedStyle(textareaElement.current);
         const lineHeight = parseInt(styles.lineHeight);
         const borderTopWidth = parseInt(styles.borderTopWidth);
         const borderBottomWidth = parseInt(styles.borderBottomWidth);
@@ -86,13 +77,13 @@ const Textarea = ({ value, onChange, disabled, success, warning, error, autosize
     
         if(minRows){
     
-            textareaElement.style.minHeight = `${lineHeight * minRows + verticalPadding + borderVeritalWidth}px`;
+            textareaElement.current.style.minHeight = `${lineHeight * minRows + verticalPadding + borderVeritalWidth}px`;
     
         }
     
         if(maxRows){
     
-            textareaElement.style.maxHeight = `${lineHeight * maxRows + verticalPadding + borderVeritalWidth}px`;
+            textareaElement.current.style.maxHeight = `${lineHeight * maxRows + verticalPadding + borderVeritalWidth}px`;
     
         }
     
@@ -100,9 +91,7 @@ const Textarea = ({ value, onChange, disabled, success, warning, error, autosize
     
     return (
         <textarea
-
-            ref={el}
-
+            ref={combinedRef}
             value={value}
             onChange={handleChange}
             {...restProps}
@@ -125,6 +114,6 @@ const Textarea = ({ value, onChange, disabled, success, warning, error, autosize
 
     );
 
-};
+});
 
 export default Textarea;
