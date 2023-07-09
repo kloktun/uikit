@@ -188,9 +188,6 @@ const Input = forwardRef<HTMLInputElement, Props>(({ value, onChange, onDebounce
     }
 
     const isClearButtonVisible = useMemo(() => {
-
-        console.log(value, clearable);
-
         return value != null && value.length > 0 && clearable;
     }, [value, clearable]);
     const clear = () => {

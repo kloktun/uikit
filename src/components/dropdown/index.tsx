@@ -64,9 +64,6 @@ const Dropdown = ({ button, children, show, onClickOutside }: Props) => {
             viewportBottom = window.innerHeight;
         }
 
-        console.log(parentEl);
-        console.log({ viewportTop, viewportBottom });
-
         const { top: buttonTop, bottom: buttonBottom } = buttonBounds;
         const { height: listHeight } = listBounds;
 

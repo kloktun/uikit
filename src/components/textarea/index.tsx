@@ -38,7 +38,6 @@ const Textarea = forwardRef<HTMLTextAreaElement, Props>(({ value, onChange, disa
         }
 
         if(!textareaElement.current){
-            console.log("Textarea null")
             return;
         }
     
