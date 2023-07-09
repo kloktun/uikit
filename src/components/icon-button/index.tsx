@@ -11,13 +11,14 @@ interface IconButtonProps extends ControlsProps, Omit<React.HTMLProps<HTMLButton
     type?: IconButtonType;
 
     loading?: boolean;
+    htmlType?: "button" | "submit" | "reset",
 
     icon?: IconProp;
     children?: IconProp;
 
 }
 
-const IconButton = ({ type = "default", size = "default", loading = false, disabled = false, error, success, warning, icon, children, ...restProps }: IconButtonProps) => {
+const IconButton = ({ type = "default", size = "default", loading = false, disabled = false, error, success, warning, icon, children, htmlType = "button", ...restProps }: IconButtonProps) => {
     
     const status = error ? "error" : success ? "success": warning ? "warning" : "default"; 
 
@@ -25,7 +26,7 @@ const IconButton = ({ type = "default", size = "default", loading = false, disab
 
     return (
     
-        <button {...restProps} disabled={disabled || loading} className={
+        <button type={htmlType} {...restProps} disabled={disabled || loading} className={
             classnames(
                 'rounded-control flex flex-row items-center justify-center transition-all duration-200',
                 {
