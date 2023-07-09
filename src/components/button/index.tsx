@@ -9,6 +9,7 @@ type ButtonType = "default" | "primary" | "plain" | "borderless" | "text";
 export interface ButtonProps extends ControlsProps, Omit<React.HTMLProps<HTMLButtonElement>, "size"> {
 
     type?: ButtonType;
+    htmlType?: "button" | "submit" | "reset",
 
     loading?: boolean;
 
@@ -20,14 +21,13 @@ export interface ButtonProps extends ControlsProps, Omit<React.HTMLProps<HTMLBut
 }
 
 
-const Button = ({ type = "default", size = "default", loading, disabled, success, error, warning, children, icon, suffixIcon, ...restProps }: ButtonProps) => {
+const Button = ({ type = "default", size = "default", loading, disabled, success, error, warning, children, icon, suffixIcon, htmlType = "button", ...restProps }: ButtonProps) => {
 
     const status = error ? "error" : success ? "success": warning ? "warning" : "default"; 
 
     return (
 
-        
-        <button {...restProps} disabled={disabled || loading} className={
+        <button type={htmlType} disabled={disabled || loading} {...restProps}  className={
             classnames(
                 restProps.className,
                 'rounded-control flex flex-row items-center justify-center gap-2 transition-all duration-200 text-ellipsis whitespace-nowrap',
