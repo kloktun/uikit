@@ -91,9 +91,8 @@ const KloktunTailwindColors = {
 }
 
 const KloktunTailwindScreens = {
-    xs: '400px',
+    mobile: '480px',
     tablet: '768px',
-    xlg: '1100px',
     desktop: '1280px',
 }
 
