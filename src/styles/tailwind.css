@@ -6,8 +6,8 @@
 @layer base {
     
     body {
-        @apply text-front;
-        @apply bg-background;
+        @apply kl-text-front;
+        @apply kl-bg-background;
     }
 
     .icon svg {
@@ -19,68 +19,68 @@
 
     /* controls */
     .control-height-large {
-        @apply h-12;
+        @apply kl-h-12;
     }
     
     .control-height-medium {
-        @apply h-11;
+        @apply kl-h-11;
     }
 
     .control-height-default {
-        @apply h-10;
+        @apply kl-h-10;
     }
 
     .control-height-small {
-        @apply h-9;
+        @apply kl-h-9;
     }
 
     .control-height-mini {
-        @apply h-8;
+        @apply kl-h-8;
     }
 
 
     /* rounded */
     .control-rounded {
-        @apply rounded-xl;
+        @apply kl-rounded-xl;
     }
 
     .control-border-color {
-        @apply border-stroke;
+        @apply kl-border-stroke;
     }
 
 
     /* editable control */
     .editable-control-border {
 
-        @apply rounded-control;
-        @apply border border-stroke focus:border-primary focus-within:border-primary;
-        @apply duration-300;
-        @apply outline-none;
-        @apply ring-0;
+        @apply kl-rounded-control;
+        @apply kl-border kl-border-stroke focus:kl-border-primary focus-within:kl-border-primary;
+        @apply kl-duration-300;
+        @apply kl-outline-none;
+        @apply kl-ring-0;
         transition-property: border-color;
 
     }
 
     .editable-control-border.success {
-        @apply border-success focus:border-success focus-within:border-success;
+        @apply kl-border-success focus:kl-border-success focus-within:kl-border-success;
     }
 
     .editable-control-border.error {
-        @apply border-error focus:border-error focus-within:border-error;
+        @apply kl-border-error focus:kl-border-error focus-within:kl-border-error;
     }
 
     .editable-control-border.warning {
-        @apply border-warning focus:border-warning focus-within:border-warning;
+        @apply kl-border-warning focus:kl-border-warning focus-within:kl-border-warning;
     }
 
     .editable-control-placeholder {
 
-        @apply placeholder:text-hint;
+        @apply placeholder:kl-text-hint;
 
     }
 
     .editable-control-background {
-        @apply bg-background;
+        @apply kl-bg-background;
     }
 
 
@@ -124,7 +124,7 @@
 
     .control-inject > * {
 
-        @apply max-h-full;
+        @apply kl-max-h-full;
 
     }
     

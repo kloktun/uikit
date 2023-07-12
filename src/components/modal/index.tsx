@@ -41,26 +41,26 @@ const Modal = ({ children, title, show, scrollType = "paper", onClose }: Props) 
 
                     return (
 
-                        <div className={ classnames('flex flex-col bg-background rounded-modal shadow-modal m-5', {
+                        <div className={ classnames('kl-flex kl-flex-col kl-bg-background kl-rounded-modal kl-shadow-modal kl-m-5', {
 
-                            'max-h-full': scrollType == 'paper',
-                            'flex-1': scrollType == 'body'
+                            'kl-max-h-full': scrollType == 'paper',
+                            'kl-flex-1': scrollType == 'body'
 
                         }) }>
 
                             { title && 
-                                <div className="flex flex-row items-center justify-between">
-                                    <div className='font-medium text-xl p-4 mr-2'>
+                                <div className="kl-flex kl-flex-row kl-items-center kl-justify-between">
+                                    <div className='kl-font-medium kl-text-xl kl-p-4 kl-mr-2'>
                                         {title}                            
                                     </div>
-                                    <div className='p-1'>
+                                    <div className='kl-p-1'>
                                         <IconButton size='large' type='light-borderless' icon={<CloseIcon />} onClick={close} ></IconButton>
                                     </div>
                                 </div>
                             }
 
-                            <div className={classnames('flex flex-col px-4 pb-4 flex-1 overflow-y-auto ', {
-                                'pt-4': !title
+                            <div className={classnames('kl-flex kl-flex-col kl-px-4 kl-pb-4 kl-flex-1 kl-overflow-y-auto ', {
+                                'kl-pt-4': !title
                             })}>
                                 {el({ close })}
                             </div>

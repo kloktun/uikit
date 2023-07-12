@@ -16,10 +16,10 @@ const Shimmer = ({ width, height, borderRadius, className }: Props) => {
 
         <div
             className={
-                classNames("animate-pulse bg-stroke bg-opacity-70", {
-                    'w-full': !width,
-                    'h-full': !height,
-                    'rounded-control': !borderRadius
+                classNames("kl-animate-pulse kl-bg-stroke kl-bg-opacity-70", {
+                    'kl-w-full': !width,
+                    'kl-h-full': !height,
+                    'kl-rounded-control': !borderRadius
                 }, className)
 
             }

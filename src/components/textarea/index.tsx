@@ -96,12 +96,12 @@ const Textarea = forwardRef<HTMLTextAreaElement, Props>(({ value, onChange, disa
             {...restProps}
 
             className={
-                classnames(restProps.className, 'rounded-control editable-control-border editable-control-background editable-control-background resize-none p-2', {
+                classnames(restProps.className, 'kl-rounded-control editable-control-border editable-control-background editable-control-background kl-resize-none kl-p-2', {
 
                     'success': success,
                     'error': error,
                     'warning': warning,
-                    'opacity-50': disabled
+                    'kl-opacity-50': disabled
 
                 })
             }

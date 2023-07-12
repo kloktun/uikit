@@ -100,17 +100,17 @@ export const RadioOption = <T=unknown>({ value, children, disabled }: PropsOptio
         
         <div className={classnames(
             
-            `flex flex-row items-center gap-2`,
+            `kl-flex kl-flex-row kl-items-center kl-gap-2`,
             {
-                'opacity-50': !enabled,
-                'cursor-pointer': enabled
+                'kl-opacity-50': !enabled,
+                'kl-cursor-pointer': enabled
             }
 
         )} onClick={handleClick}>
             
             <RadioIcon status={selected} />
 
-            <div className="flex flex-col items-center">
+            <div className="kl-flex kl-flex-col kl-items-center">
                 {el()}
             </div>
 

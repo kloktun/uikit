@@ -28,45 +28,44 @@ const IconButton = ({ type = "default", size = "default", loading = false, disab
     
         <button type={htmlType} {...restProps} disabled={disabled || loading} className={
             classnames(
-                'rounded-control flex flex-row items-center justify-center transition-all duration-200',
+                'kl-rounded-control kl-flex kl-flex-row kl-items-center kl-justify-center kl-transition-all kl-duration-200',
                 {
                     // Not text
-                    'aspect-square': !isText,
+                    'kl-aspect-square': !isText,
 
                     // Type
-                    'bg-background border': type == 'default',
+                    'kl-bg-background border': type == 'default',
 
                     // Default state
-                    'text-front fill-front border-stroke': status == 'default' && (type == 'default' || type == 'borderless' || type == 'text'),
-                    'hover:bg-background-hover active:bg-background-active': status == "default" && type == 'default',
-                    'text-primary-front fill-primary-front bg-primary hover:bg-primary-accent-hover active:bg-primary-accent-active': status == "default" && type == 'primary',
-                    'text-primary fill-primary bg-primary-plain hover:bg-primary-plain-hover active:bg-primary-plain-active': status == "default" && type == 'plain',
-                    'text-primary fill-primary hover:text-primary-accent-hover hover:fill-primary-accent-hover active:text-primary-accent-active active:fill-primary-accent-active': status == "default" && (type == 'primary-borderless' || type == 'primary-text'),
-                    'text-front-hint fill-front-hint hover:text-front hover:fill-front active:text-front active:fill-front': status == "default" && (type == 'light-borderless' || type == 'light-text'),
-                    'text-primary-light fill-primary-light hover:text-primary hover:fill-primary active:text-primary-accent-active active:fill-primary-accent-active': status == "default" && (type == 'primary-light-borderless' || type == 'primary-light-text'),
+                    'kl-text-front kl-fill-front kl-border-stroke': status == 'default' && (type == 'default' || type == 'borderless' || type == 'text'),
+                    'hover:kl-bg-background-hover active:kl-bg-background-active': status == "default" && type == 'default',
+                    'kl-text-primary-front kl-fill-primary-front kl-bg-primary hover:kl-bg-primary-accent-hover active:kl-bg-primary-accent-active': status == "default" && type == 'primary',
+                    'kl-text-primary kl-fill-primary kl-bg-primary-plain hover:kl-bg-primary-plain-hover active:kl-bg-primary-plain-active': status == "default" && type == 'plain',
+                    'kl-text-primary kl-fill-primary hover:kl-text-primary-accent-hover hover:kl-fill-primary-accent-hover active:kl-text-primary-accent-active active:kl-fill-primary-accent-active': status == "default" && (type == 'primary-borderless' || type == 'primary-text'),
+                    'kl-text-front-hint kl-fill-front-hint hover:kl-text-front hover:kl-fill-front active:kl-text-front active:kl-fill-front': status == "default" && (type == 'light-borderless' || type == 'light-text'),
+                    'kl-text-primary-light kl-fill-primary-light hover:kl-text-primary hover:kl-fill-primary active:kl-text-primary-accent-active active:kl-fill-primary-accent-active': status == "default" && (type == 'primary-light-borderless' || type == 'primary-light-text'),
 
-                
                     // Error state
-                    'text-error fill-error border-error hover:bg-error-hover active:bg-error-active': status == "error" && type == 'default',
-                    'text-error-front fill-error-front bg-error hover:bg-error-accent-hover active:bg-error-accent-active': status == "error" && type == 'primary',
-                    'text-error fill-error bg-error-plain hover:bg-error-plain-hover active:bg-error-plain-active': status == "error" && type == 'plain',
-                    'text-error fill-error hover:text-error-accent-hover hover:fill-error-accent-hover active:text-error-accent-active active:fill-error-accent-active': status == "error" && (type == 'text' || type == 'borderless' || type == 'primary-borderless' || type == 'primary-text' || type == 'primary-light-borderless' || type == 'primary-light-text'),
-                    'text-front-hint fill-front-hint hover:text-error-accent-hover hover:fill-error-accent-hover active:text-error-accent-active active:fill-error-accent-active': status == "error" && (type == 'light-borderless' || type == 'light-text'),
-                                        
+                    'kl-text-error kl-fill-error kl-border-error hover:kl-bg-error-hover active:kl-bg-error-active': status == "error" && type == 'default',
+                    'kl-text-error-front kl-fill-error-front kl-bg-error hover:kl-bg-error-accent-hover active:kl-bg-error-accent-active': status == "error" && type == 'primary',
+                    'kl-text-error kl-fill-error kl-bg-error-plain hover:kl-bg-error-plain-hover active:kl-bg-error-plain-active': status == "error" && type == 'plain',
+                    'kl-text-error kl-fill-error hover:kl-text-error-accent-hover hover:kl-fill-error-accent-hover active:kl-text-error-accent-active active:kl-fill-error-accent-active': status == "error" && (type == 'text' || type == 'borderless' || type == 'primary-borderless' || type == 'primary-text' || type == 'primary-light-borderless' || type == 'primary-light-text'),
+                    'kl-text-front-hint kl-fill-front-hint hover:kl-text-error-accent-hover hover:kl-fill-error-accent-hover active:kl-text-error-accent-active active:kl-fill-error-accent-active': status == "error" && (type == 'light-borderless' || type == 'light-text'),
+
                     // Warning state
-                    'text-warning fill-warning border-warning hover:bg-warning-hover active:bg-warning-active': status == "warning" && type == 'default',
-                    'text-warning-front fill-warning-front bg-warning hover:bg-warning-accent-hover active:bg-warning-accent-active': status == "warning" && type == 'primary',
-                    'text-warning fill-warning bg-warning-plain hover:bg-warning-plain-hover active:bg-warning-plain-active': status == "warning" && type == 'plain',
-                    'text-warning fill-warning hover:text-warning-accent-hover hover:fill-warning-accent-hover active:text-warning-accent-active active:fill-warning-accent-active': status == "warning" && (type == 'text' || type == 'borderless' || type == 'primary-borderless' || type == 'primary-text' || type == 'primary-light-borderless' || type == 'primary-light-text'),
-                    'text-front-hint fill-front-hint hover:text-warning-accent-hover hover:fill-warning-accent-hover active:text-warning-accent-active active:fill-warning-accent-active': status == "warning" && (type == 'light-borderless' || type == 'light-text'),
-                                        
+                    'kl-text-warning kl-fill-warning kl-border-warning hover:kl-bg-warning-hover active:kl-bg-warning-active': status == "warning" && type == 'default',
+                    'kl-text-warning-front kl-fill-warning-front kl-bg-warning hover:kl-bg-warning-accent-hover active:kl-bg-warning-accent-active': status == "warning" && type == 'primary',
+                    'kl-text-warning kl-fill-warning kl-bg-warning-plain hover:kl-bg-warning-plain-hover active:kl-bg-warning-plain-active': status == "warning" && type == 'plain',
+                    'kl-text-warning kl-fill-warning hover:kl-text-warning-accent-hover hover:kl-fill-warning-accent-hover active:kl-text-warning-accent-active active:kl-fill-warning-accent-active': status == "warning" && (type == 'text' || type == 'borderless' || type == 'primary-borderless' || type == 'primary-text' || type == 'primary-light-borderless' || type == 'primary-light-text'),
+                    'kl-text-front-hint kl-fill-front-hint hover:kl-text-warning-accent-hover hover:kl-fill-warning-accent-hover active:kl-text-warning-accent-active active:kl-fill-warning-accent-active': status == "warning" && (type == 'light-borderless' || type == 'light-text'),
+
                     // Success state
-                    'text-success fill-success border-success hover:bg-success-hover active:bg-success-active': status == "success" && type == 'default',
-                    'text-success-front fill-success-front bg-success hover:bg-success-accent-hover active:bg-success-accent-active': status == "success" && type == 'primary',
-                    'text-success fill-success bg-success-plain hover:bg-success-plain-hover active:bg-success-plain-active': status == "success" && type == 'plain',
-                    'text-success fill-success hover:text-success-accent-hover hover:fill-success-accent-hover active:text-success-accent-active active:fill-success-accent-active': status == "success" && (type == 'text' || type == 'borderless' || type == 'primary-borderless' || type == 'primary-text' || type == 'primary-light-borderless' || type == 'primary-light-text'),
-                    'text-front-hint fill-front-hint hover:text-success-accent-hover hover:fill-success-accent-hover active:text-success-accent-active active:fill-success-accent-active': status == "success" && (type == 'light-borderless' || type == 'light-text'),
-                                                            
+                    'kl-text-success kl-fill-success kl-border-success hover:kl-bg-success-hover active:kl-bg-success-active': status == "success" && type == 'default',
+                    'kl-text-success-front kl-fill-success-front kl-bg-success hover:kl-bg-success-accent-hover active:kl-bg-success-accent-active': status == "success" && type == 'primary',
+                    'kl-text-success kl-fill-success kl-bg-success-plain hover:kl-bg-success-plain-hover active:kl-bg-success-plain-active': status == "success" && type == 'plain',
+                    'kl-text-success kl-fill-success hover:kl-text-success-accent-hover hover:kl-fill-success-accent-hover active:kl-text-success-accent-active active:kl-fill-success-accent-active': status == "success" && (type == 'text' || type == 'borderless' || type == 'primary-borderless' || type == 'primary-text' || type == 'primary-light-borderless' || type == 'primary-light-text'),
+                    'kl-text-front-hint kl-fill-front-hint hover:kl-text-success-accent-hover hover:kl-fill-success-accent-hover active:kl-text-success-accent-active active:kl-fill-success-accent-active': status == "success" && (type == 'light-borderless' || type == 'light-text'),
+
                     // Size
                     'icon-control-size-large': !isText && size == 'large',
                     'icon-control-size-medium': !isText && size == 'medium',
@@ -76,13 +75,13 @@ const IconButton = ({ type = "default", size = "default", loading = false, disab
 
 
                     // Loading | Disabled
-                    'opacity-50': loading || disabled,
+                    'kl-opacity-50': loading || disabled,
 
                     // Loading
-                    'cursor-wait': loading,
+                    'kl-cursor-wait': loading,
 
                     // Disabled
-                    'cursor-not-allowed': disabled,
+                    'kl-cursor-not-allowed': disabled,
 
 
                 }

@@ -25,19 +25,19 @@ const Helper = ({ children, text, error, suffix }: HelperProps) => {
 
         { showHelper &&
 
-            <div className={classnames('flex flex-row text-sm items-center justify-between gap-1', {
-                'text-front-hint fill-front-hint': !hasError,
-                'text-error fill-error': hasError,
+            <div className={classnames('kl-flex kl-flex-row kl-text-sm kl-items-center kl-justify-between kl-gap-1', {
+                'kl-text-front-hint kl-fill-front-hint': !hasError,
+                'kl-text-error kl-fill-error': hasError,
             })}>
 
                 { hasContent &&
-                    <div className='flex flex-row items-center gap-1'>
+                    <div className='kl-flex kl-flex-row kl-items-center kl-gap-1'>
                         {content}
                     </div>
                 }
 
                 { hasSuffix &&
-                    <div className='flex flex-row items-center'>
+                    <div className='kl-flex kl-flex-row kl-items-center'>
                         {suffix}
                     </div>
                 }

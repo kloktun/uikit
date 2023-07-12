@@ -10,9 +10,9 @@ export interface LabelProps extends Omit<React.HTMLProps<HTMLLabelElement>, "lab
 const Label = ({ children, label, ...restProps }: LabelProps) => {
 
     return (
-        <div className='flex flex-col gap-2'>
+        <div className='kl-flex kl-flex-col kl-gap-2'>
         
-            <label {...restProps} className='flex flex-row items-center font-medium'>
+            <label {...restProps} className='kl-flex kl-flex-row kl-items-center kl-font-medium'>
                 {label}
             </label>
 

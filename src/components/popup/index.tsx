@@ -53,7 +53,7 @@ const Popup = ({ show = true, onClose = (result) => {}, title, titleAlign = "cen
         }
 
         if(typeof children == 'string'){
-            return <div className="flex flex-col text-center">{children}</div>
+            return <div className="kl-flex kl-flex-col kl-text-center">{children}</div>
         }
         
         return children as React.ReactElement;
@@ -85,19 +85,19 @@ const Popup = ({ show = true, onClose = (result) => {}, title, titleAlign = "cen
 
                     return (
 
-                        <div className={ classnames('flex flex-col min-w-full w-80 max-w-full bg-background rounded-modal shadow-modal p-6 gap-5') }>
+                        <div className={ classnames('kl-flex kl-flex-col kl-min-w-full kl-w-80 kl-max-w-full kl-bg-background kl-rounded-modal kl-shadow-modal kl-p-6 kl-gap-5') }>
 
                             {
                                 icon &&
 
-                                <div className='flex flex-row items-center justify-center'>
+                                <div className='kl-flex kl-flex-row kl-items-center kl-justify-center'>
 
                                     <div className={
-                                        classnames('w-16 h-16 rounded-full fill-current flex items-center justify-center', {
-                                            'text-primary bg-primary-plain': info,
-                                            'text-success bg-success-plain': success,
-                                            'text-error bg-error-plain': error || danger,
-                                            'text-warning bg-warning-plain': warning,
+                                        classnames('kl-w-16 kl-h-16 kl-rounded-full kl-fill-current kl-flex kl-items-center kl-justify-center', {
+                                            'kl-text-primary kl-bg-primary-plain': info,
+                                            'kl-text-success kl-bg-success-plain': success,
+                                            'kl-text-error kl-bg-error-plain': error || danger,
+                                            'kl-text-warning kl-bg-warning-plain': warning,
                                         })
                                     }>
 
@@ -110,10 +110,10 @@ const Popup = ({ show = true, onClose = (result) => {}, title, titleAlign = "cen
 
                             <div className="flex flex-col gap-2">
                                 { title &&
-                                    <div className={ classnames('font-medium text-xl', {
-                                        'text-start': titleAlign == 'start',
-                                        'text-center': titleAlign == 'center',
-                                        'text-end': titleAlign == 'end',
+                                    <div className={ classnames('kl-font-medium kl-text-xl', {
+                                        'kl-text-start': titleAlign == 'start',
+                                        'kl-text-center': titleAlign == 'center',
+                                        'kl-text-end': titleAlign == 'end',
                                     })}>
                                         {title}                            
                                     </div> 
@@ -125,9 +125,9 @@ const Popup = ({ show = true, onClose = (result) => {}, title, titleAlign = "cen
 
                             { buttonsArray.length > 0 &&
 
-                                <div className={classnames('grid gap-4', {
-                                    'grid-cols-1': buttonsDirection == 'vertical',
-                                    'grid-cols-2': buttonsDirection == 'horizontal',
+                                <div className={classnames('kl-grid kl-gap-4', {
+                                    'kl-grid-cols-1': buttonsDirection == 'vertical',
+                                    'kl-grid-cols-2': buttonsDirection == 'horizontal',
                                 })}>
                                     { buttonsArray.map((button, index) => <Button key={index} {...button} />) }
                                 </div>

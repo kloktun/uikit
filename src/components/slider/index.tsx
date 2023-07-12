@@ -186,18 +186,18 @@ const Slider: React.FC<SliderProps> = ({ min = 0, max = 100, value, step = 1, on
     }, [thumbRef.current, value]);
 
     return (
-        <div className={classnames('relative flex flex-col w-full justify-center control-height-default', {
-            'cursor-pointer': !disabled,
-            'opacity-50': disabled
+        <div className={classnames('kl-relative kl-flex kl-flex-col kl-w-full kl-justify-center control-height-default', {
+            'kl-cursor-pointer': !disabled,
+            'kl-opacity-50': disabled
         })} onClick={handleClick} ref={sliderRef}>
 
-            <div className='flex flex-col w-full bg-stroke h-1 rounded-full overflow-hidden'>
-                <div className="h-full rounded-full bg-primary" style={{ width: `${percentage}%` }} />
+            <div className='kl-flex kl-flex-col kl-w-full kl-bg-stroke kl-h-1 kl-rounded-full kl-overflow-hidden'>
+                <div className="kl-h-full kl-rounded-full kl-bg-primary" style={{ width: `${percentage}%` }} />
             </div>
 
-            <div ref={thumbRef} className="absolute flex items-center justify-center h-full" style={{ left: `${percentage}%`, marginLeft: `${thumbLeftOffset}px` }}>
+            <div ref={thumbRef} className="kl-absolute kl-flex kl-items-center kl-justify-center kl-h-full" style={{ left: `${percentage}%`, marginLeft: `${thumbLeftOffset}px` }}>
 
-                <div className='w-5 h-5 rounded-full border-2 border-primary bg-background'></div>
+                <div className='kl-w-5 kl-h-5 kl-rounded-full kl-border-2 kl-border-primary kl-bg-background'></div>
 
             </div>
 

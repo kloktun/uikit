@@ -43,12 +43,12 @@ const InputIcon = ({ icon, size, focus, success, error, warning, onClick }: { ic
     }
 
     return (
-        <div onClick={onClick} className={classnames('cursor-text', {
-            'text-front-hint fill-front-hint': !focus,
-            'text-primary fill-primary': focus,
-            'text-error fill-error': error,
-            'text-warning fill-warning': warning,
-            'text-success fill-success': success,
+        <div onClick={onClick} className={classnames('kl-cursor-text', {
+            'kl-text-front-hint kl-fill-front-hint': !focus,
+            'kl-text-primary kl-fill-primary': focus,
+            'kl-text-error kl-fill-error': error,
+            'kl-text-warning kl-fill-warning': warning,
+            'kl-text-success kl-fill-success': success,
         })}>
             <Icon size={size} icon={icon}></Icon>
         </div>
@@ -62,7 +62,7 @@ const InputPrefixSuffix = ({ children, onClick }: { children?: string, onClick?:
         return null;
     }
 
-    return <div onClick={onClick} className="text-front-hint flex flex-row items-center max-h-full min-h-full h-full cursor-text control-inject">
+    return <div onClick={onClick} className="kl-text-front-hint kl-flex kl-flex-row kl-items-center kl-max-h-full kl-min-h-full kl-h-full kl-cursor-text control-inject">
         {children}
     </div>
 
@@ -78,13 +78,13 @@ const InputPrependAppend = ({ children, type, focus }: { children?: PropPrependA
     }
 
     return (
-        <div className={ classnames('flex flex-row max-h-full min-h-full h-full items-center transition-all', {
+        <div className={ classnames('kl-flex kl-flex-row kl-max-h-full kl-min-h-full kl-h-full kl-items-center kl-transition-all', {
 
-            'border-r': type == 'prepend',
-            'border-l': type == 'append',
+            'kl-border-r': type == 'prepend',
+            'kl-border-l': type == 'append',
 
-            'border-stroke': !focus,
-            'border-primary': focus
+            'kl-border-stroke': !focus,
+            'kl-border-primary': focus
 
         })}>
             {children}
@@ -202,12 +202,12 @@ const Input = forwardRef<HTMLInputElement, Props>(({ value, onChange, onDebounce
 
     return (
         <div onFocus={handleFocus} onBlur={handleBlur} className={
-            classnames(restProps.className, 'editable-control-border editable-control-background flex flex-row items-center outline-none ring-0', {
+            classnames(restProps.className, 'editable-control-border editable-control-background kl-flex kl-flex-row kl-items-center kl-outline-none kl-ring-0', {
 
                 'success': success,
                 'error': error,
                 'warning': warning,
-                'opacity-50': disabled,
+                'kl-opacity-50': disabled,
 
                 // Size
                 'control-height-large': size == 'large',
@@ -224,22 +224,22 @@ const Input = forwardRef<HTMLInputElement, Props>(({ value, onChange, onDebounce
            
             { prefix }
 
-            <div className={classnames('flex flex-row gap-3 flex-1 items-center max-h-full min-h-full h-full', {
+            <div className={classnames('kl-flex kl-flex-row kl-gap-3 kl-flex-1 kl-items-center kl-max-h-full kl-min-h-full kl-h-full', {
 
-                'pl-2': size == 'mini' && !inputZeroPaddingLeft,
-                'pr-2': size == 'mini' && !inputZeroPaddingRight,
+                'kl-pl-2': size == 'mini' && !inputZeroPaddingLeft,
+                'kl-pr-2': size == 'mini' && !inputZeroPaddingRight,
 
-                'pl-2.5': size == 'small' && !inputZeroPaddingRight,
-                'pr-2.5': size == 'small' && !inputZeroPaddingRight,
+                'kl-pl-2.5': size == 'small' && !inputZeroPaddingRight,
+                'kl-pr-2.5': size == 'small' && !inputZeroPaddingRight,
 
-                'pl-3': size == 'default' && !inputZeroPaddingRight,
-                'pr-3': size == 'default' && !inputZeroPaddingRight,
+                'kl-pl-3': size == 'default' && !inputZeroPaddingRight,
+                'kl-pr-3': size == 'default' && !inputZeroPaddingRight,
 
-                'pl-3.5': size == 'medium' && !inputZeroPaddingRight,
-                'pr-3.5': size == 'medium' && !inputZeroPaddingRight,
+                'kl-pl-3.5': size == 'medium' && !inputZeroPaddingRight,
+                'kl-pr-3.5': size == 'medium' && !inputZeroPaddingRight,
 
-                'pl-4': size == 'large' && !inputZeroPaddingRight,
-                'pr-4': size == 'large' && !inputZeroPaddingRight
+                'kl-pl-4': size == 'large' && !inputZeroPaddingRight,
+                'kl-pr-4': size == 'large' && !inputZeroPaddingRight
 
             })}>
 
@@ -247,7 +247,7 @@ const Input = forwardRef<HTMLInputElement, Props>(({ value, onChange, onDebounce
 
                 <InputPrefixSuffixText onClick={focusInput}>{prefixText}</InputPrefixSuffixText>
 
-                <div className="flex flex-row flex-1 max-h-full min-h-full h-full">
+                <div className="kl-flex kl-flex-row kl-flex-1 kl-max-h-full kl-min-h-full kl-h-full">
 
                     <InputPrefixSuffixPlaceholder onClick={focusInput}>{prefixPlaceholder}</InputPrefixSuffixPlaceholder>
 
@@ -266,7 +266,7 @@ const Input = forwardRef<HTMLInputElement, Props>(({ value, onChange, onDebounce
                         onFocus={handleFocus}
                         onBlur={handleBlur}
 
-                        className={classnames('editable-control-background text-front rounded-control flex-1 max-h-full min-h-full h-full outline-none ring-0 placeholder:text-front-hint focus-visible:outline-none focus-visible:ring-0')}
+                        className={classnames('editable-control-background kl-text-front kl-rounded-control kl-flex-1 kl-max-h-full kl-min-h-full kl-h-full kl-outline-none kl-ring-0 placeholder:kl-text-front-hint focus-visible:kl-outline-none focus-visible:kl-ring-0')}
 
                         disabled={disabled}
 

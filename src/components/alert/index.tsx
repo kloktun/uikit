@@ -20,33 +20,33 @@ const Alert = ({ title, children, icon, suffix, success, warning, error }: Props
     return (
 
         <div className={
-            classnames('flex flex-row items-center justify-start p-4 gap-3 control-rounded', {
-                'bg-background border border-stroke': isDefault,
-                'text-success bg-success-plain': success,
-                'text-error bg-error-plain': error,
-                'text-warning bg-warning-plain': warning
+            classnames('kl-flex kl-flex-row kl-items-center kl-justify-start kl-p-4 kl-gap-3 kl-rounded-control', {
+                'kl-bg-background kl-border kl-border-stroke': isDefault,
+                'kl-text-success kl-bg-success-plain': success,
+                'kl-text-error kl-bg-error-plain': error,
+                'kl-text-warning kl-bg-warning-plain': warning
             })
         }>
             
             { icon &&
-                <div className={classnames('flex items-center justify-center', {
-                    'text-front-hint fill-front-hint': isDefault,
-                    'text-success fill-success': success,
-                    'text-error fill-error': error,
-                    'text-warning fill-warning': warning
+                <div className={classnames('kl-flex kl-items-center kl-justify-center', {
+                    'kl-text-front-hint kl-fill-front-hint': isDefault,
+                    'kl-text-success kl-fill-success': success,
+                    'kl-text-error kl-fill-error': error,
+                    'kl-text-warning kl-fill-warning': warning
                 })}>
                     <Icon icon={icon} size='large' />
                 </div>
             }
 
-            <div className='flex flex-col flex-1'>
+            <div className='kl-flex kl-flex-col kl-flex-1'>
                 { title && 
-                    <div className='font-medium'>
+                    <div className='kl-font-medium'>
                         { title }
                     </div>
                 }
                 { children && 
-                    <div className='flex flex-col'>
+                    <div className='kl-flex kl-flex-col'>
                         { children }
                     </div>
                 }

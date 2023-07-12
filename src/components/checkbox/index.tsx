@@ -116,17 +116,17 @@ export const Checkbox = ({ children, checked, disabled, value, onChange }: Check
         
         <div className={classnames(
             
-            `flex flex-row items-center gap-2 fill-primary`,
+            `kl-flex kl-flex-row kl-items-center kl-gap-2 kl-fill-primary`,
             {
-                'opacity-50': !enabled,
-                'cursor-pointer': enabled
+                'kl-opacity-50': !enabled,
+                'kl-cursor-pointer': enabled
             }
 
         )} onClick={toggleChecked}>
             
             <CheckboxIcon status={status} />
 
-            <div className="flex flex-col items-center">
+            <div className="kl-flex kl-flex-col kl-items-center">
                 {el()}
             </div>
 

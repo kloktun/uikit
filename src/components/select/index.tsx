@@ -99,13 +99,13 @@ const Select = forwardRef(<T=unknown>(props: Props<T>, ref: Ref<HTMLSelectElemen
         <SelectContext.Provider value={{ value, options, size, onChange: handleChange }}>
 
             <Dropdown button={<SelectButton {...props} onClick={toggle} open={open} disabled={disabled} ></SelectButton>} show={open} onClickOutside={hide}>
-                <div className={classnames("max-h-80 overflow-y-auto", {
-                    'py-3': size == 'large',
-                    'py-2.5': size == 'medium',
-                    'py-2': size == 'default',
-                    'py-1.5': size == 'small' || size == 'mini',  
+                <div className={classnames("kl-max-h-80 kl-overflow-y-auto", {
+                    'kl-py-3': size == 'large',
+                    'kl-py-2.5': size == 'medium',
+                    'kl-py-2': size == 'default',
+                    'kl-py-1.5': size == 'small' || size == 'mini',  
                 })}>
-                    <div className="flex flex-col h-full">
+                    <div className="kl-flex kl-flex-col kl-h-full">
                         {children}
                     </div>
                 </div>
@@ -146,8 +146,8 @@ const SelectButton = <T=unknown>({ type = "default", size = "default", placehold
 
     if(!selected){
 
-        content = (<span className={classnames('select-none', {
-            "text-front-hint": type == "default" || type == "borderless" || type == "text"
+        content = (<span className={classnames('kl-select-none', {
+            "kl-text-front-hint": type == "default" || type == "borderless" || type == "text"
         })}>{placeholder}</span>)
 
     } else {
@@ -167,44 +167,43 @@ const SelectButton = <T=unknown>({ type = "default", size = "default", placehold
     return (
 
         <div onClick={handleClick} className={
-            classnames('rounded-control flex flex-row items-center justify-start transition-all duration-200 max-h-full',
+            classnames('kl-rounded-control kl-flex kl-flex-row kl-items-center kl-justify-start kl-transition-all kl-duration-200 kl-max-h-full',
             type != 'text' ? {
 
-                'px-3': size == 'large',
-                'px-2.5': size == 'medium',
-                'px-2': size == 'default',
-                'px-1.5': size == 'small' || size == 'mini',                
+                'kl-px-3': size == 'large',
+                'kl-px-2.5': size == 'medium',
+                'kl-px-2': size == 'default',
+                'kl-px-1.5': size == 'small' || size == 'mini',                
 
             } : null,
             { 
 
                 // Type
-                'border bg-background  hover:bg-background-hover active:bg-background-active': type == 'default',
+                'kl-border kl-bg-background  hover:kl-bg-background-hover active:kl-bg-background-active': type == 'default',
 
                 // Default state
-                'text-front fill-front border-stroke': status == "default" && (type == 'default' || type == 'text' || type == 'borderless'),
-                'text-primary-front fill-primary-front bg-primary hover:bg-primary-accent-hover active:bg-primary-accent-active': status == "default" && type == 'primary',
-                'text-primary fill-primary bg-primary-plain  hover:bg-primary-plain-hover active:bg-primary-plain-active': status == "default" && type == 'plain',
-                // 'text-primary fill-primary hover:text-primary-hover hover:fill-primary-hover active:text-primary-active active:fill-primary-active': status == "default",
+                'kl-text-front kl-fill-front kl-border-stroke': status == "default" && (type == 'default' || type == 'text' || type == 'borderless'),
+                'kl-text-primary-front kl-fill-primary-front kl-bg-primary hover:kl-bg-primary-accent-hover active:kl-bg-primary-accent-active': status == "default" && type == 'primary',
+                'kl-text-primary kl-fill-primary kl-bg-primary-plain  hover:kl-bg-primary-plain-hover active:kl-bg-primary-plain-active': status == "default" && type == 'plain',
 
                 // Error state
-                'text-error  fill-error border-error hover:bg-error-hover active:bg-error-active': status == "error" && type == 'default',
-                'text-error-front fill-error-front bg-error hover:bg-error-accent-hover active:bg-error-accent-active': status == "error" && type == 'primary',
-                'text-error fill-error bg-error-plain  hover:bg-error-plain-hover active:bg-error-plain-active': status == "error" && type == 'plain',
-                'text-error fill-error hover:text-error-accent-hover hover:fill-error-accent-hover active:text-error-accent-active active:fill-error-active': status == "error" && (type == 'text' || type == 'borderless'),
-                
+                'kl-text-error kl-fill-error kl-border-error hover:kl-bg-error-hover active:kl-bg-error-active': status == "error" && type == 'default',
+                'kl-text-error-front kl-fill-error-front kl-bg-error hover:kl-bg-error-accent-hover active:kl-bg-error-accent-active': status == "error" && type == 'primary',
+                'kl-text-error kl-fill-error kl-bg-error-plain hover:kl-bg-error-plain-hover active:kl-bg-error-plain-active': status == "error" && type == 'plain',
+                'kl-text-error kl-fill-error hover:kl-text-error-accent-hover hover:kl-fill-error-accent-hover active:kl-text-error-accent-active active:kl-fill-error-active': status == "error" && (type == 'text' || type == 'borderless'),
+
                 // Warning state
-                'text-warning fill-warning border-warning hover:bg-warning-hover active:bg-warning-active': status == "warning" && type == 'default',
-                'text-warning-front fill-warning-front bg-warning hover:bg-warning-primary-hover active:bg-warning-primary-active': status == "warning" && type == 'primary',
-                'text-warning fill-warning bg-warning-plain  hover:bg-warning-plain-hover active:bg-warning-plain-active': status == "warning" && type == 'plain',
-                'text-warning fill-warning hover:text-warning-primary-hover hover:fill-warning-primary-hover active:text-warning-primary-active active:fill-warning-active': status == "warning" && (type == 'text' || type == 'borderless'),
-                
+                'kl-text-warning kl-fill-warning kl-border-warning hover:kl-bg-warning-hover active:kl-bg-warning-active': status == "warning" && type == 'default',
+                'kl-text-warning-front kl-fill-warning-front kl-bg-warning hover:kl-bg-warning-primary-hover active:kl-bg-warning-primary-active': status == "warning" && type == 'primary',
+                'kl-text-warning kl-fill-warning kl-bg-warning-plain hover:kl-bg-warning-plain-hover active:kl-bg-warning-plain-active': status == "warning" && type == 'plain',
+                'kl-text-warning kl-fill-warning hover:text-warning-primary-hover hover:kl-fill-warning-primary-hover active:kl-text-warning-primary-active active:kl-fill-warning-active': status == "warning" && (type == 'text' || type == 'borderless'),
+
                 // Success state
-                'text-success fill-success border-success hover:bg-success-hover active:bg-success-active': status == "success" && type == 'default',
-                'text-success-front fill-success-front bg-success hover:bg-success-accent-hover active:bg-success-accent-active': status == "success" && type == 'primary',
-                'text-success fill-success bg-success-plain  hover:bg-success-plain-hover active:bg-success-plain-active': status == "success" && type == 'plain',
-                'text-success fill-success hover:text-success-accent-hover hover:fill-success-accent-hover active:text-success-accent-active active:fill-success-active': status == "success" && (type == 'text' || type == 'borderless'),
-                                    
+                'kl-text-success kl-fill-success kl-border-success hover:kl-bg-success-hover active:kl-bg-success-active': status == "success" && type == 'default',
+                'kl-text-success-front kl-fill-success-front kl-bg-success hover:kl-bg-success-accent-hover active:kl-bg-success-accent-active': status == "success" && type == 'primary',
+                'kl-text-success kl-fill-success kl-bg-success-plain hover:kl-bg-success-plain-hover active:kl-bg-success-plain-active': status == "success" && type == 'plain',
+                'kl-text-success kl-fill-success hover:kl-text-success-accent-hover hover:kl-fill-success-accent-hover active:kl-text-success-accent-active active:kl-fill-success-active': status == "success" && (type == 'text' || type == 'borderless'),
+
                 
                 // Size
                 'control-height-large': type != 'text' && size == 'large',
@@ -213,15 +212,15 @@ const SelectButton = <T=unknown>({ type = "default", size = "default", placehold
                 'control-height-small': type != 'text' && size == 'small',
                 'control-height-mini': type != 'text' && size == 'mini',
 
-                'gap-3': size == 'large',
-                'gap-2.5': size == 'medium',
-                'gap-2': size == 'default',
-                'gap-1.5': size == 'small' || size == 'mini',  
+                'kl-gap-3': size == 'large',
+                'kl-gap-2.5': size == 'medium',
+                'kl-gap-2': size == 'default',
+                'kl-gap-1.5': size == 'small' || size == 'mini',  
 
                 // Disabled
-                'cursor-not-allowed opacity-50': disabled,
+                'kl-cursor-not-allowed kl-opacity-50': disabled,
                 
-                'cursor-pointer': !disabled
+                'kl-cursor-pointer': !disabled
 
             })
         }>
@@ -229,19 +228,19 @@ const SelectButton = <T=unknown>({ type = "default", size = "default", placehold
             { (icon || selected?.icon) &&
 
                 <div className={classnames({
-                    'text-front-hint fill-front-hint': status == "default" && (type == "default" || type == "borderless" || type == "text"),
+                    'kl-text-front-hint kl-fill-front-hint': status == "default" && (type == "default" || type == "borderless" || type == "text"),
                 })}>
                     <Icon icon={selected?.icon ?? icon} size={size} />
                 </div>
             }
 
-            <div className="flex flex-1 flex-row items-center justify-start overflow-hidden text-ellipsis whitespace-nowrap">
+            <div className="kl-flex kl-flex-1 kl-flex-row kl-items-center kl-justify-start kl-overflow-hidden kl-text-ellipsis kl-whitespace-nowrap">
                 { content }
             </div>
 
-            <div className={classnames('transition-all', {
-                'rotate-180': open,
-                'text-front-hint fill-front-hint': status == "default" && (type == "default" || type == "borderless" || type == "text"),
+            <div className={classnames('kl-transition-all', {
+                'kl-rotate-180': open,
+                'kl-text-front-hint kl-fill-front-hint': status == "default" && (type == "default" || type == "borderless" || type == "text"),
             })}>
                 
                 <Icon size={size} icon={
@@ -304,14 +303,14 @@ const SelectOption = <T=unknown>(props: SelectOptionProps<T>) => {
     return (
         <div className={
             
-            classnames("flex flex-row items-center hover:bg-primary-plain", {
+            classnames("kl-flex kl-flex-row kl-items-center hover:kl-bg-primary-plain", {
 
-                'text-primary fill-primary font-medium': selected,
+                'kl-text-primary kl-fill-primary kl-font-medium': selected,
 
-                'px-3 gap-3': size == 'large',
-                'px-2.5 gap-2.5': size == 'medium',
-                'px-2 gap-2': size == 'default',
-                'px-1.5 gap-1.5': size == 'small' || size == 'mini',   
+                'kl-px-3 kl-gap-3': size == 'large',
+                'kl-px-2.5 kl-gap-2.5': size == 'medium',
+                'kl-px-2 kl-gap-2': size == 'default',
+                'kl-px-1.5 kl-gap-1.5': size == 'small' || size == 'mini',   
 
                 // Size
                 'control-height-large': size == 'large',
@@ -321,9 +320,9 @@ const SelectOption = <T=unknown>(props: SelectOptionProps<T>) => {
                 'control-height-mini': size == 'mini',
 
                 // Disabled
-                'cursor-not-allowed opacity-50': disabled,
+                'kl-cursor-not-allowed kl-opacity-50': disabled,
                 
-                'cursor-pointer': !disabled
+                'kl-cursor-pointer': !disabled
 
             }) } onClick={handleClick}>
 

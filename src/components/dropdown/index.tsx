@@ -153,7 +153,7 @@ const Dropdown = ({ button, children, show, onClickOutside }: Props) => {
 
     return (
 
-        <div className='relative max-h-full' ref={selectRef}>
+        <div className='kl-relative kl-max-h-full' ref={selectRef}>
 
             {button}
 
@@ -162,19 +162,19 @@ const Dropdown = ({ button, children, show, onClickOutside }: Props) => {
                 
                 show={show}
                 
-                enter="transform transition duration-200"
+                enter="kl-transform kl-transition kl-duration-200"
 
-                enterFrom="opacity-0 scale-95"
-                enterTo="opacity-100 scale-100"
+                enterFrom="kl-opacity-0 kl-scale-95"
+                enterTo="kl-opacity-100 kl-scale-100"
 
-                leave="transform transition duration-200"
-                leaveFrom="opacity-100 scale-100 "
-                leaveTo="opacity-0 scale-95"
+                leave="kl-transform kl-transition kl-duration-200"
+                leaveFrom="kl-opacity-100 kl-scale-100 "
+                leaveTo="kl-opacity-0 kl-scale-95"
             >
 
-                <div className={classnames('absolute overflow-hidden flex flex-col border border-stroke bg-background rounded-control z-10 min-w-full', {
-                    'bottom-full mb-2': position == 'top',
-                    'top-full mt-2': position == 'bottom'
+                <div className={classnames('kl-absolute kl-overflow-hidden kl-flex kl-flex-col kl-border kl-border-stroke kl-bg-background kl-rounded-control kl-z-10 kl-min-w-full', {
+                    'kl-bottom-full kl-mb-2': position == 'top',
+                    'kl-top-full kl-mt-2': position == 'bottom'
                 })} ref={childrenRef}>
                     {children}
                 </div>

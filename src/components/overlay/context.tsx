@@ -33,7 +33,7 @@ export const OverlayProvider = ({ children }: { children: React.ReactElement | R
 
         const currentWidth = document.body.offsetWidth;
 
-        document.body.classList.add('overflow-hidden');
+        document.body.classList.add('kl-overflow-hidden');
 
         const afterWidth = document.body.offsetWidth;
 
@@ -43,7 +43,7 @@ export const OverlayProvider = ({ children }: { children: React.ReactElement | R
 
     const getBackScrollBar = () => {
 
-        document.body.classList.remove('overflow-hidden');
+        document.body.classList.remove('kl-overflow-hidden');
 
         document.body.removeAttribute('style');
 

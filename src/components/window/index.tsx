@@ -48,18 +48,18 @@ const Window = ({ children, show, onClose }: WindowProps) => {
 
                             show={show}
                             
-                            enter="transform origin-top transition duration-300"
+                            enter="kl-transform kl-origin-top kl-transition kl-duration-300"
             
-                            enterFrom="opacity-0 scale-95"
-                            enterTo="opacity-100 scale-100"
+                            enterFrom="kl-opacity-0 kl-scale-95"
+                            enterTo="kl-opacity-100 kl-scale-100"
             
-                            leave="transform transition origin-top duration-300"
-                            leaveFrom="opacity-100 scale-100"
-                            leaveTo="opacity-0 scale-95"
+                            leave="kl-transform kl-transition kl-origin-top kl-duration-300"
+                            leaveFrom="kl-opacity-100 kl-scale-100"
+                            leaveTo="kl-opacity-0 kl-scale-95"
 
                         >
 
-                            <div className='flex flex-col my-auto'>
+                            <div className='kl-flex kl-flex-col kl-my-auto'>
                                 {el({ close })}
                             </div>
 
