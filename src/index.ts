@@ -43,4 +43,4 @@ export { useMessagePopup } from './components/popup/message';
 export { useConfirmPopup } from './components/popup/confirm';
 
 // Tailwind Config
-export { KloktunTailwindColors, KloktunTailwindScreens, KloktunTailwindBoxShadows, KloktunTailwindBorderRadius, } from './tailwind/variables.cjs';
+export { default as TailwindPreset } from './tailwind/tailwind-preset.cjs';
