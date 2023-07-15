@@ -23,6 +23,7 @@ export { default as Textarea } from './components/textarea';
 export { default as Dropdown } from './components/dropdown';
 export { default as Label } from './components/label';
 export { default as Helper } from './components/helper';
+export { default as Divider } from './components/divider';
 
 export { default as Overlay } from './components/overlay';
 export { default as Window } from './components/window';
