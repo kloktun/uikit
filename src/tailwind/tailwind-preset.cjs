@@ -29,6 +29,7 @@ const config = {
                 front: {
                     DEFAULT: "rgba(var(--kloktun-front, 64, 64, 64), <alpha-value>)",
                     hint: "rgba(var(--kloktun-front-hint, 170, 170, 170), <alpha-value>)",
+                    secondary: "rgba(var(--kloktun-front-secondary, 128, 128, 128), <alpha-value>)",
                 },
             
                 background: {

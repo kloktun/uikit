@@ -15,6 +15,7 @@ export class Theme {
 
     front?: string = "#404040";
     frontHint?: string = "#aaaaaa";
+    frontSecondary?: string = "#808080";
 
     background?: string = "#ffffff";
     backgroundBody?: string = "#ffffff";
@@ -242,6 +243,7 @@ export const ThemeStyle = ({ value }: { value: Theme }) => {
                 */
                 --kloktun-front: ${theme.front};
                 --kloktun-front-hint: ${theme.frontHint};
+                --kloktun-front-secondary: ${theme.frontSecondary};
             
                 /*
                 ===================
