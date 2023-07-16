@@ -36,7 +36,7 @@ const Button = ({ type = "default", size = "default", loading, disabled, success
                     'kl-px-4': type != 'text',
 
                     // Type
-                    'kl-bg-background border': type == 'default',
+                    'kl-bg-background kl-border': type == 'default',
 
                     // Default state
                     'kl-text-front kl-fill-front kl-border-stroke hover:kl-bg-background-hover active:kl-bg-background-active': status == "default" && type == 'default',
