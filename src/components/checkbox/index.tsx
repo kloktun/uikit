@@ -176,7 +176,7 @@ export const CheckboxGroup = <T=unknown>({ values, onChange, children, disabled 
     return (
         <CheckboxGroupContext.Provider value={ { values, onChange: handleChange, disabled } }>
             
-            <div className="flex flex-col gap-5 fill-primary">
+            <div className="kl-flex kl-flex-col kl-gap-5 kl-fill-primary">
                 {children}
             </div>
 

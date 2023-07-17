@@ -108,7 +108,7 @@ const Popup = ({ show = true, onClose = (result) => {}, title, titleAlign = "cen
                                 </div>
                             }
 
-                            <div className="flex flex-col gap-2">
+                            <div className="kl-flex kl-flex-col kl-gap-2">
                                 { title &&
                                     <div className={ classnames('kl-font-medium kl-text-xl', {
                                         'kl-text-start': titleAlign == 'start',

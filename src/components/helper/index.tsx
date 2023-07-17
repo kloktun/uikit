@@ -19,7 +19,7 @@ const Helper = ({ children, text, error, suffix }: HelperProps) => {
 
     const showHelper = hasContent || hasSuffix;
 
-    return <div className='flex flex-col gap-1'>
+    return <div className='kl-flex kl-flex-col kl-gap-1'>
         
         {children}
 

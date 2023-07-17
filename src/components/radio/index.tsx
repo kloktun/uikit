@@ -28,7 +28,7 @@ export const RadioGroup = <T=unknown>({ value, onChange, children, disabled }: P
 
     return (
         <RadioContext.Provider value={{value, onChange, disabled}}>
-            <div className="flex flex-col gap-5 fill-primary">
+            <div className="kl-flex kl-flex-col kl-gap-5 kl-fill-primary">
                 {children}
             </div>
         </RadioContext.Provider>
