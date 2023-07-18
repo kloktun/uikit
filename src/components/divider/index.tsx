@@ -21,8 +21,8 @@ const Divider = ({ children, childrenAlign = "center", color, indent, endIndent,
                 classNames('kl-flex-1 kl-rounded-full',
                     {
                         'kl-border-stroke': !color,
-                        'kl-border-t': orientation == "horizontal",
-                        'kl-border-l': orientation == "vertical",
+                        'kl-border-t kl-max-h-0': orientation == "horizontal",
+                        'kl-border-l kl-max-w-0': orientation == "vertical",
                     }
                 )
             }
@@ -79,7 +79,10 @@ const Divider = ({ children, childrenAlign = "center", color, indent, endIndent,
     }
 
     return (
-        <div className={'w-full max-w-full kl-flex kl-text-front-hint'} style={{
+        <div className={ classNames('kl-flex kl-text-front-hint', {
+            'kl-flex-row kl-items-center kl-w-full': orientation == "horizontal",
+            'kl-flex-col kl-items-center kl-h-full': orientation == "vertical",
+        })} style={{
 
             paddingTop: !!indent && orientation == 'vertical' ? `${indent}px` : undefined,
             paddingLeft: !!indent && orientation == 'horizontal' ? `${indent}px` : undefined,
