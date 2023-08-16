@@ -14,7 +14,8 @@ interface Props {
 }
 
 
-type ChildrenPosition = "top" | "bottom";
+type ChildrenVerticalPosition = "top" | "bottom";
+type ChildrenHorizontalPosition = "left" | "right";
 
 const isScrollable = (ele: HTMLElement | null) => {
 
@@ -42,7 +43,8 @@ const Dropdown = ({ button, children, show, onClickOutside }: Props) => {
     const buttonRef = useRef<HTMLDivElement>(null);
     const childrenRef = useRef<HTMLDivElement>(null);
 
-    const [position, setPosition] = useState<ChildrenPosition>("bottom");
+    const [verticalPosition, setVerticalPosition] = useState<ChildrenVerticalPosition>("bottom");
+    const [horizontalPosition, setHorizontalPosition] = useState<ChildrenHorizontalPosition>("left");
 
     const updatePosition = () => {
 
@@ -53,54 +55,96 @@ const Dropdown = ({ button, children, show, onClickOutside }: Props) => {
         const buttonBounds = buttonRef.current.getBoundingClientRect();
         const listBounds = childrenRef.current.getBoundingClientRect();
 
-        let viewportTop = parentEl?.getBoundingClientRect().top ?? 0;
-        let viewportBottom = parentEl ? viewportTop + parentEl.clientHeight : window.innerHeight;
+        let parentRect = parentEl?.getBoundingClientRect();
+        let viewportTop = parentRect?.top ?? 0;
+        let viewportBottom = parentRect ? viewportTop + parentRect.height : window.outerHeight;
+        let viewportLeft = parentRect?.left ?? 0;
+        let viewportRight = parentRect ? viewportLeft + parentRect.width : window.outerWidth;
 
         if(viewportTop < 0){
             viewportTop = 0;
         }
 
-        if(viewportBottom > window.innerHeight){
-            viewportBottom = window.innerHeight;
+        if(viewportBottom > window.outerHeight){
+            viewportBottom = window.outerHeight;
         }
 
-        const { top: buttonTop, bottom: buttonBottom } = buttonBounds;
-        const { height: listHeight } = listBounds;
+        if(viewportLeft < 0){
+            viewportLeft = 0;
+        }
+
+        if(viewportRight > window.outerWidth){
+            viewportRight = window.outerWidth;
+        }
+
+        const { top: buttonTop, bottom: buttonBottom, left: buttonLeft, right: buttonRight, width: buttonWidth } = buttonBounds;
+        const { width: listWidth, height: listHeight, top: listTop, left: listLeft } = listBounds;
 
         const openTopPosition = buttonTop - listHeight;
         const openBottomPosition = buttonBottom + listHeight;
 
+        const openLeftPosition = buttonLeft;
+        const openRightPosition = buttonLeft + listWidth;
+
         const isOverTop = openTopPosition < viewportTop;
         const isOverBottom = openBottomPosition > viewportBottom;
+        const isOverLeft = openLeftPosition < viewportLeft;
+        const isOverRight = openRightPosition > viewportRight;
 
         const overTopValue = openTopPosition < 0 ? Math.abs(openTopPosition) : 0;
         const overBottomValue = openBottomPosition - viewportBottom;
+        const overLeftValue = openLeftPosition < 0 ? Math.abs(openLeftPosition) : 0;
+        const overRightvalue = openRightPosition - viewportRight;
 
-        let newPosition: ChildrenPosition = 'bottom';
+        let newVerticalPosition: ChildrenVerticalPosition = 'bottom';
+        let newHorizontalPostion: ChildrenHorizontalPosition = 'left';
 
         if(isOverTop && isOverBottom){
 
             if(overTopValue < overBottomValue){
                 
-                newPosition = 'top';
+                newVerticalPosition = 'top';
 
             } else {
 
-                newPosition = 'bottom';
+                newVerticalPosition = 'bottom';
 
             }
 
         } else if (isOverBottom){
 
-            newPosition = 'top';
+            newVerticalPosition = 'top';
 
         } else {
 
-            newPosition = 'bottom';
+            newVerticalPosition = 'bottom';
 
         }
 
-        setPosition(newPosition);
+        if(isOverLeft && isOverRight){
+
+            if(overLeftValue < overRightvalue){
+                
+                newHorizontalPostion = 'right';
+
+            } else {
+
+                newHorizontalPostion = 'left';
+
+            }
+
+        } else if (isOverRight){
+
+            newHorizontalPostion = 'right';
+
+        } else {
+
+            newHorizontalPostion = 'left';
+
+        }
+
+        setVerticalPosition(newVerticalPosition);
+        setHorizontalPosition(newHorizontalPostion);
 
     }
 
@@ -139,6 +183,9 @@ const Dropdown = ({ button, children, show, onClickOutside }: Props) => {
 
     }, [show])
 
+    useEffect(() => {
+        updatePosition()
+    }, []);
     
     useEffect(() => {
 
@@ -155,7 +202,11 @@ const Dropdown = ({ button, children, show, onClickOutside }: Props) => {
 
         <div className='kl-relative kl-max-h-full' ref={selectRef}>
 
-            {button}
+            <div ref={buttonRef}>
+                {button}
+            </div>
+
+            {verticalPosition} - {horizontalPosition}
 
             <Transition
                 as={Fragment}
@@ -173,8 +224,10 @@ const Dropdown = ({ button, children, show, onClickOutside }: Props) => {
             >
 
                 <div className={classnames('kl-absolute kl-overflow-hidden kl-flex kl-flex-col kl-border kl-border-stroke kl-bg-background kl-rounded-control kl-z-10 kl-min-w-full', {
-                    'kl-bottom-full kl-mb-2': position == 'top',
-                    'kl-top-full kl-mt-2': position == 'bottom'
+                    'kl-bottom-full kl-mb-2': verticalPosition == 'top',
+                    'kl-top-full kl-mt-2': verticalPosition == 'bottom',
+                    'kl-left-0': horizontalPosition == 'left',
+                    'kl-right-0': horizontalPosition == 'right'
                 })} ref={childrenRef}>
                     {children}
                 </div>
