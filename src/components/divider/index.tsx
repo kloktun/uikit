@@ -49,8 +49,8 @@ const Divider = ({ children, childrenAlign = "center", color, indent, endIndent,
 
                     'kl-gap-2': !childrenGap,
                 
-                    'kl-flex-row kl-items-center': orientation == 'horizontal',
-                    'kl-flex-col kl-items-center': orientation == 'vertical',
+                    'kl-flex-row kl-items-center kl-w-full kl-min-w-full': orientation == 'horizontal',
+                    'kl-flex-col kl-items-center kl-h-full kl-min-h-full': orientation == 'vertical',
                     
                     'kl-text-start': childrenAlign == "start",
                     'kl-text-center': childrenAlign == "center",
@@ -80,8 +80,8 @@ const Divider = ({ children, childrenAlign = "center", color, indent, endIndent,
 
     return (
         <div className={ classNames('kl-flex kl-text-front-hint', {
-            'kl-flex-row kl-items-center kl-w-full': orientation == "horizontal",
-            'kl-flex-col kl-items-center kl-h-full': orientation == "vertical",
+            'kl-flex-row kl-items-center kl-w-full kl-min-w-full': orientation == "horizontal",
+            'kl-flex-col kl-items-center kl-h-full kl-min-h-full': orientation == "vertical",
         })} style={{
 
             paddingTop: !!indent && orientation == 'vertical' ? `${indent}px` : undefined,
