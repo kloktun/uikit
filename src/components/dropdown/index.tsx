@@ -206,8 +206,6 @@ const Dropdown = ({ button, children, show, onClickOutside }: Props) => {
                 {button}
             </div>
 
-            {verticalPosition} - {horizontalPosition}
-
             <Transition
                 as={Fragment}
                 
