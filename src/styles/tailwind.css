@@ -53,7 +53,6 @@
         @apply kl-h-8;
     }
 
-
     /* rounded */
     .control-rounded {
         @apply kl-rounded-xl;
@@ -101,36 +100,37 @@
 
     /* icon button */
 
-    .icon-control-size-huge {
+    
+    .icon-control-size-large {
         width: 48px;
         height: 48px;
         max-width: 48px;
         max-height: 48px;
     }
-    
-    .icon-control-size-large {
+
+    .icon-control-size-medium {
         width: 44px;
         height: 44px;
         max-width: 44px;
         max-height: 44px;
     }
 
-    .icon-control-size-medium {
+
+    .icon-control-size-default {
         width: 40px;
         height: 40px;
         max-width: 40px;
         max-height: 40px;
     }
 
-
-    .icon-control-size-default {
+    .icon-control-size-small {
         width: 36px;
         height: 36px;
         max-width: 36px;
         max-height: 36px;
     }
 
-    .icon-control-size-small {
+    .icon-control-size-mini {
         width: 32px;
         height: 32px;
         max-width: 32px;
