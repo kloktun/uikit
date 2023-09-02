@@ -34,7 +34,7 @@ const IconButton = ({ type = "default", size = "default", loading = false, disab
                     'kl-aspect-square': !isText,
 
                     // Type
-                    'kl-bg-background border': type == 'default',
+                    'kl-bg-background kl-border': type == 'default',
 
                     // Default state
                     'kl-text-front kl-fill-front kl-border-stroke': status == 'default' && (type == 'default' || type == 'borderless' || type == 'text'),
