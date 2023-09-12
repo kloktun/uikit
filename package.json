@@ -1,6 +1,6 @@
 {
   "name": "@kloktun/uikit",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "KLOKTUN UI Kit for React",
   "source": "src/index.ts",
   "type": "module",
