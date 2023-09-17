@@ -44,9 +44,11 @@ const Window = ({ children, show, onClose }: WindowProps) => {
 
                         <Transition
 
-                            as={Fragment}
+                            as={'div'}
 
                             show={show}
+
+                            className='kl-flex kl-flex-col kl-my-auto'
                             
                             enter="kl-transform kl-origin-top kl-transition kl-duration-300"
             
@@ -59,9 +61,7 @@ const Window = ({ children, show, onClose }: WindowProps) => {
 
                         >
 
-                            <div className='kl-flex kl-flex-col kl-my-auto'>
-                                {el({ close })}
-                            </div>
+                            {el({ close })}
 
                         </Transition>
 
