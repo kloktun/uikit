@@ -1,7 +1,7 @@
-import classnames from 'classnames';
 import React, { Fragment, useEffect, useMemo, useRef, useState } from 'react';
 import { useClickOutside } from '../../hooks/outside';
 import { Transition } from '@headlessui/react';
+import classNames from 'classnames';
 
 interface Props {
 
@@ -14,15 +14,15 @@ interface Props {
 }
 
 
-type ChildrenVerticalPosition = "top" | "bottom";
-type ChildrenHorizontalPosition = "left" | "right";
+// type ChildrenVerticalPosition = "top" | "bottom";
+// type ChildrenHorizontalPosition = "left" | "right";
 
 const isScrollable = (ele: HTMLElement | null) => {
 
     if(!ele){
         return false;
     }
-
+    
     const hasScrollableContent = ele.scrollHeight > ele.clientHeight;
 
     const overflowYStyle = window.getComputedStyle(ele).overflowY;
@@ -43,8 +43,8 @@ const Dropdown = ({ button, children, show, onClickOutside }: Props) => {
     const buttonRef = useRef<HTMLDivElement>(null);
     const childrenRef = useRef<HTMLDivElement>(null);
 
-    const [verticalPosition, setVerticalPosition] = useState<ChildrenVerticalPosition>("bottom");
-    const [horizontalPosition, setHorizontalPosition] = useState<ChildrenHorizontalPosition>("left");
+    const [verticalPosition, setVerticalPosition] = useState("bottom");
+    const [horizontalPosition, setHorizontalPosition] = useState("left");
 
     const updatePosition = () => {
 
@@ -57,24 +57,24 @@ const Dropdown = ({ button, children, show, onClickOutside }: Props) => {
 
         let parentRect = parentEl?.getBoundingClientRect();
         let viewportTop = parentRect?.top ?? 0;
-        let viewportBottom = parentRect ? viewportTop + parentRect.height : window.outerHeight;
+        let viewportBottom = parentRect ? viewportTop + parentRect.height : window.innerHeight;
         let viewportLeft = parentRect?.left ?? 0;
-        let viewportRight = parentRect ? viewportLeft + parentRect.width : window.outerWidth;
+        let viewportRight = parentRect ? viewportLeft + parentRect.width : window.innerWidth;
 
         if(viewportTop < 0){
             viewportTop = 0;
         }
 
-        if(viewportBottom > window.outerHeight){
-            viewportBottom = window.outerHeight;
+        if(viewportBottom > window.innerHeight){
+            viewportBottom = window.innerHeight;
         }
 
         if(viewportLeft < 0){
             viewportLeft = 0;
         }
 
-        if(viewportRight > window.outerWidth){
-            viewportRight = window.outerWidth;
+        if(viewportRight > window.innerWidth){
+            viewportRight = window.innerWidth;
         }
 
         const { top: buttonTop, bottom: buttonBottom, left: buttonLeft, right: buttonRight, width: buttonWidth } = buttonBounds;
@@ -86,6 +86,7 @@ const Dropdown = ({ button, children, show, onClickOutside }: Props) => {
         const openLeftPosition = buttonLeft;
         const openRightPosition = buttonLeft + listWidth;
 
+
         const isOverTop = openTopPosition < viewportTop;
         const isOverBottom = openBottomPosition > viewportBottom;
         const isOverLeft = openLeftPosition < viewportLeft;
@@ -96,8 +97,9 @@ const Dropdown = ({ button, children, show, onClickOutside }: Props) => {
         const overLeftValue = openLeftPosition < 0 ? Math.abs(openLeftPosition) : 0;
         const overRightvalue = openRightPosition - viewportRight;
 
-        let newVerticalPosition: ChildrenVerticalPosition = 'bottom';
-        let newHorizontalPostion: ChildrenHorizontalPosition = 'left';
+        let newVerticalPosition = 'bottom';
+        let newHorizontalPostion = 'left';
+
 
         if(isOverTop && isOverBottom){
 
@@ -145,6 +147,17 @@ const Dropdown = ({ button, children, show, onClickOutside }: Props) => {
 
         setVerticalPosition(newVerticalPosition);
         setHorizontalPosition(newHorizontalPostion);
+
+
+        console.log({
+            viewportLeft,
+            viewportRight,
+            openLeftPosition,
+            openRightPosition,
+            isOverLeft,
+            isOverRight,
+            newHorizontalPostion
+        })
 
     }
 
@@ -207,26 +220,37 @@ const Dropdown = ({ button, children, show, onClickOutside }: Props) => {
             </div>
 
             <Transition
-                as={Fragment}
+                as={'div'}
                 
                 show={show}
                 
+                className="kl-absolute kl-top-0 kl-left-0 kl-right-0 kl-bottom-0"
                 enter="kl-transform kl-transition kl-duration-200"
 
                 enterFrom="kl-opacity-0 kl-scale-95"
                 enterTo="kl-opacity-100 kl-scale-100"
 
                 leave="kl-transform kl-transition kl-duration-200"
-                leaveFrom="kl-opacity-100 kl-scale-100 "
+                leaveFrom="kl-opacity-100 kl-scale-100"
                 leaveTo="kl-opacity-0 kl-scale-95"
             >
 
-                <div className={classnames('kl-absolute kl-overflow-hidden kl-flex kl-flex-col kl-border kl-border-stroke kl-bg-background kl-rounded-control kl-z-10 kl-min-w-full', {
-                    'kl-bottom-full kl-mb-2': verticalPosition == 'top',
-                    'kl-top-full kl-mt-2': verticalPosition == 'bottom',
-                    'kl-left-0': horizontalPosition == 'left',
-                    'kl-right-0': horizontalPosition == 'right'
-                })} ref={childrenRef}>
+                <div
+                    
+                    className={
+                        classNames(
+                            'kl-absolute kl-overflow-hidden kl-flex kl-flex-col kl-border kl-border-stroke kl-bg-background kl-rounded-control kl-z-10 kl-min-w-full',
+                            {
+                                'kl-bottom-full kl-mb-2': verticalPosition == 'top',
+                                'kl-top-full kl-mt-2': verticalPosition == 'bottom',
+                                'kl-left-0': horizontalPosition == 'left',
+                                'kl-right-0': horizontalPosition == 'right'
+                            }
+                        )
+                    }
+                    
+                    ref={childrenRef}
+                >
                     {children}
                 </div>
 
