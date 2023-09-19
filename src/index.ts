@@ -17,6 +17,9 @@ export { default as Slider } from './components/slider';
 export { RadioGroup, RadioOption } from './components/radio';
 export { Checkbox, CheckboxGroup } from './components/checkbox';
 export { Select, SelectOption }  from './components/select';
+export { default as Tab  } from './components/tab';
+export type { TabProps } from './components/tab';
+export { Tabs, TabsPanel, TabsCurrent } from './components/tabs'
 
 export { default as Alert }  from './components/alert';
 export { default as Textarea } from './components/textarea';
