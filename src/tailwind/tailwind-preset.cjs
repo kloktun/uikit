@@ -117,7 +117,8 @@ const config = {
                 opacity: ({ after }) => after(['disabled']),
                 cursor: ({ after }) => after(['disabled']),
                 extend: {
-                  backgroundColor: ['active']
+                  backgroundColor: ['active', 'group-hover'],
+                  textColor: ['group-hover']
                 },
               },
     
