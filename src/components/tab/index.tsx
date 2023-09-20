@@ -36,7 +36,7 @@ const Tab = ({ label, icon, suffixIcon, prefix, suffix, active, disabled, onClic
             onClick={handleClick}
             className={
                 classNames(
-                    'kl-group kl-relative kl-flex kl-flex-row kl-items-center kl-justify-center kl-h-14 kl-gap-1 kl-px-3',
+                    'kl-group kl-relative kl-flex kl-flex-row kl-items-center kl-justify-center kl-h-14 kl-gap-2 kl-px-3',
                     {
                         'kl-opacity-50 kl-pointer-events-none': disabled,
                         'kl-cursor-pointer': !disabled,
