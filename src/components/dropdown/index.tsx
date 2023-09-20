@@ -148,17 +148,6 @@ const Dropdown = ({ button, children, show, onClickOutside }: Props) => {
         setVerticalPosition(newVerticalPosition);
         setHorizontalPosition(newHorizontalPostion);
 
-
-        console.log({
-            viewportLeft,
-            viewportRight,
-            openLeftPosition,
-            openRightPosition,
-            isOverLeft,
-            isOverRight,
-            newHorizontalPostion
-        })
-
     }
 
     const addEventListeners = () => {
@@ -224,7 +213,7 @@ const Dropdown = ({ button, children, show, onClickOutside }: Props) => {
                 
                 show={show}
                 
-                className="kl-absolute kl-top-0 kl-left-0 kl-right-0 kl-bottom-0"
+                className="kl-absolute kl-top-0 kl-left-0 kl-right-0 kl-bottom-0 kl-z-[1]"
                 enter="kl-transform kl-transition kl-duration-200"
 
                 enterFrom="kl-opacity-0 kl-scale-95"
