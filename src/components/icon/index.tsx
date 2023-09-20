@@ -32,7 +32,7 @@ const Icon = ({ icon, size = "default", color }: Props) => {
 
             classnames('icon kl-flex kl-items-center kl-justify-center kl-leading-none', {
                 'kl-fill-current kl-text-current': !color,
-                'kl-w-12 kl-h-12 kl-text-5xl': size == 'huge',
+                'kl-w-14 kl-h-14 kl-text-5xl': size == 'huge',
                 'kl-w-6 kl-h-6 kl-text-2xl': size == 'large',
                 'kl-w-5 kl-h-5 kl-text-xl': size == 'medium' || size == 'default' || size == 'small',
                 'kl-w-4 kl-h-4 kl-text-base': size == 'mini',
