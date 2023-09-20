@@ -35,6 +35,8 @@ export { default as Modal } from './components/modal';
 export { default as Popup } from './components/popup';
 export type { PopupButtons, OnPopupClose } from './components/popup';
 
+export { default as EmptyPlaceholder } from './components/empty-placeholder';
+
 export { Theme } from './theme/theme';
 export { LightTheme, DarkTheme } from './theme/themes';
 
