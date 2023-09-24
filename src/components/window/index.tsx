@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Overlay, { OverlayChildrenProps } from '../overlay';
 import Backdrop from '../backdrop';
 import { Transition } from '@headlessui/react';
