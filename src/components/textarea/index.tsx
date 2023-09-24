@@ -3,14 +3,16 @@ import classnames from "classnames";
 import { ControlsProps } from "../../common/controls.type";
 import { useCombinedRefs } from "../../hooks/combinedrefs";
 
-interface Props extends Omit<React.HTMLProps<HTMLTextAreaElement> & ControlsProps, "">  {
+type P = Omit<React.HTMLProps<HTMLTextAreaElement>, "size"> & ControlsProps;
+
+interface Props extends P {
 
     value?: string;
     autosize?: boolean | { minRows?: number, maxRows?: number },
 
 }
 
-const Textarea = forwardRef<HTMLTextAreaElement, Props>(({ value, onChange, disabled, success, warning, error, autosize = { minRows: 2, maxRows: 5 }, ...restProps }, ref) => {
+const Textarea = forwardRef<HTMLTextAreaElement, Props>(({ value, onChange, disabled, success, warning, error, size = "default", autosize = { minRows: 2, maxRows: 5 }, ...restProps }, ref) => {
 
     const textareaElement = useRef<HTMLTextAreaElement>(null);
     const combinedRef = useCombinedRefs<HTMLTextAreaElement>(textareaElement, ref);
@@ -96,14 +98,27 @@ const Textarea = forwardRef<HTMLTextAreaElement, Props>(({ value, onChange, disa
             {...restProps}
 
             className={
-                classnames(restProps.className, 'kl-rounded-control editable-control-border editable-control-background editable-control-background kl-resize-none kl-p-2', {
+                classnames(
+                    restProps.className,
+                    'kl-rounded-control editable-control-border editable-control-background editable-control-background kl-resize-none', {
 
-                    'success': success,
-                    'error': error,
-                    'warning': warning,
-                    'kl-opacity-50': disabled
+                        
 
-                })
+                        'success': success,
+                        'error': error,
+                        'warning': warning,
+                        'kl-opacity-50': disabled,
+
+                        'kl-px-3 kl-py-3': size == "large",
+                        'kl-px-3 kl-py-2.5': size == "medium",
+                        'kl-px-3 kl-py-2': size == "default",
+                        'kl-px-2.5 kl-py-1.5': size == "small",
+                        'kl-px-2 kl-py-1': size == "mini",
+
+
+
+                    }
+                )
             }
 
             disabled={disabled}
