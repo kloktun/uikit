@@ -1,11 +1,14 @@
 import { PopupProps } from ".";
+import { ButtonProps } from "../button";
 import { usePopup } from './context';
 import { PopupCancelButton, PopupOkayButton } from './popup-default-button';
 
 interface MessagePopupProps extends Omit<PopupProps, "buttons">  {
 
     okayButtonText: string;
+    okayButtonType?: ButtonProps['type'];
     cancelButtonText?: string;
+    cancelButtonType?: ButtonProps['type'];
 
 }
 
@@ -15,7 +18,7 @@ export const useMessagePopup = () => {
 
     return (popup: MessagePopupProps): Promise<any> => {
 
-        const { success, danger, error, warning, okayButtonText, cancelButtonText } = popup;
+        const { success, danger, error, warning, okayButtonText, okayButtonType, cancelButtonText, cancelButtonType } = popup;
 
         return showPopup({
 
@@ -24,7 +27,7 @@ export const useMessagePopup = () => {
             buttons: (close) => [
 
                 PopupOkayButton({
-                    type: "primary",
+                    type: okayButtonType ?? "primary",
                     success,
                     error: error || danger,
                     warning,
@@ -35,7 +38,7 @@ export const useMessagePopup = () => {
                 }),
 
                 PopupCancelButton({
-                    
+                    type: cancelButtonType,
                     children: cancelButtonText,
                     onClick: () => {
                         close();
