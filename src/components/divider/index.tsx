@@ -29,9 +29,9 @@ const Divider = ({ children, childrenAlign = "center", color, indent, endIndent,
 
             style={{
 
-                borderTopWidth: !!thickness && orientation == "horizontal" ? `${thickness}px` : undefined,
-                borderLeftWidth: !!thickness && orientation == "vertical" ? `${thickness}px` : undefined,
-                borderColor: !!color ? color : undefined,
+                borderTopWidth: !!thickness && orientation == "horizontal" ? `${thickness}px !important` : undefined,
+                borderLeftWidth: !!thickness && orientation == "vertical" ? `${thickness}px !important` : undefined,
+                borderColor: !!color ? `${color} !important` : undefined,
 
             }}
 
