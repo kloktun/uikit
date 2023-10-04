@@ -7,11 +7,11 @@ import {
 	Saturation,
 	Hue,
 	Alpha,
-} from "@uiw/react-color";
+} from "@uiw/react-color/esm";
 import React, { useState } from "react";
 import HexInput from "./hex-input";
 import AlphaInput from "./alpha-input";
-import { isHex, isHexColor } from "../../../utils/colors";
+import { isHexColor } from "../../../utils/colors";
 
 interface Props {
 	color: string;
