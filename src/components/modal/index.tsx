@@ -1,9 +1,10 @@
 import React, { useRef } from "react";
-import { OverlayChildrenProps } from "../overlay";
+import { CloseFunction, OverlayChildrenProps } from "../overlay";
 import IconButton from "../icon-button";
 import CloseIcon from "../../icons/close-icon";
 import Window from "../window";
 import classnames from "classnames";
+import { ConfirmPopupProps, useConfirmPopup } from "../popup/confirm";
 
 type ModalScrollType = "paper" | "body";
 
@@ -18,6 +19,7 @@ export interface ModalProps {
 	onClose: () => void;
 
 	scrollType?: ModalScrollType;
+	closeConfirmPopup?: ConfirmPopupProps;
 }
 
 const Modal = ({
@@ -25,6 +27,7 @@ const Modal = ({
 	title,
 	show,
 	scrollType = "paper",
+	closeConfirmPopup,
 	onClose,
 }: ModalProps) => {
 	const el = (props: OverlayChildrenProps) => {
@@ -37,8 +40,22 @@ const Modal = ({
 
 	const ref = useRef(null);
 
+	const showConfirmPopup = useConfirmPopup();
+
+	const handleBackdropClick = async () => {
+		if (closeConfirmPopup) {
+			const result = await showConfirmPopup(closeConfirmPopup);
+
+			if (!result) {
+				return;
+			}
+		}
+
+		onClose();
+	};
+
 	return (
-		<Window show={show} onClose={onClose}>
+		<Window show={show} onClose={onClose} onBackdropClick={handleBackdropClick}>
 			{({ close }) => {
 				return (
 					<div
@@ -68,7 +85,7 @@ const Modal = ({
 
 						<div
 							className={classnames(
-								"kl-flex kl-flex-col kl-px-4 kl-pb-4 kl-flex-1 kl-overflow-y-auto ",
+								"kl-flex kl-flex-col kl-px-4 kl-pb-4 kl-flex-1",
 								{
 									"kl-pt-4": !title,
 								}

@@ -5,7 +5,7 @@ import { useOverlayContext } from "./context";
 import { OVERLAY_CONTAINER_ID } from "./constaints";
 
 type VisibleChangeFunction = (visible: boolean) => void;
-type CloseFunction = <T>(result?: T) => void;
+export type CloseFunction = <T>(result?: T) => void;
 
 export interface OverlayChildrenProps {
 	close: CloseFunction;

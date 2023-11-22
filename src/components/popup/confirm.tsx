@@ -1,63 +1,59 @@
-import { PopupProps } from "."
+import { PopupProps } from ".";
 import { ButtonProps } from "../button";
 import { usePopup } from "./context";
 import { PopupCancelButton } from "./popup-default-button";
 
-interface ConfirmPopupProps extends Omit<PopupProps<boolean>, "buttons">  {
-
-    confirmButtonText: string;
-    confirmButtonType?: ButtonProps['type'];
-    cancelButtonText?: string;
-    cancelButtonType?: ButtonProps['type'];
-
+export interface ConfirmPopupProps
+	extends Omit<PopupProps<boolean>, "buttons"> {
+	confirmButtonText: string;
+	confirmButtonType?: ButtonProps["type"];
+	cancelButtonText?: string;
+	cancelButtonType?: ButtonProps["type"];
 }
 
 export const useConfirmPopup = () => {
+	const showPopup = usePopup<boolean>();
 
-    const showPopup = usePopup<boolean>();
+	return (popup: ConfirmPopupProps): Promise<boolean> => {
+		const {
+			success,
+			danger,
+			error,
+			warning,
+			confirmButtonText,
+			confirmButtonType,
+			cancelButtonText,
+			cancelButtonType,
+		} = popup;
 
-    return (popup: ConfirmPopupProps): Promise<boolean> => {
+		return showPopup({
+			...popup,
 
-        const { success, danger, error, warning, confirmButtonText, confirmButtonType, cancelButtonText, cancelButtonType } = popup;
+			onClose: (close) => {
+				close(false);
+			},
 
-        return showPopup({
+			buttons: (close) => [
+				{
+					type: confirmButtonType ?? "primary",
+					success,
+					error: error || danger,
+					warning,
+					children: confirmButtonText,
+					onClick: () => {
+						close(true);
+					},
+				},
 
-            ...popup,
-            
-            onClose: (close) => {
-                close(false);
-            },
+				PopupCancelButton({
+					type: cancelButtonType,
+					children: cancelButtonText,
 
-            buttons: (close) => [
-
-                {
-                    type: confirmButtonType ?? "primary",
-                    success,
-                    error: error || danger,
-                    warning,
-                    children: confirmButtonText,
-                    onClick: () => {
-                        close(true)
-                    }
-                },
-
-                PopupCancelButton({
-                    
-                    type: cancelButtonType,
-                    children: cancelButtonText,
-
-                    onClick: () => {
-                        close(false);
-                    }
-                })
-
-                
-
-            ]
-        });
-
-    }
-
-
-
-}
+					onClick: () => {
+						close(false);
+					},
+				}),
+			],
+		});
+	};
+};

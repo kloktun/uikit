@@ -10,9 +10,10 @@ export interface WindowProps {
 
 	show: boolean;
 	onClose: <T>(result?: T) => void;
+	onBackdropClick?: <T>(result?: T) => void;
 }
 
-const Window = ({ children, show, onClose }: WindowProps) => {
+const Window = ({ children, show, onClose, onBackdropClick }: WindowProps) => {
 	const handleOverlayVisibleChange = (visible: boolean) => {
 		if (visible) {
 			return;
@@ -33,7 +34,7 @@ const Window = ({ children, show, onClose }: WindowProps) => {
 		<Overlay visible={show} onVisibleChange={handleOverlayVisibleChange}>
 			{({ close }) => {
 				return (
-					<Backdrop onClick={close}>
+					<Backdrop onClick={onBackdropClick ?? close}>
 						<Transition
 							as={"div"}
 							show={show}
