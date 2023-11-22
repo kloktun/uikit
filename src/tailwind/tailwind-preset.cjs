@@ -83,6 +83,9 @@ const config = {
                     front: "rgba(var(--kloktun-warning-front, 255, 255, 255), <alpha-value>)",
                     hover: "rgba(var(--kloktun-warning-hover, 255, 246, 241), <alpha-value>)",
                     active: "rgba(var(--kloktun-warning-active, 255, 240, 232), <alpha-value>)",
+                    light: {
+                        DEFAULT: "rgba(var(--kloktun-warning-light, 251, 198, 169), <alpha-value>)"
+                    },
                     accent: {
                         hover: "rgba(var(--kloktun-warning-accent-hover, 255, 167, 117), <alpha-value>)",
                         active: "rgba(var(--kloktun-warning-accent-active, 242, 136, 76), <alpha-value>)"
@@ -99,6 +102,9 @@ const config = {
                     front: "rgba(var(--kloktun-success-front, 255, 255, 255), <alpha-value>)",
                     hover: "rgba(var(--kloktun-success-hover, 247, 255, 245), <alpha-value>)",
                     active: "rgba(var(--kloktun-success-active, 239, 255, 235), <alpha-value>)",
+                    light: {
+                        DEFAULT: "rgba(var(--kloktun-success-light, 172, 222, 148), <alpha-value>)"
+                    },
                     accent: {
                         hover: "rgba(var(--kloktun-success-accent-hover, 133, 206, 97), <alpha-value>)",
                         active: "rgba(var(--kloktun-success-accent-active, 93, 175, 52), <alpha-value>)"

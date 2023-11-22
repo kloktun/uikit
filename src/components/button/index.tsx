@@ -4,7 +4,13 @@ import classnames from "classnames";
 import Spinner from "../spinner";
 import Icon, { IconProp } from "../icon";
 
-type ButtonType = "default" | "primary" | "plain" | "borderless" | "text";
+type ButtonType =
+	| "default"
+	| "primary"
+	| "outline"
+	| "plain"
+	| "borderless"
+	| "text";
 
 export interface ButtonProps
 	extends ControlsProps,
@@ -55,21 +61,25 @@ const Button = ({
 					"kl-px-4": type != "text",
 
 					// Type
-					"kl-bg-background kl-border": type == "default",
+					"kl-bg-background kl-border": type == "default" || type == "outline",
 
 					// Default state
 					"kl-text-front kl-fill-front kl-border-stroke hover:kl-bg-background-hover active:kl-bg-background-active":
 						status == "default" && type == "default",
 					"kl-text-primary-front kl-fill-primary-front kl-bg-primary hover:kl-bg-primary-accent-hover active:kl-bg-primary-accent-active":
 						status == "default" && type == "primary",
+					"kl-text-primary kl-fill-primary kl-border-primary hover:kl-bg-primary-hover active:kl-bg-primary-active":
+						status == "default" && type == "outline",
 					"kl-text-primary kl-fill-primary kl-bg-primary-plain  hover:kl-bg-primary-plain-hover active:kl-bg-primary-plain-active":
 						status == "default" && type == "plain",
 					"kl-text-primary kl-fill-primary hover:kl-text-primary-accent-hover hover:kl-fill-primary-accent-hover active:kl-text-primary-accent-active active:kl-fill-primary-accent-active":
 						status == "default" && (type == "text" || type == "borderless"),
 
 					// Error state
-					"kl-text-error kl-fill-error kl-border-error hover:kl-bg-error-hover active:kl-bg-error-active":
+					"kl-text-error kl-fill-error kl-border-error-light hover:kl-bg-error-hover active:kl-bg-error-active":
 						status == "error" && type == "default",
+					"kl-text-error kl-fill-error kl-border-error hover:kl-bg-error-hover active:kl-bg-error-active":
+						status == "error" && type == "outline",
 					"kl-text-error-front kl-fill-error-front kl-bg-error hover:kl-bg-error-accent-hover active:kl-bg-error-accent-active":
 						status == "error" && type == "primary",
 					"kl-text-error kl-fill-error kl-bg-error-plain  hover:kl-bg-error-plain-hover active:kl-bg-error-plain-active":
@@ -78,8 +88,10 @@ const Button = ({
 						status == "error" && (type == "text" || type == "borderless"),
 
 					// Warning state
-					"kl-text-warning kl-fill-warning kl-border-warning hover:kl-bg-warning-hover active:kl-bg-warning-active":
+					"kl-text-warning kl-fill-warning kl-border-warning-light hover:kl-bg-warning-hover active:kl-bg-warning-active":
 						status == "warning" && type == "default",
+					"kl-text-warning kl-fill-warning kl-border-warning hover:kl-bg-warning-hover active:kl-bg-warning-active":
+						status == "warning" && type == "outline",
 					"kl-text-warning-front kl-fill-warning-front kl-bg-warning hover:kl-bg-warning-accent-hover active:kl-bg-warning-accent-active":
 						status == "warning" && type == "primary",
 					"kl-text-warning kl-fill-warning kl-bg-warning-plain  hover:kl-bg-warning-plain-hover active:kl-bg-warning-plain-active":
@@ -88,8 +100,10 @@ const Button = ({
 						status == "warning" && (type == "text" || type == "borderless"),
 
 					// Success state
-					"kl-text-success kl-fill-success kl-border-success hover:kl-bg-success-hover active:kl-bg-success-active":
+					"kl-text-success kl-fill-success kl-border-success-light hover:kl-bg-success-hover active:kl-bg-success-active":
 						status == "success" && type == "default",
+					"kl-text-success kl-fill-success kl-border-success hover:kl-bg-success-hover active:kl-bg-success-active":
+						status == "success" && type == "outline",
 					"kl-text-success-front kl-fill-success-front kl-bg-success hover:kl-bg-success-accent-hover active:kl-bg-success-accent-active":
 						status == "success" && type == "primary",
 					"kl-text-success kl-fill-success kl-bg-success-plain  hover:kl-bg-success-plain-hover active:kl-bg-success-plain-active":
