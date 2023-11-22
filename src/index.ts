@@ -15,6 +15,7 @@ export { default as Input } from "./components/input";
 export { default as Slider } from "./components/slider";
 export { RadioGroup, RadioOption } from "./components/radio";
 export { Checkbox, CheckboxGroup } from "./components/checkbox";
+export { default as Switch } from "./components/switch";
 export { Select, SelectOption } from "./components/select";
 export { default as Tab } from "./components/tab";
 export type { TabProps } from "./components/tab";
