@@ -47,6 +47,7 @@ const Dropdown = ({ button, children, show, onClickOutside }: Props) => {
 
 	const [verticalPosition, setVerticalPosition] = useState("bottom");
 	const [horizontalPosition, setHorizontalPosition] = useState("left");
+	const [buttonWidth, setButtonWidth] = useState(0);
 
 	const updatePosition = () => {
 		if (!childrenRef.current || !buttonRef.current) {
@@ -136,6 +137,7 @@ const Dropdown = ({ button, children, show, onClickOutside }: Props) => {
 
 		setVerticalPosition(newVerticalPosition);
 		setHorizontalPosition(newHorizontalPostion);
+		setButtonWidth(buttonWidth);
 	};
 
 	const addEventListeners = () => {
@@ -185,8 +187,10 @@ const Dropdown = ({ button, children, show, onClickOutside }: Props) => {
 			<Transition
 				as={"div"}
 				show={show}
-				// className="kl-absolute kl-top-0 kl-left-0 kl-right-0 kl-bottom-0 kl-z-[1]"
-				className={classNames("kl-absolute kl-h-0 kl-w-0 kl-z-[1]", {
+				style={{
+					minWidth: `${buttonWidth}px`,
+				}}
+				className={classNames("kl-absolute kl-z-[1]", {
 					"kl-top-0": verticalPosition == "top",
 					"kl-bottom-0": verticalPosition == "bottom",
 					"kl-left-0": horizontalPosition == "left",
@@ -201,13 +205,13 @@ const Dropdown = ({ button, children, show, onClickOutside }: Props) => {
 			>
 				<div
 					className={classNames(
-						"kl-absolute kl-overflow-hidden kl-flex kl-flex-col kl-border kl-border-stroke kl-bg-background kl-rounded-control kl-z-10 kl-min-w-full",
-						{
-							"kl-bottom-full kl-mb-2": verticalPosition == "top",
-							"kl-top-full kl-mt-2": verticalPosition == "bottom",
-							"kl-left-0": horizontalPosition == "left",
-							"kl-right-0": horizontalPosition == "right",
-						}
+						"kl-absolute kl-overflow-hidden kl-flex kl-flex-col kl-border kl-border-stroke kl-bg-background kl-rounded-control kl-z-10 kl-min-w-full"
+						// {
+						// 	"kl-bottom-full kl-mb-2": verticalPosition == "top",
+						// 	"kl-top-full kl-mt-2": verticalPosition == "bottom",
+						// 	"kl-left-0": horizontalPosition == "left",
+						// 	"kl-right-0": horizontalPosition == "right",
+						// }
 					)}
 					ref={childrenRef}
 				>
