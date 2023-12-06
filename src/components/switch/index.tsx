@@ -18,7 +18,7 @@ const Switch = ({ value, onChange, disabled }: Props) => {
 		<div
 			onClick={handleClick}
 			className={classNames(
-				"kl-w-10 kl-h-10 kl-aspect-square kl-flex kl-flex-col kl-items-center kl-justify-center kl-flex-shrink kl-cursor-pointer",
+				" kl-w-10 kl-h-10 kl-aspect-square kl-flex kl-flex-col kl-items-center kl-justify-center kl-flex-shrink kl-cursor-pointer",
 				{
 					"kl-opacity-50 kl-cursor-not-allowed": disabled,
 				}
@@ -26,7 +26,7 @@ const Switch = ({ value, onChange, disabled }: Props) => {
 		>
 			<div
 				className={classNames(
-					"kl-w-10 kl-h-6 kl-rounded-full kl-transition-all kl-duration-300",
+					"kl-relative kl-w-10 kl-h-6 kl-rounded-full kl-transition-all kl-duration-300",
 					{
 						"kl-bg-primary": value,
 						"kl-bg-stroke": !value,
