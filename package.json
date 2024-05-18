@@ -1,45 +1,45 @@
 {
-  "name": "@kloktun/uikit",
-  "version": "1.0.41",
-  "description": "KLOKTUN UI Kit for React",
-  "source": "src/index.ts",
-  "type": "module",
-  "main": "lib/index.cjs",
-  "module": "lib/index.esm.js",
-  "types": "lib/index.d.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "microbundle --jsx React.createElement --jsxFragment React.Fragment --jsxImportSource react",
-    "dev": "NODE_ENV=dev; microbundle watch --jsx React.createElement --jsxFragment React.Fragment --jsxImportSource react",
-    "pub": "npm run build; npm publish --access=public"
-  },
-  "np": {
-    "publish": false,
-    "tests": false
-  },
-  "author": "kloktunov",
-  "license": "MIT",
-  "devDependencies": {
-    "@babel/core": "^7.20.12",
-    "@types/react": "^18.0.27",
-    "@types/react-dom": "^18.0.11",
-    "autoprefixer": "^10.4.13",
-    "babel-loader": "^8.3.0",
-    "microbundle": "^0.15.1",
-    "microbundle-crl": "^0.13.11",
-    "postcss": "^8.4.21",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "tailwindcss": "^3.2.7",
-    "typescript": "^4.1.2"
-  },
-  "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "dependencies": {
-    "@headlessui/react": "^1.7.15",
-    "@uiw/react-color": "^1.4.2",
-    "classnames": "^2.3.2"
-  }
+	"name": "@kloktun/uikit",
+	"version": "1.0.42",
+	"description": "KLOKTUN UI Kit for React",
+	"source": "src/index.ts",
+	"type": "module",
+	"main": "lib/index.cjs",
+	"module": "lib/index.esm.js",
+	"types": "lib/index.d.ts",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "microbundle --jsx React.createElement --jsxFragment React.Fragment --jsxImportSource react",
+		"dev": "NODE_ENV=dev; microbundle watch --jsx React.createElement --jsxFragment React.Fragment --jsxImportSource react",
+		"pub": "npm run build; npm publish --access=public"
+	},
+	"np": {
+		"publish": false,
+		"tests": false
+	},
+	"author": "kloktunov",
+	"license": "MIT",
+	"devDependencies": {
+		"@babel/core": "^7.20.12",
+		"@types/react": "^18.0.27",
+		"@types/react-dom": "^18.0.11",
+		"autoprefixer": "^10.4.13",
+		"babel-loader": "^8.3.0",
+		"microbundle": "^0.15.1",
+		"microbundle-crl": "^0.13.11",
+		"postcss": "^8.4.21",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"tailwindcss": "^3.2.7",
+		"typescript": "^4.1.2"
+	},
+	"peerDependencies": {
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0"
+	},
+	"dependencies": {
+		"@headlessui/react": "^1.7.15",
+		"@uiw/react-color": "^1.4.2",
+		"classnames": "^2.3.2"
+	}
 }
