@@ -35,6 +35,8 @@ export interface InputProps
 	clearable?: boolean;
 	togglePassword?: boolean;
 	htmlSize?: number;
+
+	fill?: boolean;
 }
 
 const InputIcon = ({
@@ -191,6 +193,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 			clearable,
 			togglePassword,
 			type,
+			fill,
 			htmlSize,
 			...restProps
 		},
@@ -275,12 +278,15 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 				onBlur={handleBlur}
 				className={classnames(
 					restProps.className,
-					"editable-control-border editable-control-background kl-flex kl-flex-row kl-items-center kl-outline-none kl-ring-0",
+					"editable-control-border kl-flex kl-flex-row kl-items-center kl-outline-none kl-ring-0",
 					{
 						success: success,
 						error: error,
 						warning: warning,
+
 						"kl-opacity-50": disabled,
+						"editable-control-background": !fill,
+						"kl-bg-stroke": fill,
 
 						// Size
 						"control-height-large": size == "large",
