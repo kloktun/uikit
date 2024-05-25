@@ -13,7 +13,7 @@ export type { ButtonProps } from "./components/button";
 export { default as IconButton } from "./components/icon-button";
 export { default as Input } from "./components/input";
 export { default as Slider } from "./components/slider";
-export { RadioGroup, RadioOption } from "./components/radio";
+export { RadioGroup, RadioOption, RadioIndicator } from "./components/radio";
 export { Checkbox, CheckboxGroup } from "./components/checkbox";
 export { default as Switch } from "./components/switch";
 export { Select, SelectOption } from "./components/select";
@@ -32,6 +32,7 @@ export { default as Overlay } from "./components/overlay";
 export { default as Window } from "./components/window";
 export { default as Backdrop } from "./components/backdrop";
 export { default as Modal } from "./components/modal";
+export type { ModalProps } from "./components/modal";
 export { default as Popup } from "./components/popup";
 export type { PopupButtons, OnPopupClose } from "./components/popup";
 
