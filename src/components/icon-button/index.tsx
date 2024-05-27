@@ -173,7 +173,8 @@ const IconButton = ({
 
 					// Disabled
 					"kl-cursor-not-allowed": disabled,
-				}
+				},
+				restProps.className
 			)}
 		>
 			{loading && <Spinner size={size} />}
