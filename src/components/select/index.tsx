@@ -10,6 +10,7 @@ interface SelectContextProps<T> {
     options: SelectOptionData<T>[];
     size?: ControlSize;
     onChange: (value?: T) => void;
+    compareKey?: keyof T;
 
 }
 
@@ -31,12 +32,13 @@ interface Props<T> extends Omit<SelectHTMLAttributes<T>, "value"|"size">, Contro
     children: React.ReactElement | React.ReactElement[];
     placeholder?: string;
     icon?: IconProp;
+    compareKey?: keyof T;
 
 }
 
-const Select = forwardRef(<T=unknown>(props: Props<T>, ref: Ref<HTMLSelectElement>) => {
+const Select = forwardRef(function<T>(props: Props<T>, ref: Ref<HTMLSelectElement>) {
 
-    const { children, value, onChange, size, disabled } = props;
+    const { children, value, onChange, size, disabled, compareKey } = props;
     
     const [open, setOpen] = useState(false);
 
@@ -96,7 +98,7 @@ const Select = forwardRef(<T=unknown>(props: Props<T>, ref: Ref<HTMLSelectElemen
     
     return (
 
-        <SelectContext.Provider value={{ value, options, size, onChange: handleChange }}>
+        <SelectContext.Provider value={{ value, options, size, onChange: handleChange, compareKey }}>
 
             <Dropdown button={<SelectButton {...props} onClick={toggle} open={open} disabled={disabled} ></SelectButton>} show={open} onClickOutside={hide}>
                 <div className={classnames("kl-max-h-80 kl-overflow-y-auto", {
@@ -115,7 +117,7 @@ const Select = forwardRef(<T=unknown>(props: Props<T>, ref: Ref<HTMLSelectElemen
 
     );
 
-});
+}) as <T>(props: Props<T> & { ref?: Ref<HTMLSelectElement> }) => React.ReactElement;;
 
 
 interface SelectButtonProps<T> extends Props<T> {
@@ -130,13 +132,20 @@ const SelectButton = <T=unknown>({ type = "default", size = "default", placehold
 
     const status = error ? "error" : success ? "success": warning ? "warning" : "default"; 
 
-    const { value, options } = useSelectContext();
+    const { value, options, compareKey } = useSelectContext();
 
     let content;
 
     let selected = useMemo(() => {
 
         let item = options.find((el) => {
+
+            console.log(el.value, value, compareKey);
+
+            if(compareKey){
+                return el.value[compareKey] == value[compareKey];
+            }
+
             return el.value == value;
         });
 
@@ -276,11 +285,15 @@ interface SelectOptionProps<T> extends SelectOptionData<T> {
 
 const SelectOption = <T=unknown>(props: SelectOptionProps<T>) => {
 
-    const { value: selectValue, onChange, size = "default" } = useSelectContext();
+    const { value: selectValue, onChange, size = "default", compareKey } = useSelectContext();
 
     let { value, icon, label, children, disabled } = props;
 
     const selected = useMemo(() => {
+
+        if(compareKey){
+            return (value as any)[compareKey] == (selectValue as any)[compareKey];
+        }
 
         return value == selectValue;
 
