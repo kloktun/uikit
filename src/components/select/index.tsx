@@ -36,7 +36,11 @@ interface Props<T>
 		ControlsProps {
 	value: T;
 	type?: SelectType;
-	children: React.ReactElement | React.ReactElement[];
+	children:
+		| React.ReactElement
+		| React.ReactElement[]
+		| JSX.Element
+		| JSX.Element[];
 	placeholder?: string;
 	icon?: IconProp;
 	compareKey?: keyof NonNullable<T>;
