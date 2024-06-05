@@ -1,25 +1,33 @@
-import React from "react";
+// Window.jsx
+import React, { useEffect, useState } from "react";
 import Overlay, { OverlayChildrenProps } from "../overlay";
 import Backdrop from "../backdrop";
-import { Transition } from "@headlessui/react";
+import classNames from "classnames";
 
 export interface WindowProps {
 	children:
 		| React.ReactElement
 		| ((props: OverlayChildrenProps) => React.ReactElement);
-
 	show: boolean;
 	onClose: <T>(result?: T) => void;
 	onBackdropClick?: <T>(result?: T) => void;
 }
 
 const Window = ({ children, show, onClose, onBackdropClick }: WindowProps) => {
-	const handleOverlayVisibleChange = (visible: boolean) => {
-		if (visible) {
-			return;
-		}
+	const [isVisible, setIsVisible] = useState(show);
 
-		onClose();
+	useEffect(() => {
+		if (show) {
+			setIsVisible(true);
+		} else {
+			setIsVisible(false);
+		}
+	}, [show]);
+
+	const handleOverlayVisibleChange = (visible: boolean) => {
+		if (!visible) {
+			onClose();
+		}
 	};
 
 	const el = (props: OverlayChildrenProps) => {
@@ -31,26 +39,19 @@ const Window = ({ children, show, onClose, onBackdropClick }: WindowProps) => {
 	};
 
 	return (
-		<Overlay visible={show} onVisibleChange={handleOverlayVisibleChange}>
-			{({ close }) => {
-				return (
-					<Backdrop onClick={onBackdropClick ?? close}>
-						<Transition
-							as={"div"}
-							show={show}
-							className="kl-flex kl-flex-col kl-my-auto"
-							enter="kl-transform kl-origin-top kl-transition kl-duration-300"
-							enterFrom="kl-opacity-0 kl-scale-95"
-							enterTo="kl-opacity-100 kl-scale-100"
-							leave="kl-transform kl-transition kl-origin-top kl-duration-300"
-							leaveFrom="kl-opacity-100 kl-scale-100"
-							leaveTo="kl-opacity-0 kl-scale-95"
-						>
-							{el({ close })}
-						</Transition>
-					</Backdrop>
-				);
-			}}
+		<Overlay visible={isVisible} onVisibleChange={handleOverlayVisibleChange}>
+			{({ close }) => (
+				<Backdrop onClick={onBackdropClick ?? close}>
+					<div
+						className={classNames(
+							"kl-flex kl-flex-col kl-my-auto kl-duration-150",
+							show ? "kl-animate-fade-in-up" : "kl-animate-fade-out-down"
+						)}
+					>
+						{el({ close })}
+					</div>
+				</Backdrop>
+			)}
 		</Overlay>
 	);
 };

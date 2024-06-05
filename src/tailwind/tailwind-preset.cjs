@@ -126,7 +126,35 @@ const config = {
                   backgroundColor: ['active', 'group-hover'],
                   textColor: ['group-hover']
                 },
-              },
+            },
+
+            keyframes: {
+				'fade-in-up': {
+				'0%': {
+					opacity: '0',
+					transform: 'scale(0.97)',
+				},
+				'100%': {
+					opacity: '1',
+					transform: 'scale(1)',
+				},
+				},
+				'fade-out-down': {
+				'0%': {
+					opacity: '1',
+					transform: 'scale(1)',
+				},
+				'100%': {
+					opacity: '0',
+					transform: 'scale(0.97)',
+				},
+				},
+			},
+			
+			animation: {
+				'fade-in-up': 'fade-in-up 0.3s ease-out',
+				'fade-out-down': 'fade-out-down 0.3s ease-out',
+			}
     
         },
       },
