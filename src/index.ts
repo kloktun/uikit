@@ -14,7 +14,11 @@ export { default as IconButton } from "./components/icon-button";
 export { default as Input } from "./components/input";
 export { default as Slider } from "./components/slider";
 export { RadioGroup, RadioOption, RadioIndicator } from "./components/radio";
-export { Checkbox, CheckboxGroup } from "./components/checkbox";
+export {
+	Checkbox,
+	CheckboxGroup,
+	CheckboxIndicator,
+} from "./components/checkbox";
 export { default as Switch } from "./components/switch";
 export { Select, SelectOption } from "./components/select";
 export { default as Tab } from "./components/tab";
