@@ -41,11 +41,14 @@ const Window = ({ children, show, onClose, onBackdropClick }: WindowProps) => {
 	return (
 		<Overlay visible={isVisible} onVisibleChange={handleOverlayVisibleChange}>
 			{({ close }) => (
-				<Backdrop onClick={onBackdropClick ?? close}>
+				<Backdrop
+					className={show ? "kl-animate-fade-in" : "kl-animate-fade-out"}
+					onClick={onBackdropClick ?? close}
+				>
 					<div
 						className={classNames(
-							"kl-flex kl-flex-col kl-my-auto kl-duration-150",
-							show ? "kl-animate-fade-in-up" : "kl-animate-fade-out-down"
+							"kl-flex kl-flex-col kl-my-auto",
+							show ? "kl-animate-scale-in" : "kl-animate-scale-out"
 						)}
 					>
 						{el({ close })}
