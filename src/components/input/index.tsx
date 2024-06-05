@@ -350,7 +350,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 							onBlur={handleBlur}
 							size={htmlSize}
 							className={classnames(
-								"kl-text-front kl-rounded-control kl-flex-1 kl-max-h-full kl-min-h-full kl-h-full kl-outline-none kl-ring-0 placeholder:kl-text-front-hint focus-visible:kl-outline-none focus-visible:kl-ring-0",
+								"kl-text-front kl-rounded-control kl-flex-1 kl-max-h-full kl-min-h-full kl-h-full kl-outline-none kl-ring-0 placeholder:kl-text-front-hint focus-visible:kl-outline-none focus-visible:kl-ring-0 kl-w-0",
 								{
 									"editable-control-background": !fill,
 									"kl-bg-stroke": fill,
