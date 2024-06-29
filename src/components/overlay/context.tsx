@@ -41,22 +41,28 @@ export const OverlayProvider = ({
 	};
 
 	const hideScrollBar = () => {
-		const currentWidth = document.body.offsetWidth;
+		const currentWidth = window.document.body.offsetWidth;
 
-		document.body.classList.add("kl-overflow-hidden");
+		window.document
+			.getElementsByTagName("html")[0]
+			.classList.add("kl-overflow-hidden");
+		window.document.body.classList.add("kl-overflow-hidden");
 
-		const afterWidth = document.body.offsetWidth;
+		const afterWidth = window.document.body.offsetWidth;
 
-		document.body.setAttribute(
+		window.document.body.setAttribute(
 			"style",
 			`padding-right: ${afterWidth - currentWidth}px`
 		);
 	};
 
 	const getBackScrollBar = () => {
-		document.body.classList.remove("kl-overflow-hidden");
+		window.document
+			.getElementsByTagName("html")[0]
+			.classList.remove("kl-overflow-hidden");
+		window.document.body.classList.remove("kl-overflow-hidden");
 
-		document.body.removeAttribute("style");
+		window.document.body.removeAttribute("style");
 	};
 
 	useEffect(() => {
