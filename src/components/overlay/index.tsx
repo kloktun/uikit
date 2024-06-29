@@ -52,16 +52,17 @@ const OverlayChildren = (props: Props) => {
 
 const Overlay = (props: Props): React.ReactElement | null => {
 	const overlayContext = useOverlayContext();
+	const id = Math.random().toString();
 
 	useEffect(() => {
 		if (props.visible) {
-			overlayContext.show();
+			overlayContext.show(id);
 		} else {
-			overlayContext.close();
+			overlayContext.close(id);
 		}
 
 		return () => {
-			overlayContext.close();
+			overlayContext.close(id);
 		};
 	}, [props.visible]);
 

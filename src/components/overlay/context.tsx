@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, {
+	createContext,
+	useContext,
+	useEffect,
+	useMemo,
+	useState,
+} from "react";
 import { OVERLAY_CONTAINER_ID } from "./constaints";
 
 export const OverlayContainer = () => {
@@ -7,14 +13,14 @@ export const OverlayContainer = () => {
 
 interface OverlayContextProps {
 	count: number;
-	show: () => void;
-	close: () => void;
+	show: (id: string) => void;
+	close: (id: string) => void;
 }
 
 const OverlayContext = createContext<OverlayContextProps>({
 	count: 0,
-	show: () => {},
-	close: () => {},
+	show: (id: string) => {},
+	close: (id: string) => {},
 });
 
 export const useOverlayContext = () => useContext(OverlayContext);
@@ -24,45 +30,51 @@ export const OverlayProvider = ({
 }: {
 	children: React.ReactElement | React.ReactElement[];
 }) => {
-	const [count, setCount] = useState(0);
-	const show = () => {
-		setCount((value) => {
-			return value + 1;
-		});
-	};
-	const close = () => {
-		setCount((value) => {
-			if (value - 1 < 0) {
-				return 0;
+	const [overlayIds, setOverlayIds] = useState<string[]>([]);
+	const count = useMemo(() => overlayIds.length, [overlayIds]);
+
+	const show = (id: string) => {
+		setOverlayIds((value) => {
+			if (value.includes(id)) {
+				return value;
 			}
 
-			return value - 1;
+			return [...value, id];
+		});
+	};
+
+	const close = (id: string) => {
+		// console.log("-------------------");
+		// console.log("close");
+		// console.log("-------------------");
+
+		setOverlayIds((value) => {
+			return value.filter((item) => item !== id);
 		});
 	};
 
 	const hideScrollBar = () => {
-		const currentWidth = window.document.body.offsetWidth;
+		const currentWidth = document.body.offsetWidth;
 
-		window.document
-			.getElementsByTagName("html")[0]
-			.classList.add("kl-overflow-hidden");
-		window.document.body.classList.add("kl-overflow-hidden");
+		const html = document.getElementsByTagName("html")[0];
+		const body = document.body;
 
-		const afterWidth = window.document.body.offsetWidth;
+		html.classList.add("kl-overflow-hidden");
+		body.classList.add("kl-overflow-hidden");
 
-		window.document.body.setAttribute(
-			"style",
-			`padding-right: ${afterWidth - currentWidth}px`
-		);
+		const afterWidth = body.offsetWidth;
+
+		body.setAttribute("style", `padding-right: ${afterWidth - currentWidth}px`);
 	};
 
 	const getBackScrollBar = () => {
-		window.document
-			.getElementsByTagName("html")[0]
-			.classList.remove("kl-overflow-hidden");
-		window.document.body.classList.remove("kl-overflow-hidden");
+		const html = document.getElementsByTagName("html")[0];
+		const body = document.body;
 
-		window.document.body.removeAttribute("style");
+		html.classList.remove("kl-overflow-hidden");
+		body.classList.remove("kl-overflow-hidden");
+
+		body.removeAttribute("style");
 	};
 
 	useEffect(() => {
