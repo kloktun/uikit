@@ -67,9 +67,13 @@ const Overlay = (props: Props): React.ReactElement | null => {
 	}, [props.visible]);
 
 	if (props.visible) {
-		return createPortal(
-			<OverlayChildren {...props}></OverlayChildren>,
-			document.getElementById(OVERLAY_CONTAINER_ID)!
+		return (
+			<>
+				{createPortal(
+					<OverlayChildren {...props}></OverlayChildren>,
+					document.getElementById(OVERLAY_CONTAINER_ID)!
+				)}
+			</>
 		);
 	} else {
 		return null;
