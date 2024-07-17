@@ -181,7 +181,7 @@ const Dropdown = ({ button, children, show, onClickOutside }: Props) => {
 	}
 
 	return (
-		<div className="kl-relative kl-max-h-full" ref={selectRef}>
+		<div className="kl-relative" ref={selectRef}>
 			<div ref={buttonRef}>{button}</div>
 
 			<Transition
