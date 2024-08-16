@@ -66,7 +66,9 @@ interface CheckboxProps<T = unknown> {
 
 	checked?: boolean;
 	onChange?: (checked: boolean) => void;
-
+	customIndicator?:
+		| React.ReactElement
+		| ((checked?: boolean) => React.ReactElement);
 	disabled?: boolean;
 
 	value?: T;
@@ -78,6 +80,7 @@ export const Checkbox = ({
 	disabled,
 	value,
 	onChange,
+	customIndicator,
 }: CheckboxProps) => {
 	const groupContext = useCheckboxGroupContext();
 
@@ -150,7 +153,15 @@ export const Checkbox = ({
 			})}
 			onClick={toggleChecked}
 		>
-			<CheckboxIndicator status={status} className="kl-text-primary" />
+			{customIndicator ? (
+				typeof customIndicator === "function" ? (
+					customIndicator(status)
+				) : (
+					customIndicator
+				)
+			) : (
+				<CheckboxIndicator status={status} className="kl-text-primary" />
+			)}
 
 			<div className="kl-flex kl-flex-col kl-items-center">{el()}</div>
 		</div>
