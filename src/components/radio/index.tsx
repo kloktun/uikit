@@ -8,6 +8,9 @@ interface RadioContextProps<T> {
 	onChange: (value?: T) => void;
 	disabled?: boolean;
 	indicatorAligment?: RadioIndicatorAligment;
+	customIndicator?:
+		| React.ReactElement
+		| ((status?: boolean) => React.ReactElement);
 }
 
 const RadioContext = createContext<RadioContextProps<any>>({
@@ -22,6 +25,9 @@ interface PropsGroup<T> {
 	children: JSX.Element | JSX.Element[];
 	disabled?: boolean;
 	indicatorAligment?: RadioIndicatorAligment;
+	customIndicator?:
+		| React.ReactElement
+		| ((status?: boolean) => React.ReactElement);
 }
 
 export function RadioGroup<T>({
@@ -54,6 +60,9 @@ interface PropsOption<T> {
 		| ((selected?: boolean) => React.ReactElement);
 	disabled?: boolean;
 	indicatorAligment?: RadioIndicatorAligment;
+	customIndicator?:
+		| React.ReactElement
+		| ((status?: boolean) => React.ReactElement);
 }
 
 export const RadioIndicator = ({
@@ -108,16 +117,20 @@ export function RadioOption<T>({
 	disabled,
 	suffix,
 	indicatorAligment: optionIndicatorAligment,
+	customIndicator: optionCustomIndicator,
 }: PropsOption<T>) {
 	const {
 		value: currentValue,
 		onChange,
 		disabled: groupDisabled,
 		indicatorAligment: groupIndicatorAligment,
+		customIndicator: groupCustomIndicator,
 	} = useRadioGroupContext();
 
 	const indicatorAligment: RadioIndicatorAligment =
 		optionIndicatorAligment || groupIndicatorAligment || "start";
+
+	const customIndicator = optionCustomIndicator || groupCustomIndicator;
 
 	const selected = useMemo(() => currentValue == value, [currentValue, value]);
 	const enabled = useMemo(
@@ -153,18 +166,32 @@ export function RadioOption<T>({
 			})}
 			onClick={handleClick}
 		>
-			{indicatorAligment == "start" && (
-				<RadioIndicator enabled={selected} className="kl-text-primary" />
-			)}
+			{indicatorAligment == "start" &&
+				(customIndicator ? (
+					typeof customIndicator === "function" ? (
+						customIndicator(selected)
+					) : (
+						customIndicator
+					)
+				) : (
+					<RadioIndicator enabled={selected} className="kl-text-primary" />
+				))}
 
 			<div className="kl-flex kl-flex-row kl-items-center kl-flex-1 kl-gap-2">
 				<div className="kl-flex-1">{el(children)}</div>
 				{suffix && <div className="kl-flex">{el(suffix)}</div>}
 			</div>
 
-			{indicatorAligment == "end" && (
-				<RadioIndicator enabled={selected} className="kl-text-primary" />
-			)}
+			{indicatorAligment == "end" &&
+				(customIndicator ? (
+					typeof customIndicator === "function" ? (
+						customIndicator(selected)
+					) : (
+						customIndicator
+					)
+				) : (
+					<RadioIndicator enabled={selected} className="kl-text-primary" />
+				))}
 		</div>
 	);
 }
