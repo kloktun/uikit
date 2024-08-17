@@ -36,10 +36,11 @@ export function RadioGroup<T>({
 	children,
 	disabled,
 	indicatorAligment,
+	customIndicator,
 }: PropsGroup<T>) {
 	return (
 		<RadioContext.Provider
-			value={{ value, onChange, disabled, indicatorAligment }}
+			value={{ value, onChange, disabled, indicatorAligment, customIndicator }}
 		>
 			<div className="kl-flex kl-flex-col kl-gap-5 kl-fill-primary">
 				{children}
