@@ -175,7 +175,10 @@ export function RadioOption<T>({
 						customIndicator
 					)
 				) : (
-					<RadioIndicator enabled={selected} className="kl-text-primary" />
+					<RadioIndicator
+						enabled={selected}
+						className="kl-text-primary kl-flex-shrink-0"
+					/>
 				))}
 
 			<div className="kl-flex kl-flex-row kl-items-center kl-flex-1 kl-gap-2">

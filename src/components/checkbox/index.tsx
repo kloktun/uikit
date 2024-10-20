@@ -160,7 +160,10 @@ export const Checkbox = ({
 					customIndicator
 				)
 			) : (
-				<CheckboxIndicator status={status} className="kl-text-primary" />
+				<CheckboxIndicator
+					status={status}
+					className="kl-text-primary kl-flex-shrink-0"
+				/>
 			)}
 
 			<div className="kl-flex kl-flex-col kl-items-center">{el()}</div>
