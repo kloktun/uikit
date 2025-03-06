@@ -47,7 +47,7 @@ const Dropdown = ({ button, children, show, onClickOutside }: Props) => {
 				as={"div"}
 				ref={popoverRef}
 				show={show}
-				className="kl-z-[1]"
+				className="kl-absolute kl-z-[1]"
 				enter="kl-transform kl-transition kl-duration-200"
 				enterFrom="kl-opacity-0 kl-scale-95"
 				enterTo="kl-opacity-100 kl-scale-100"
