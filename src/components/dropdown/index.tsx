@@ -1,17 +1,18 @@
-import React, { useRef } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import {
 	useFloating,
 	autoUpdate,
 	flip,
 	shift,
 	offset,
-} from "@floating-ui/react-dom";
+} from "@floating-ui/react";
+
 import { useClickOutside } from "../../hooks/outside";
 import { Transition } from "@headlessui/react";
 
 interface Props {
-	button: JSX.Element;
-	children: JSX.Element;
+	button: React.ReactNode | JSX.Element;
+	children: React.ReactNode | JSX.Element;
 	show?: boolean;
 	onClickOutside?: () => void;
 }
@@ -21,14 +22,22 @@ const Dropdown = ({ button, children, show, onClickOutside }: Props) => {
 	const popoverRef = useRef<HTMLDivElement>(null);
 
 	const { refs, floatingStyles } = useFloating({
+		open: show,
+		onOpenChange: (open) => {
+			if (!open) {
+				onClickOutside?.();
+			}
+		},
 		placement: "bottom-start", // Можно менять на top, right, left
 		middleware: [offset(8), flip(), shift()],
 		whileElementsMounted: autoUpdate,
 	});
 
-	if (onClickOutside) {
-		useClickOutside([buttonRef, popoverRef], onClickOutside, show);
-	}
+	const handleClickOutside = useCallback(() => {
+		onClickOutside?.();
+	}, [onClickOutside]);
+
+	useClickOutside([buttonRef, popoverRef], handleClickOutside, show);
 
 	return (
 		<div className="relative" ref={refs.setReference}>
@@ -36,8 +45,9 @@ const Dropdown = ({ button, children, show, onClickOutside }: Props) => {
 
 			<Transition
 				as={"div"}
+				ref={popoverRef}
 				show={show}
-				className="kl-absolute kl-z-[1]"
+				className="kl-z-[1]"
 				enter="kl-transform kl-transition kl-duration-200"
 				enterFrom="kl-opacity-0 kl-scale-95"
 				enterTo="kl-opacity-100 kl-scale-100"
