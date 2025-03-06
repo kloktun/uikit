@@ -118,7 +118,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, Props>(
 				{...restProps}
 				className={classnames(
 					restProps.className,
-					"kl-rounded-control editable-control-border editable-control-background editable-control-background kl-resize-none",
+					"kl-rounded-control editable-control-border editable-control-background editable-control-background kl-resize-none placeholder:kl-text-front-hint",
 					{
 						success: success,
 						error: error,
