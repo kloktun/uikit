@@ -23,11 +23,6 @@ const Dropdown = ({ button, children, show, onClickOutside }: Props) => {
 
 	const { refs, floatingStyles } = useFloating({
 		open: show,
-		onOpenChange: (open) => {
-			if (!open) {
-				onClickOutside?.();
-			}
-		},
 		placement: "bottom-start", // Можно менять на top, right, left
 		middleware: [offset(8), flip(), shift()],
 		whileElementsMounted: autoUpdate,
@@ -40,7 +35,7 @@ const Dropdown = ({ button, children, show, onClickOutside }: Props) => {
 	useClickOutside([buttonRef, popoverRef], handleClickOutside, show);
 
 	return (
-		<div className="relative" ref={refs.setReference}>
+		<div className="kl-relative" ref={refs.setReference}>
 			<div ref={buttonRef}>{button}</div>
 
 			<Transition
