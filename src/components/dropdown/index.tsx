@@ -9,21 +9,29 @@ import {
 
 import { useClickOutside } from "../../hooks/outside";
 import { Transition } from "@headlessui/react";
+import { Placement } from "../../common/controls.type";
 
 interface Props {
 	button: React.ReactNode | JSX.Element;
 	children: React.ReactNode | JSX.Element;
 	show?: boolean;
+	placement?: Placement;
 	onClickOutside?: () => void;
 }
 
-const Dropdown = ({ button, children, show, onClickOutside }: Props) => {
+const Dropdown = ({
+	button,
+	children,
+	show,
+	onClickOutside,
+	placement,
+}: Props) => {
 	const buttonRef = useRef<HTMLDivElement>(null);
 	const popoverRef = useRef<HTMLDivElement>(null);
 
 	const { refs, floatingStyles } = useFloating({
 		open: show,
-		placement: "bottom-start", // Можно менять на top, right, left
+		placement: placement ?? "bottom-start", // Можно менять на top, right, left
 		middleware: [offset(8), flip(), shift()],
 		whileElementsMounted: autoUpdate,
 	});

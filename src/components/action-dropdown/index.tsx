@@ -5,7 +5,7 @@ import React, {
 	useState,
 } from "react";
 import Icon, { IconProp } from "../icon";
-import { ControlStatusProps } from "../../common/controls.type";
+import { ControlStatusProps, Placement } from "../../common/controls.type";
 import classNames from "classnames";
 import Dropdown from "../dropdown";
 
@@ -97,6 +97,7 @@ interface ActionDropdownProps {
 	button: string | ReactElement | ReactElement[];
 	children: string | ReactElement | ReactElement[];
 	show: boolean;
+	placement?: Placement;
 	onClose: () => void;
 }
 
@@ -104,6 +105,7 @@ export const ActionDropdown = ({
 	children,
 	button,
 	show,
+	placement,
 	onClose,
 }: ActionDropdownProps) => {
 	const contextValue: ActionDropdownContextProps = {
@@ -112,7 +114,12 @@ export const ActionDropdown = ({
 
 	return (
 		<Context.Provider value={contextValue}>
-			<Dropdown show={show} onClickOutside={onClose} button={button}>
+			<Dropdown
+				show={show}
+				onClickOutside={onClose}
+				button={button}
+				placement={placement}
+			>
 				<div className="kl-flex kl-flex-col">{children}</div>
 			</Dropdown>
 		</Context.Provider>
