@@ -112,6 +112,7 @@ const Select = forwardRef(function <T>(
 				}
 				show={open}
 				onClickOutside={hide}
+				minPopoverSize="button"
 			>
 				<div
 					className={classnames("kl-max-h-80 kl-overflow-y-auto", {
