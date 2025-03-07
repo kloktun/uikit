@@ -1,9 +1,10 @@
 import classnames from "classnames";
 import React, { createContext, useContext, useMemo } from "react";
+import { ControlStatusProps } from "../../common/controls.type";
 
 type RadioIndicatorAligment = "start" | "end";
 
-interface RadioContextProps<T> {
+interface RadioContextProps<T> extends ControlStatusProps {
 	value?: T;
 	onChange: (value?: T) => void;
 	disabled?: boolean;
@@ -19,7 +20,7 @@ const RadioContext = createContext<RadioContextProps<any>>({
 
 const useRadioGroupContext = () => useContext(RadioContext);
 
-interface PropsGroup<T> {
+interface PropsGroup<T> extends ControlStatusProps {
 	value: T;
 	onChange: (value: T) => void;
 	children: JSX.Element | JSX.Element[];
@@ -37,19 +38,31 @@ export function RadioGroup<T>({
 	disabled,
 	indicatorAligment,
 	customIndicator,
+	success,
+	error,
+	warning,
 }: PropsGroup<T>) {
 	return (
 		<RadioContext.Provider
-			value={{ value, onChange, disabled, indicatorAligment, customIndicator }}
+			value={{
+				value,
+				onChange,
+				disabled,
+				indicatorAligment,
+				customIndicator,
+				success,
+				error,
+				warning,
+			}}
 		>
-			<div className="kl-flex kl-flex-col kl-gap-5 kl-fill-primary">
+			<div className={classnames("kl-flex kl-flex-col kl-gap-5")}>
 				{children}
 			</div>
 		</RadioContext.Provider>
 	);
 }
 
-interface PropsOption<T> {
+interface PropsOption<T> extends ControlStatusProps {
 	value: T;
 	children:
 		| string
@@ -58,7 +71,8 @@ interface PropsOption<T> {
 	suffix?:
 		| string
 		| React.ReactElement
-		| ((selected?: boolean) => React.ReactElement);
+		| React.ReactNode
+		| ((selected?: boolean) => React.ReactElement | React.ReactNode);
 	disabled?: boolean;
 	indicatorAligment?: RadioIndicatorAligment;
 	customIndicator?:
@@ -119,6 +133,9 @@ export function RadioOption<T>({
 	suffix,
 	indicatorAligment: optionIndicatorAligment,
 	customIndicator: optionCustomIndicator,
+	success,
+	error,
+	warning,
 }: PropsOption<T>) {
 	const {
 		value: currentValue,
@@ -126,7 +143,14 @@ export function RadioOption<T>({
 		disabled: groupDisabled,
 		indicatorAligment: groupIndicatorAligment,
 		customIndicator: groupCustomIndicator,
+		success: groupSuccess,
+		error: groupError,
+		warning: groupWarning,
 	} = useRadioGroupContext();
+
+	const isSuccess = success || groupSuccess;
+	const isError = error || groupError;
+	const isWarning = warning || groupWarning;
 
 	const indicatorAligment: RadioIndicatorAligment =
 		optionIndicatorAligment || groupIndicatorAligment || "start";
@@ -177,7 +201,12 @@ export function RadioOption<T>({
 				) : (
 					<RadioIndicator
 						enabled={selected}
-						className="kl-text-primary kl-flex-shrink-0"
+						className={classnames("kl-flex-shrink-0", {
+							"kl-text-primary": !isSuccess && !isError && !isWarning,
+							"kl-text-success": isSuccess,
+							"kl-text-error": isError,
+							"kl-text-warning": isWarning,
+						})}
 					/>
 				))}
 
@@ -194,7 +223,15 @@ export function RadioOption<T>({
 						customIndicator
 					)
 				) : (
-					<RadioIndicator enabled={selected} className="kl-text-primary" />
+					<RadioIndicator
+						enabled={selected}
+						className={classnames("kl-flex-shrink-0", {
+							"kl-text-primary": !isSuccess && !isError && !isWarning,
+							"kl-text-success": isSuccess,
+							"kl-text-error": isError,
+							"kl-text-warning": isWarning,
+						})}
+					/>
 				))}
 		</div>
 	);
