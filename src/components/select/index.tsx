@@ -11,6 +11,7 @@ import { ControlSize, ControlsProps } from "../../common/controls.type";
 import classnames from "classnames";
 import Icon, { IconProp } from "../icon";
 import Dropdown from "../dropdown";
+import classNames from "classnames";
 
 interface SelectContextProps<T> {
 	value: T;
@@ -131,12 +132,13 @@ const Select = forwardRef(function <T>(
 	props: Props<T> & { ref?: Ref<HTMLSelectElement> }
 ) => React.ReactElement;
 
-interface SelectButtonProps<T> extends Props<T> {
-	open: boolean;
+interface SelectButtonProps<T> extends Omit<Props<T>, "value" | "children"> {
+	open?: boolean;
+	children?: React.ReactNode;
 	onClick?: () => void;
 }
 
-function SelectButton<T>({
+export function SelectButton<T>({
 	type = "default",
 	size = "default",
 	placeholder,
@@ -146,7 +148,8 @@ function SelectButton<T>({
 	error,
 	disabled,
 	onClick,
-	open,
+	open = false,
+	className,
 }: SelectButtonProps<T>) {
 	const status = error
 		? "error"
@@ -268,7 +271,8 @@ function SelectButton<T>({
 					"kl-cursor-not-allowed kl-opacity-50": disabled,
 
 					"kl-cursor-pointer": !disabled,
-				}
+				},
+				className
 			)}
 		>
 			{(icon || selected?.icon) && (

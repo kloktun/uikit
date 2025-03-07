@@ -20,7 +20,7 @@ export {
 	CheckboxIndicator,
 } from "./components/checkbox";
 export { default as Switch } from "./components/switch";
-export { Select, SelectOption } from "./components/select";
+export { Select, SelectOption, SelectButton } from "./components/select";
 export { default as Tab } from "./components/tab";
 export type { TabProps } from "./components/tab";
 export { Tabs, TabsPanel, TabsCurrent } from "./components/tabs";
