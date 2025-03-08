@@ -7,41 +7,56 @@ import {
 	offset,
 	size,
 	useTransitionStyles,
+	useHover,
+	safePolygon,
+	useInteractions,
 } from "@floating-ui/react";
 
-import { useClickOutside } from "../../hooks/outside";
 import { Placement } from "../../common/controls.type";
 import classNames from "classnames";
 
-export interface PopoverProps {
+export interface HoverPopoverProps {
 	button: React.ReactNode | JSX.Element;
 	children: React.ReactNode | JSX.Element;
-	show?: boolean;
 	placement?: Placement;
-	onClickOutside?: () => void;
 	className?: string;
 	popoverClassName?: string;
 	minPopoverSize?: "button";
+	openDelay?: number;
+	closeDelay?: number;
 }
 
-const Popover = ({
+const HoverPopover = ({
 	button,
 	children,
-	show,
-	onClickOutside,
 	placement,
 	className,
 	popoverClassName,
 	minPopoverSize,
-}: PopoverProps) => {
+	openDelay,
+	closeDelay,
+}: HoverPopoverProps) => {
 	const buttonRef = useRef<HTMLDivElement>();
 	const popoverRef = useRef<HTMLDivElement>();
+
+	const [visible, setVisible] = useState<boolean>(false);
+
+	const show = () => {
+		setVisible(true);
+	};
+
+	const close = () => {
+		setVisible(false);
+	};
 
 	const [minFloatingWidth, setMinFloatingWidth] = useState<number>(0);
 
 	const { refs, floatingStyles, context } = useFloating({
-		open: show,
-		placement: placement ?? "bottom-start", // Можно менять на top, right, left
+		open: visible,
+		onOpenChange: (state) => {
+			setVisible(state);
+		},
+		placement: placement ?? "top",
 		middleware: [
 			offset(8),
 			flip(),
@@ -56,12 +71,6 @@ const Popover = ({
 		],
 		whileElementsMounted: autoUpdate,
 	});
-
-	const handleClickOutside = useCallback(() => {
-		onClickOutside?.();
-	}, [onClickOutside]);
-
-	useClickOutside([buttonRef, popoverRef], handleClickOutside, show);
 
 	const handleButtonRef = useCallback(
 		(ref: HTMLDivElement) => {
@@ -95,9 +104,19 @@ const Popover = ({
 		},
 	});
 
+	const hover = useHover(context, {
+		delay: {
+			open: openDelay ?? 200,
+			close: closeDelay ?? 1000,
+		},
+		handleClose: safePolygon(),
+	});
+
+	const { getReferenceProps, getFloatingProps } = useInteractions([hover]);
+
 	return (
 		<>
-			<div className={className} ref={handleButtonRef}>
+			<div className={className} ref={handleButtonRef} {...getReferenceProps()}>
 				{button}
 			</div>
 
@@ -108,6 +127,7 @@ const Popover = ({
 						...floatingStyles,
 						minWidth: `${minFloatingWidth}px`,
 					}}
+					{...getFloatingProps()}
 					className={classNames("kl-z-[1]")}
 				>
 					<div style={styles} className={popoverClassName}>
@@ -119,4 +139,4 @@ const Popover = ({
 	);
 };
 
-export default Popover;
+export default HoverPopover;

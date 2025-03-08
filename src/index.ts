@@ -27,6 +27,7 @@ export { Tabs, TabsPanel, TabsCurrent } from "./components/tabs";
 
 export { default as Alert } from "./components/alert";
 export { default as Textarea } from "./components/textarea";
+export { default as HoverPopover } from "./components/hover-popover";
 export { default as Dropdown } from "./components/dropdown";
 export { default as Popover } from "./components/popover";
 export { default as Label } from "./components/label";

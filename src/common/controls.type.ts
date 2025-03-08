@@ -14,4 +14,8 @@ export interface ControlsProps extends ControlStatusProps {
 
 export type VerticalPlacement = "top" | "bottom";
 export type HorizontalPlacement = "start" | "end";
-export type Placement = `${VerticalPlacement}-${HorizontalPlacement}`;
+export type Placement =
+	| `${VerticalPlacement}-${HorizontalPlacement}`
+	| VerticalPlacement
+	| "left"
+	| "right";
