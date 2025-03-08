@@ -41,14 +41,6 @@ const HoverPopover = ({
 
 	const [visible, setVisible] = useState<boolean>(false);
 
-	const show = () => {
-		setVisible(true);
-	};
-
-	const close = () => {
-		setVisible(false);
-	};
-
 	const [minFloatingWidth, setMinFloatingWidth] = useState<number>(0);
 
 	const { refs, floatingStyles, context } = useFloating({
