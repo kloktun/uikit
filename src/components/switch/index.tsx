@@ -35,10 +35,10 @@ const Switch = ({ value, onChange, disabled }: Props) => {
 			>
 				<div
 					className={classNames(
-						"kl-absolute kl-aspect-square kl-w-5 kl-h-5 kl-mt-0.5 kl-bg-background kl-rounded-full kl-transition-all kl-duration-300",
+						"kl-absolute kl-aspect-square kl-w-5 kl-h-5 kl-mt-0.5 kl-rounded-full kl-transition-all kl-duration-300",
 						{
-							"kl-ml-[18px]": value,
-							"kl-ml-0.5": !value,
+							"kl-ml-[18px] kl-bg-primary-front": value,
+							"kl-ml-0.5 kl-bg-background": !value,
 						}
 					)}
 				></div>
