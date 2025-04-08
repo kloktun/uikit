@@ -141,7 +141,10 @@ const Popup = ({
 								</div>
 							)}
 
-							{el(overlayProps)}
+							{el({
+								...overlayProps,
+								close: onClose,
+							})}
 						</div>
 
 						{buttonsArray.length > 0 && (
