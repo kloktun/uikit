@@ -55,7 +55,7 @@ const Button = ({
 			{...restProps}
 			className={classnames(
 				restProps.className,
-				"kl-rounded-control kl-flex kl-flex-row kl-items-center kl-justify-center kl-gap-2 kl-transition-all kl-duration-200 kl-text-ellipsis kl-whitespace-nowrap",
+				"kl-rounded-control kl-flex kl-flex-row kl-items-center kl-justify-center kl-gap-2 kl-transition-all kl-duration-200 kl-text-ellipsis kl-whitespace-nowrap kl-select-none",
 				{
 					// Not text
 					"kl-px-4": type != "text",
