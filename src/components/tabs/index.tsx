@@ -10,12 +10,17 @@ import React, {
 	useState,
 } from "react";
 import Tab, { TabProps } from "../tab";
+import classNames from "classnames";
+
+export type TabUnderlineStyle = "default" | "full-width";
 
 interface TabsContextProps {
 	currentTabIndex: number;
 	tabs: TabProps[];
 	onChange: (index: number) => void;
 	children: ReactElement;
+	expandedTabs?: boolean;
+	tabUnderlineStyle?: TabUnderlineStyle;
 }
 
 const Context = createContext<TabsContextProps>({
@@ -23,12 +28,15 @@ const Context = createContext<TabsContextProps>({
 	tabs: [],
 	onChange: (index) => {},
 	children: <></>,
+	expandedTabs: false,
+	tabUnderlineStyle: "default",
 });
 
 const useTabsContext = () => useContext(Context);
 
 const TabsPanel = () => {
-	const { currentTabIndex, tabs, onChange } = useTabsContext();
+	const { currentTabIndex, tabs, onChange, expandedTabs, tabUnderlineStyle } =
+		useTabsContext();
 
 	const viewportRef = useRef<HTMLDivElement>(null);
 	const contentRef = useRef<HTMLDivElement>(null);
@@ -160,7 +168,12 @@ const TabsPanel = () => {
 			className="kl-flex kl-flex-row kl-overflow-x-auto kl-no-scrollbar"
 			onMouseDown={onMouseDown}
 		>
-			<div ref={contentRef} className="kl-flex kl-flex-row">
+			<div
+				ref={contentRef}
+				className={classNames("kl-flex kl-flex-row", {
+					"kl-w-full kl-items-stretch": expandedTabs,
+				})}
+			>
 				{tabs.map((tab, index) => {
 					const active = index == currentTabIndex;
 					const handleClick = () => {
@@ -172,7 +185,14 @@ const TabsPanel = () => {
 					};
 
 					return (
-						<Tab key={index} {...tab} active={active} onClick={handleClick} />
+						<Tab
+							key={index}
+							{...tab}
+							active={active}
+							onClick={handleClick}
+							expanded={expandedTabs}
+							underlineStyle={tabUnderlineStyle}
+						/>
 					);
 				})}
 			</div>
@@ -191,9 +211,18 @@ interface TabsProps {
 	onChange?: (index: number) => void;
 	tabs: TabProps[];
 	children: string | ReactElement | ReactElement[];
+	expandedTabs?: boolean;
+	tabUnderlineStyle?: TabUnderlineStyle;
 }
 
-const Tabs = ({ initalTabIndex = 0, onChange, tabs, children }: TabsProps) => {
+const Tabs = ({
+	initalTabIndex = 0,
+	onChange,
+	tabs,
+	children,
+	expandedTabs,
+	tabUnderlineStyle,
+}: TabsProps) => {
 	const [currentTabIndex, setCurrentTabIndex] = useState(initalTabIndex);
 	const currentTabChildren = useMemo(() => {
 		const currentTab = tabs[currentTabIndex];
@@ -214,8 +243,17 @@ const Tabs = ({ initalTabIndex = 0, onChange, tabs, children }: TabsProps) => {
 			},
 			tabs,
 			children: currentTabChildren,
+			expandedTabs,
+			tabUnderlineStyle,
 		}),
-		[currentTabIndex, setCurrentTabIndex, tabs, currentTabChildren]
+		[
+			currentTabIndex,
+			setCurrentTabIndex,
+			tabs,
+			currentTabChildren,
+			expandedTabs,
+			tabUnderlineStyle,
+		]
 	);
 
 	return <Context.Provider value={contextValues}>{children}</Context.Provider>;
