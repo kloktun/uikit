@@ -46,15 +46,6 @@
 		"@uiw/react-color-saturation": "^2.10.3",
 		"classnames": "^2.3.2"
 	},
-	"exports": {
-		".": {
-			"types": "./lib/index.d.ts",
-			"import": "./lib/index.esm.js",
-			"require": "./lib/index.cjs"
-		},
-		"./styles.css": "./lib/styles.css",
-		"./theme.css": "./src/tailwind/theme.css"
-	},
 	"files": [
 		"lib",
 		"src"
