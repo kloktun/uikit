@@ -1,7 +1,6 @@
-import { useState } from "react";
-import ColorPickerPalette from "./palette";
-import React from "react";
+import React, { useState } from "react";
 import Button from "../../button";
+import ColorPickerPalette from "./palette";
 
 interface Props {
 	value?: string;
@@ -16,7 +15,7 @@ const ColorPickerForm = ({ value, onSubmit, okayButtonText }: Props) => {
 	};
 
 	return (
-		<div className="kl-flex kl-w-full kl-flex-col kl-gap-4">
+		<div className="kl:flex kl:w-full kl:flex-col kl:gap-4">
 			<ColorPickerPalette color={color} onChange={setColor} />
 			<Button type="primary" onClick={handleSubmit}>
 				{okayButtonText}

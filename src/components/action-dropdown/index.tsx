@@ -1,13 +1,8 @@
-import React, {
-	ReactElement,
-	createContext,
-	useContext,
-	useState,
-} from "react";
-import Icon, { IconProp } from "../icon";
-import { ControlStatusProps, Placement } from "../../common/controls.type";
 import classNames from "classnames";
+import React, { ReactElement, createContext, useContext } from "react";
+import { ControlStatusProps, Placement } from "../../common/controls.type";
 import Dropdown from "../dropdown";
+import Icon, { IconProp } from "../icon";
 
 interface ActionDropdownItemProps extends ControlStatusProps {
 	icon?: IconProp;
@@ -59,20 +54,20 @@ export const ActionDropdownItem = ({
 		<div
 			onClick={handleClick}
 			className={classNames(
-				"kl-flex kl-flex-row kl-items-center kl-gap-2 kl-px-3 control-height-large kl-whitespace-nowrap",
+				"kl:flex kl:flex-row kl:items-center kl:gap-2 kl:px-3 kl:control-height-large kl:whitespace-nowrap",
 				{
-					"kl-cursor-pointer": !disabled,
-					"kl-opacity-50 kl-pointer-events-none": disabled,
+					"kl:cursor-pointer": !disabled,
+					"kl:opacity-50 kl:pointer-events-none": disabled,
 
-					"hover:kl-bg-background-hover": isDefault,
-					"kl-text-primary hover:kl-bg-primary-hover": primary,
-					"kl-text-error hover:kl-bg-error-hover": error || danger,
-					"kl-text-warning hover:kl-bg-warning-hover": warning,
-					"kl-text-success hover:kl-bg-success-hover": success,
+					"kl:hover:bg-background-hover": isDefault,
+					"kl:text-primary kl:hover:bg-primary-hover": primary,
+					"kl:text-error kl:hover:bg-error-hover": error || danger,
+					"kl:text-warning kl:hover:bg-warning-hover": warning,
+					"kl:text-success kl:hover:bg-success-hover": success,
 				}
 			)}
 		>
-			<div className="kl-flex kl-flex-row kl-items-center kl-gap-2 kl-flex-1">
+			<div className="kl:flex kl:flex-row kl:items-center kl:gap-2 kl:flex-1">
 				{icon && <Icon icon={icon} />}
 				{prefix && <span>{prefix}</span>}
 				<span>{children}</span>
@@ -120,7 +115,7 @@ export const ActionDropdown = ({
 				button={button}
 				placement={placement}
 			>
-				<div className="kl-flex kl-flex-col">{children}</div>
+				<div className="kl:flex kl:flex-col">{children}</div>
 			</Dropdown>
 		</Context.Provider>
 	);

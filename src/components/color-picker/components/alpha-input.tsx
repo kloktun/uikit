@@ -2,13 +2,12 @@ import { ChangeEvent, useEffect, useMemo, useState } from "react";
 import Input from "../../input";
 import ColorPreview from "./color-preview";
 import React from "react";
-import { isHex, isHexColor } from "../../../utils/colors";
+import { isHexColor } from "../../../utils/colors";
 import {
 	hexToHsva,
-	hsvaStringToHsva,
 	hsvaToHex,
 	hsvaToHexa,
-} from "@uiw/react-color/esm";
+} from "@uiw/color-convert";
 
 interface Props {
 	color: string;
@@ -118,7 +117,7 @@ const AlphaInput = ({ color, onChange }: Props) => {
 	return (
 		<Input
 			size="large"
-			className="kl-flex-1 kl-w-full"
+			className="kl:flex-1 kl:w-full"
 			prefixIcon={<ColorPreview color={color} showAlpha />}
 			value={value}
 			htmlSize={3}

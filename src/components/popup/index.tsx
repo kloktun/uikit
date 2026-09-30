@@ -1,14 +1,14 @@
-import React, { ReactElement } from "react";
-import Button, { ButtonProps } from "../button";
-import { ControlStatusProps } from "../../common/controls.type";
-import Window from "../window";
 import classnames from "classnames";
-import Icon from "../icon";
-import ExclamationIcon from "../../icons/exclamation-icon";
+import React, { ReactElement } from "react";
+import { ControlStatusProps } from "../../common/controls.type";
 import CheckIcon from "../../icons/check-icon";
 import CloseIcon from "../../icons/close-icon";
-import { OverlayChildrenProps } from "../overlay";
+import ExclamationIcon from "../../icons/exclamation-icon";
 import InfoIcon from "../../icons/info-icon";
+import Button, { ButtonProps } from "../button";
+import Icon from "../icon";
+import { OverlayChildrenProps } from "../overlay";
+import Window from "../window";
 
 export type OnPopupClose<T = any> = (result?: T) => void;
 
@@ -78,7 +78,7 @@ const Popup = ({
 
 		if (typeof children == "string") {
 			return (
-				<div className="kl-flex kl-flex-col kl-text-center">{children}</div>
+				<div className="kl:flex kl:flex-col kl:text-center">{children}</div>
 			);
 		}
 
@@ -107,19 +107,19 @@ const Popup = ({
 				return (
 					<div
 						className={classnames(
-							"kl-flex kl-flex-col kl-min-w-full kl-w-80 kl-max-w-full kl-bg-background kl-rounded-modal kl-shadow-modal kl-p-6 kl-gap-5"
+							"kl:flex kl:flex-col kl:min-w-full kl:w-80 kl:max-w-full kl:bg-background kl:rounded-modal kl:shadow-modal kl:p-6 kl:gap-5"
 						)}
 					>
 						{icon && (
-							<div className="kl-flex kl-flex-row kl-items-center kl-justify-center">
+							<div className="kl:flex kl:flex-row kl:items-center kl:justify-center">
 								<div
 									className={classnames(
-										"kl-w-16 kl-h-16 kl-rounded-full kl-fill-current kl-flex kl-items-center kl-justify-center",
+										"kl:w-16 kl:h-16 kl:rounded-full kl:fill-current kl:flex kl:items-center kl:justify-center",
 										{
-											"kl-text-primary kl-bg-primary-plain": info,
-											"kl-text-success kl-bg-success-plain": success,
-											"kl-text-error kl-bg-error-plain": error || danger,
-											"kl-text-warning kl-bg-warning-plain": warning,
+											"kl:text-primary kl:bg-primary-plain": info,
+											"kl:text-success kl:bg-success-plain": success,
+											"kl:text-error kl:bg-error-plain": error || danger,
+											"kl:text-warning kl:bg-warning-plain": warning,
 										}
 									)}
 								>
@@ -128,13 +128,13 @@ const Popup = ({
 							</div>
 						)}
 
-						<div className="kl-flex kl-flex-col kl-gap-2">
+						<div className="kl:flex kl:flex-col kl:gap-2">
 							{title && (
 								<div
-									className={classnames("kl-font-medium kl-text-xl", {
-										"kl-text-start": titleAlign == "start",
-										"kl-text-center": titleAlign == "center",
-										"kl-text-end": titleAlign == "end",
+									className={classnames("kl:font-medium kl:text-xl", {
+										"kl:text-start": titleAlign == "start",
+										"kl:text-center": titleAlign == "center",
+										"kl:text-end": titleAlign == "end",
 									})}
 								>
 									{title}
@@ -149,9 +149,9 @@ const Popup = ({
 
 						{buttonsArray.length > 0 && (
 							<div
-								className={classnames("kl-grid kl-gap-4", {
-									"kl-grid-cols-1": buttonsDirection == "vertical",
-									"kl-grid-cols-2": buttonsDirection == "horizontal",
+								className={classnames("kl:grid kl:gap-4", {
+									"kl:grid-cols-1": buttonsDirection == "vertical",
+									"kl:grid-cols-2": buttonsDirection == "horizontal",
 								})}
 							>
 								{buttonsArray.map((button, index) => (

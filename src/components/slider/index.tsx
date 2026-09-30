@@ -1,10 +1,10 @@
-import React, { useRef, useEffect, useState } from "react";
 import classnames from "classnames";
+import React, { useEffect, useRef, useState } from "react";
 
 interface SliderThumbProps {
 	showOnHover?: boolean;
 	size?: number;
-	customThumb?: React.ReactNode | JSX.Element;
+	customThumb?: React.ReactNode | React.JSX.Element;
 }
 
 interface SliderProps {
@@ -25,7 +25,6 @@ const SliderThumb: React.FC<SliderThumbProps> = ({
 	const hasCustomThumb = !!customThumb;
 
 	if (hasCustomThumb) {
-		// Wrap custom thumb to always return a valid ReactElement
 		return <>{customThumb}</>;
 	}
 
@@ -35,9 +34,9 @@ const SliderThumb: React.FC<SliderThumbProps> = ({
 	return (
 		<div
 			className={classnames(
-				"kl-rounded-full kl-border-2 kl-border-primary kl-bg-background",
+				"kl:rounded-full kl:border-2 kl:border-primary kl:bg-background",
 				{
-					"kl-w-5 kl-h-5": !hasSize,
+					"kl:w-5 kl:h-5": !hasSize,
 				}
 			)}
 			style={sizeStyle}
@@ -211,19 +210,19 @@ const Slider = ({
 	return (
 		<div
 			className={classnames(
-				"kl-slider kl-relative kl-flex kl-flex-col kl-w-full kl-justify-center control-height-default",
+				"kl:relative kl:flex kl:flex-col kl:w-full kl:justify-center kl:control-height-default",
 				{
-					"kl-cursor-pointer": !disabled,
-					"kl-opacity-50": disabled,
-					"kl-slider-hoverable": showThumbOnHover,
+					"kl:cursor-pointer": !disabled,
+					"kl:opacity-50": disabled,
+					"kl:group/slider": showThumbOnHover,
 				}
 			)}
 			onClick={handleClick}
 			ref={sliderRef}
 		>
-			<div className="kl-flex kl-flex-col kl-w-full kl-bg-stroke kl-h-1 kl-rounded-full kl-overflow-hidden">
+			<div className="kl:flex kl:flex-col kl:w-full kl:bg-stroke kl:h-1 kl:rounded-full kl:overflow-hidden">
 				<div
-					className="kl-h-full kl-rounded-full kl-bg-primary"
+					className="kl:h-full kl:rounded-full kl:bg-primary"
 					style={{ width: `${percentage}%` }}
 				/>
 			</div>
@@ -231,9 +230,9 @@ const Slider = ({
 			<div
 				ref={thumbRef}
 				className={classnames(
-					"kl-absolute kl-flex kl-items-center kl-justify-center kl-h-full",
+					"kl:absolute kl:flex kl:items-center kl:justify-center kl:h-full",
 					{
-						"kl-slider-thumb": showThumbOnHover,
+						"kl:scale-0 kl:pointer-events-none kl:transition-transform kl:duration-150 kl:group-hover/slider:scale-100 kl:group-hover/slider:pointer-events-auto kl:group-focus-within/slider:scale-100 kl:group-focus-within/slider:pointer-events-auto": showThumbOnHover,
 					}
 				)}
 				style={{ left: `${percentage}%`, marginLeft: `${thumbLeftOffset}px` }}

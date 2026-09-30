@@ -1,11 +1,5 @@
-import React, {
-	forwardRef,
-	useCallback,
-	useEffect,
-	useRef,
-	useState,
-} from "react";
 import classnames from "classnames";
+import React, { forwardRef, useEffect, useRef } from "react";
 import { ControlsProps } from "../../common/controls.type";
 import { useCombinedRefs } from "../../hooks/combinedrefs";
 
@@ -118,18 +112,18 @@ const Textarea = forwardRef<HTMLTextAreaElement, Props>(
 				{...restProps}
 				className={classnames(
 					restProps.className,
-					"kl-rounded-control editable-control-border editable-control-background editable-control-background kl-resize-none placeholder:kl-text-front-hint",
+					"kl:rounded-control kl:editable-control-border kl:editable-control-background kl:resize-none kl:placeholder:text-front-hint",
 					{
-						success: success,
-						error: error,
-						warning: warning,
-						"kl-opacity-50": disabled,
+						"kl:editable-control-border-success": success && !error && !warning,
+						"kl:editable-control-border-error": error && !warning,
+						"kl:editable-control-border-warning": warning,
+						"kl:opacity-50": disabled,
 
-						"kl-px-3 kl-py-3": size == "large",
-						"kl-px-3 kl-py-2.5": size == "medium",
-						"kl-px-3 kl-py-2": size == "default",
-						"kl-px-2.5 kl-py-1.5": size == "small",
-						"kl-px-2 kl-py-1": size == "mini",
+						"kl:px-3 kl:py-3": size == "large",
+						"kl:px-3 kl:py-2.5": size == "medium",
+						"kl:px-3 kl:py-2": size == "default",
+						"kl:px-2.5 kl:py-1.5": size == "small",
+						"kl:px-2 kl:py-1": size == "mini",
 					}
 				)}
 				disabled={disabled}

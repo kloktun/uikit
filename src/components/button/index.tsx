@@ -1,8 +1,8 @@
+import classnames from "classnames";
 import React from "react";
 import { ControlsProps } from "../../common/controls.type";
-import classnames from "classnames";
-import Spinner from "../spinner";
 import Icon, { IconProp } from "../icon";
+import Spinner from "../spinner";
 
 type ButtonType =
 	| "default"
@@ -55,77 +55,78 @@ const Button = ({
 			{...restProps}
 			className={classnames(
 				restProps.className,
-				"kl-rounded-control kl-flex kl-flex-row kl-items-center kl-justify-center kl-gap-2 kl-transition-all kl-duration-200 kl-text-ellipsis kl-whitespace-nowrap kl-select-none",
+				"kl:rounded-control kl:flex kl:flex-row kl:items-center kl:justify-center kl:gap-2 kl:transition-all kl:duration-200 kl:text-ellipsis kl:whitespace-nowrap kl:select-none",
 				{
 					// Not text
-					"kl-px-4": type != "text",
+					"kl:px-4": type != "text",
 
 					// Type
-					"kl-bg-background kl-border": type == "default" || type == "outline",
+					"kl:bg-background kl:border": type == "default" || type == "outline",
 
 					// Default state
-					"kl-text-front kl-fill-front kl-border-stroke hover:kl-bg-background-hover active:kl-bg-background-active":
+					"kl:text-front kl:fill-front kl:border-stroke kl:hover:bg-background-hover kl:active:bg-background-active":
 						status == "default" && type == "default",
-					"kl-text-primary-front kl-fill-primary-front kl-bg-primary hover:kl-bg-primary-accent-hover active:kl-bg-primary-accent-active":
+					"kl:text-primary-front kl:fill-primary-front kl:bg-primary kl:hover:bg-primary-accent-hover kl:active:bg-primary-accent-active":
 						status == "default" && type == "primary",
-					"kl-text-primary kl-fill-primary kl-border-primary hover:kl-bg-primary-hover active:kl-bg-primary-active":
+					"kl:text-primary kl:fill-primary kl:border-primary kl:hover:bg-primary-hover kl:active:bg-primary-active":
 						status == "default" && type == "outline",
-					"kl-text-primary kl-fill-primary kl-bg-primary-plain  hover:kl-bg-primary-plain-hover active:kl-bg-primary-plain-active":
+					"kl:text-primary kl:fill-primary kl:bg-primary-plain  kl:hover:bg-primary-plain-hover kl:active:bg-primary-plain-active":
 						status == "default" && type == "plain",
-					"kl-text-primary kl-fill-primary hover:kl-text-primary-accent-hover hover:kl-fill-primary-accent-hover active:kl-text-primary-accent-active active:kl-fill-primary-accent-active":
+					"kl:text-primary kl:fill-primary kl:hover:text-primary-accent-hover kl:hover:fill-primary-accent-hover kl:active:text-primary-accent-active kl:active:fill-primary-accent-active":
 						status == "default" && (type == "text" || type == "borderless"),
 
 					// Error state
-					"kl-text-error kl-fill-error kl-border-error-light hover:kl-bg-error-hover active:kl-bg-error-active":
+					"kl:text-error kl:fill-error kl:border-error-light kl:hover:bg-error-hover kl:active:bg-error-active":
 						status == "error" && type == "default",
-					"kl-text-error kl-fill-error kl-border-error hover:kl-bg-error-hover active:kl-bg-error-active":
+					"kl:text-error kl:fill-error kl:border-error kl:hover:bg-error-hover kl:active:bg-error-active":
 						status == "error" && type == "outline",
-					"kl-text-error-front kl-fill-error-front kl-bg-error hover:kl-bg-error-accent-hover active:kl-bg-error-accent-active":
+					"kl:text-error-front kl:fill-error-front kl:bg-error kl:hover:bg-error-accent-hover kl:active:bg-error-accent-active":
 						status == "error" && type == "primary",
-					"kl-text-error kl-fill-error kl-bg-error-plain  hover:kl-bg-error-plain-hover active:kl-bg-error-plain-active":
+					"kl:text-error kl:fill-error kl:bg-error-plain  kl:hover:bg-error-plain-hover kl:active:bg-error-plain-active":
 						status == "error" && type == "plain",
-					"kl-text-error kl-fill-error hover:kl-text-error-accent-hover hover:kl-fill-error-accent-hover active:kl-text-error-accent-active active:kl-fill-error-active":
+					"kl:text-error kl:fill-error kl:hover:text-error-accent-hover kl:hover:fill-error-accent-hover kl:active:text-error-accent-active kl:active:fill-error-active":
 						status == "error" && (type == "text" || type == "borderless"),
 
 					// Warning state
-					"kl-text-warning kl-fill-warning kl-border-warning-light hover:kl-bg-warning-hover active:kl-bg-warning-active":
+					"kl:text-warning kl:fill-warning kl:border-warning-light kl:hover:bg-warning-hover kl:active:bg-warning-active":
 						status == "warning" && type == "default",
-					"kl-text-warning kl-fill-warning kl-border-warning hover:kl-bg-warning-hover active:kl-bg-warning-active":
+					"kl:text-warning kl:fill-warning kl:border-warning kl:hover:bg-warning-hover kl:active:bg-warning-active":
 						status == "warning" && type == "outline",
-					"kl-text-warning-front kl-fill-warning-front kl-bg-warning hover:kl-bg-warning-accent-hover active:kl-bg-warning-accent-active":
+					"kl:text-warning-front kl:fill-warning-front kl:bg-warning kl:hover:bg-warning-accent-hover kl:active:bg-warning-accent-active":
 						status == "warning" && type == "primary",
-					"kl-text-warning kl-fill-warning kl-bg-warning-plain  hover:kl-bg-warning-plain-hover active:kl-bg-warning-plain-active":
+					"kl:text-warning kl:fill-warning kl:bg-warning-plain  kl:hover:bg-warning-plain-hover kl:active:bg-warning-plain-active":
 						status == "warning" && type == "plain",
-					"kl-text-warning kl-fill-warning hover:kl-text-warning-accent-hover hover:kl-fill-warning-accent-hover active:kl-text-warning-accent-active active:kl-fill-warning-active":
+					"kl:text-warning kl:fill-warning kl:hover:text-warning-accent-hover kl:hover:fill-warning-accent-hover kl:active:text-warning-accent-active kl:active:fill-warning-active":
 						status == "warning" && (type == "text" || type == "borderless"),
 
 					// Success state
-					"kl-text-success kl-fill-success kl-border-success-light hover:kl-bg-success-hover active:kl-bg-success-active":
+					"kl:text-success kl:fill-success kl:border-success-light kl:hover:bg-success-hover kl:active:bg-success-active":
 						status == "success" && type == "default",
-					"kl-text-success kl-fill-success kl-border-success hover:kl-bg-success-hover active:kl-bg-success-active":
+					"kl:text-success kl:fill-success kl:border-success kl:hover:bg-success-hover kl:active:bg-success-active":
 						status == "success" && type == "outline",
-					"kl-text-success-front kl-fill-success-front kl-bg-success hover:kl-bg-success-accent-hover active:kl-bg-success-accent-active":
+					"kl:text-success-front kl:fill-success-front kl:bg-success kl:hover:bg-success-accent-hover kl:active:bg-success-accent-active":
 						status == "success" && type == "primary",
-					"kl-text-success kl-fill-success kl-bg-success-plain  hover:kl-bg-success-plain-hover active:kl-bg-success-plain-active":
+					"kl:text-success kl:fill-success kl:bg-success-plain  kl:hover:bg-success-plain-hover kl:active:bg-success-plain-active":
 						status == "success" && type == "plain",
-					"kl-text-success kl-fill-success hover:kl-text-success-accent-hover hover:kl-fill-success-accent-hover active:kl-text-success-accent-active active:kl-fill-success-active":
+					"kl:text-success kl:fill-success kl:hover:text-success-accent-hover kl:hover:fill-success-accent-hover kl:active:text-success-accent-active kl:active:fill-success-active":
 						status == "success" && (type == "text" || type == "borderless"),
 
 					// Size
-					"control-height-large": type != "text" && size == "large",
-					"control-height-medium": type != "text" && size == "medium",
-					"control-height-default": type != "text" && size == "default",
-					"control-height-small": type != "text" && size == "small",
-					"control-height-mini": type != "text" && size == "mini",
+					"kl:control-height-large": type != "text" && size == "large",
+					"kl:control-height-medium": type != "text" && size == "medium",
+					"kl:control-height-default": type != "text" && size == "default",
+					"kl:control-height-small": type != "text" && size == "small",
+					"kl:control-height-mini": type != "text" && size == "mini",
 
 					// Loading | Disabled
-					"kl-opacity-50": loading || disabled,
+					"kl:opacity-50": loading || disabled,
+					"kl:cursor-pointer": !loading && !disabled,
 
 					// Loading
-					"kl-cursor-wait": loading,
+					"kl:cursor-wait": loading,
 
 					// Disabled
-					"kl-cursor-not-allowed": disabled,
+					"kl:cursor-not-allowed": disabled,
 				}
 			)}
 		>

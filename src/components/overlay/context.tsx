@@ -59,8 +59,8 @@ export const OverlayProvider = ({
 		const html = document.getElementsByTagName("html")[0];
 		const body = document.body;
 
-		html.classList.add("kl-overflow-hidden");
-		body.classList.add("kl-overflow-hidden");
+		html.classList.add("kl:overflow-hidden");
+		body.classList.add("kl:overflow-hidden");
 
 		const afterWidth = body.offsetWidth;
 
@@ -71,8 +71,8 @@ export const OverlayProvider = ({
 		const html = document.getElementsByTagName("html")[0];
 		const body = document.body;
 
-		html.classList.remove("kl-overflow-hidden");
-		body.classList.remove("kl-overflow-hidden");
+		html.classList.remove("kl:overflow-hidden");
+		body.classList.remove("kl:overflow-hidden");
 
 		body.removeAttribute("style");
 	};

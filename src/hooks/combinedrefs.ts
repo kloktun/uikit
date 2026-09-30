@@ -1,27 +1,31 @@
-import { useEffect, useRef } from "react";
+import { useMemo, type Ref, type RefCallback } from "react";
 
-export const useCombinedRefs = <T>(...refs: any[]) => {
+export const useCombinedRefs = <T>(...refs: (Ref<T> | undefined)[]): RefCallback<T> =>
+	useMemo(
+		() => (node: T | null) => {
+			const cleanups = refs.map((ref) => {
+				if (typeof ref === "function") {
+					return ref(node);
+				}
 
-    const targetRef = useRef<T>(null);
-  
-    useEffect(() => { 
-      refs.forEach(ref => { 
+				if (ref) {
+					ref.current = node;
+				}
+			});
 
-        if (!ref) return 
-  
-        if (typeof ref === 'function' ) { 
-          
-            ref(targetRef.current);
+			return () => {
+				refs.forEach((ref, index) => {
+					const cleanup = cleanups[index];
 
-        } else { 
-
-          ref.current = targetRef.current;
-
-        } 
-      });
-
-    }, [refs]) 
-  
-    return targetRef;
-    
-  }
+					if (typeof cleanup === "function") {
+						cleanup();
+					} else if (typeof ref === "function") {
+						ref(null);
+					} else if (ref) {
+						ref.current = null;
+					}
+				});
+			};
+		},
+		refs
+	);

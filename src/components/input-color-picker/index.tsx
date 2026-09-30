@@ -1,12 +1,10 @@
-import React, { ChangeEvent, forwardRef, useEffect, useState } from "react";
-import Input, { InputProps } from "../input";
+import React, { ChangeEvent, useEffect, useState } from "react";
+import CloseIcon from "../../icons/close-icon";
 import { isHexColor } from "../../utils/colors";
-import { ControlSize } from "../../common/controls.type";
-import Icon from "../icon";
+import Button, { ButtonProps } from "../button";
 import ColorPicker, { ColorPickerProps } from "../color-picker";
 import IconButton from "../icon-button";
-import CloseIcon from "../../icons/close-icon";
-import Button, { ButtonProps } from "../button";
+import Input, { InputProps } from "../input";
 
 interface InputColorPickerPreviewProps {
 	color?: string;
@@ -20,7 +18,7 @@ const InputColorPickerPreview = ({
 	return (
 		<div
 			onClick={onClick}
-			className="kl-aspect-square kl-w-full kl-h-full kl-rounded-md kl-border kl-border-stroke kl-cursor-pointer"
+			className="kl:aspect-square kl:w-full kl:h-full kl:rounded-md kl:border kl:border-stroke kl:cursor-pointer"
 			style={{ backgroundColor: color }}
 		></div>
 	);

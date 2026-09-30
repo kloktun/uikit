@@ -1,21 +1,21 @@
-import React, { useCallback, useRef, useState } from "react";
 import {
-	useFloating,
 	autoUpdate,
 	flip,
-	shift,
 	offset,
+	shift,
 	size,
+	useFloating,
 	useTransitionStyles,
 } from "@floating-ui/react";
+import React, { useCallback, useRef, useState } from "react";
 
-import { useClickOutside } from "../../hooks/outside";
-import { Placement } from "../../common/controls.type";
 import classNames from "classnames";
+import { Placement } from "../../common/controls.type";
+import { useClickOutside } from "../../hooks/outside";
 
 export interface PopoverProps {
-	button: React.ReactNode | JSX.Element;
-	children: React.ReactNode | JSX.Element;
+	button: React.ReactNode | React.JSX.Element;
+	children: React.ReactNode | React.JSX.Element;
 	show?: boolean;
 	placement?: Placement;
 	onClickOutside?: () => void;
@@ -34,14 +34,14 @@ const Popover = ({
 	popoverClassName,
 	minPopoverSize,
 }: PopoverProps) => {
-	const buttonRef = useRef<HTMLDivElement>();
-	const popoverRef = useRef<HTMLDivElement>();
+	const buttonRef = useRef<HTMLDivElement>(null);
+	const popoverRef = useRef<HTMLDivElement>(null);
 
 	const [minFloatingWidth, setMinFloatingWidth] = useState<number>(0);
 
 	const { refs, floatingStyles, context } = useFloating({
 		open: show,
-		placement: placement ?? "bottom-start", // Можно менять на top, right, left
+		placement: placement ?? "bottom-start",
 		middleware: [
 			offset(8),
 			flip(),
@@ -64,7 +64,7 @@ const Popover = ({
 	useClickOutside([buttonRef, popoverRef], handleClickOutside, show);
 
 	const handleButtonRef = useCallback(
-		(ref: HTMLDivElement) => {
+		(ref: HTMLDivElement | null) => {
 			refs.setReference(ref);
 			buttonRef.current = ref;
 		},
@@ -72,7 +72,7 @@ const Popover = ({
 	);
 
 	const handleRef = useCallback(
-		(ref: HTMLDivElement) => {
+		(ref: HTMLDivElement | null) => {
 			refs.setFloating(ref);
 			popoverRef.current = ref;
 		},
@@ -108,7 +108,7 @@ const Popover = ({
 						...floatingStyles,
 						minWidth: `${minFloatingWidth}px`,
 					}}
-					className={classNames("kl-z-[1]")}
+					className={classNames("kl:z-[1]")}
 				>
 					<div style={styles} className={popoverClassName}>
 						{children}

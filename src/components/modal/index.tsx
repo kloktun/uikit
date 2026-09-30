@@ -1,10 +1,10 @@
-import React, { useRef } from "react";
-import { CloseFunction, OverlayChildrenProps } from "../overlay";
-import IconButton from "../icon-button";
-import CloseIcon from "../../icons/close-icon";
-import Window from "../window";
 import classnames from "classnames";
+import React, { useRef } from "react";
+import CloseIcon from "../../icons/close-icon";
+import IconButton from "../icon-button";
+import { OverlayChildrenProps } from "../overlay";
 import { ConfirmPopupProps, useConfirmPopup } from "../popup/confirm";
+import Window from "../window";
 
 type ModalScrollType = "paper" | "body";
 
@@ -60,19 +60,19 @@ const Modal = ({
 				return (
 					<div
 						className={classnames(
-							"kl-flex kl-flex-col kl-bg-background kl-rounded-modal kl-shadow-modal kl-m-5",
+							"kl:flex kl:flex-col kl:bg-background kl:rounded-modal kl:shadow-modal kl:m-5",
 							{
-								"kl-max-h-full": scrollType == "paper",
-								"kl-flex-1": scrollType == "body",
+								"kl:max-h-full": scrollType == "paper",
+								"kl:flex-1": scrollType == "body",
 							}
 						)}
 					>
 						{title && (
-							<div className="kl-flex kl-flex-row kl-items-center kl-justify-between">
-								<div className="kl-font-medium kl-text-xl kl-p-4 kl-mr-2">
+							<div className="kl:flex kl:flex-row kl:items-center kl:justify-between">
+								<div className="kl:font-medium kl:text-xl kl:p-4 kl:mr-2">
 									{title}
 								</div>
-								<div className="kl-p-1">
+								<div className="kl:p-1">
 									<IconButton
 										size="large"
 										type="light-borderless"
@@ -85,9 +85,9 @@ const Modal = ({
 
 						<div
 							className={classnames(
-								"kl-flex kl-flex-col kl-px-4 kl-pb-4 kl-flex-1",
+								"kl:flex kl:flex-col kl:px-4 kl:pb-4 kl:flex-1",
 								{
-									"kl-pt-4": !title,
+									"kl:pt-4": !title,
 								}
 							)}
 						>
