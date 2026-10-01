@@ -48,7 +48,8 @@
 	},
 	"files": [
 		"lib",
-		"src"
+		"src",
+		"theme.css"
 	],
 	"sideEffects": [
 		"**/*.css"
