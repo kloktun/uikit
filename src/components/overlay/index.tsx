@@ -1,8 +1,8 @@
+import classnames from "classnames";
 import React, { useEffect } from "react";
 import { createPortal } from "react-dom";
-import classnames from "classnames";
-import { useOverlayContext } from "./context";
 import { OVERLAY_CONTAINER_ID } from "./constaints";
+import { useOverlayContext } from "./context";
 
 type VisibleChangeFunction = (visible: boolean) => void;
 export type CloseFunction = <T>(result?: T) => void;
@@ -42,7 +42,7 @@ const OverlayChildren = (props: Props) => {
 	return (
 		<div
 			className={classnames(
-				"kl-flex kl-flex-col kl-fixed kl-top-0 kl-left-0 kl-bottom-0 kl-right-0"
+				"kl:flex kl:flex-col kl:fixed kl:top-0 kl:left-0 kl:bottom-0 kl:right-0"
 			)}
 		>
 			{el()}

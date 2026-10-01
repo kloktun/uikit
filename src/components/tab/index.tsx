@@ -1,7 +1,7 @@
-import React, { ReactElement } from "react";
-import Icon, { IconProp } from "../icon";
-import { ControlsProps } from "../../common/controls.type";
 import classNames from "classnames";
+import React, { ReactElement } from "react";
+import { ControlsProps } from "../../common/controls.type";
+import Icon, { IconProp } from "../icon";
 import { TabUnderlineStyle } from "../tabs";
 
 export interface TabProps extends Omit<ControlsProps, "size"> {
@@ -45,19 +45,19 @@ const Tab = ({
 		<div
 			onClick={handleClick}
 			className={classNames(
-				"kl-group kl-relative kl-flex kl-flex-row kl-items-center kl-justify-center kl-h-14 kl-gap-2 kl-px-3",
+				"kl:group kl:relative kl:flex kl:flex-row kl:items-center kl:justify-center kl:h-14 kl:gap-2 kl:px-3",
 				{
-					"kl-w-full kl-flex-1": expanded,
-					"kl-opacity-50 kl-pointer-events-none": disabled,
-					"kl-cursor-pointer": !disabled,
-					"kl-text-front-secondary hover:kl-text-front": !active,
+					"kl:w-full kl:flex-1": expanded,
+					"kl:opacity-50 kl:pointer-events-none": disabled,
+					"kl:cursor-pointer": !disabled,
+					"kl:text-front-secondary kl:hover:text-front": !active,
 				}
 			)}
 		>
 			{prefix}
 			{icon && <Icon icon={icon} />}
 
-			<span className={classNames("kl-whitespace-nowrap kl-font-medium")}>
+			<span className={classNames("kl:whitespace-nowrap kl:font-medium")}>
 				{label}
 			</span>
 
@@ -66,13 +66,13 @@ const Tab = ({
 
 			<div
 				className={classNames(
-					"kl-absolute kl-bottom-0 kl-h-0.5 kl-rounded-sm kl-rounded-bl-none kl-rounded-br-none",
+					"kl:absolute kl:bottom-0 kl:h-0.5 kl:rounded-xs kl:rounded-bl-none kl:rounded-br-none",
 					{
-						"kl-left-1/2 -kl-translate-x-1/2 kl-w-5":
+						"kl:left-1/2 kl:-translate-x-1/2 kl:w-5":
 							underlineStyle == "default" || underlineStyle == undefined,
-						"kl-left-3 kl-right-3": underlineStyle == "full-width",
-						"kl-bg-primary": active,
-						"kl-bg-transparent group-hover:kl-bg-stroke": !active,
+						"kl:left-3 kl:right-3": underlineStyle == "full-width",
+						"kl:bg-primary": active,
+						"kl:bg-transparent kl:group-hover:bg-stroke": !active,
 					}
 				)}
 			></div>

@@ -1,26 +1,30 @@
 import {
-	PointerProps,
 	hexToHsva,
 	HsvaColor,
 	hsvaToHex,
 	hsvaToHexa,
-	Saturation,
-	Hue,
-	Alpha,
-} from "@uiw/react-color/esm";
+} from "@uiw/color-convert";
+import Alpha from "@uiw/react-color-alpha";
+import Hue from "@uiw/react-color-hue";
+import Saturation from "@uiw/react-color-saturation";
 import React, { useState } from "react";
-import HexInput from "./hex-input";
-import AlphaInput from "./alpha-input";
 import { isHexColor } from "../../../utils/colors";
+import AlphaInput from "./alpha-input";
+import HexInput from "./hex-input";
 
 interface Props {
 	color: string;
 	onChange: (newColor: string) => void;
 }
 
-const ColorPickerPalettePointer = ({ left, top }: PointerProps) => {
-	const progressLeft = parseInt(left ?? "100%") / 100;
-	const progressTop = parseInt(top ?? "0%") / 100;
+interface PalettePointerProps {
+	left?: React.CSSProperties["left"];
+	top?: React.CSSProperties["top"];
+}
+
+const ColorPickerPalettePointer = ({ left, top }: PalettePointerProps) => {
+	const progressLeft = parseFloat(String(left ?? "100%")) / 100;
+	const progressTop = parseFloat(String(top ?? "0%")) / 100;
 
 	return (
 		<div
@@ -29,7 +33,7 @@ const ColorPickerPalettePointer = ({ left, top }: PointerProps) => {
 				top: top,
 				transform: `translate(-${progressLeft * 100}%, -${progressTop * 100}%)`,
 			}}
-			className="kl-w-5 kl-h-5 kl-rounded-full kl-border-2 kl-border-white kl-shadow-modal kl-absolute kl-aspect-square"
+			className="kl:w-5 kl:h-5 kl:rounded-full kl:border-2 kl:border-white kl:shadow-modal kl:absolute kl:aspect-square"
 		></div>
 	);
 };
@@ -63,15 +67,15 @@ const ColorPickerPalette = ({ color, onChange }: Props) => {
 	};
 
 	return (
-		<div className="kl-flex kl-flex-col kl-gap-5 kl-w-full kl-min-w-full">
+		<div className="kl:flex kl:flex-col kl:gap-5 kl:w-full kl:min-w-full">
 			<Saturation
-				className="kl-w-full kl-overflow-hidden kl-rounded-control kl-aspect-square"
+				className="kl:w-full kl:overflow-hidden kl:rounded-control kl:aspect-square"
 				hsva={hsvaColor}
 				onChange={handleChange}
 				pointer={ColorPickerPalettePointer}
 			/>
 			<Hue
-				className="kl-h-5 kl-rounded-full kl-overflow-hidden"
+				className="kl:h-5 kl:rounded-full kl:overflow-hidden"
 				hue={hue}
 				pointer={ColorPickerPalettePointer}
 				onChange={(value) => {
@@ -81,7 +85,7 @@ const ColorPickerPalette = ({ color, onChange }: Props) => {
 			/>
 
 			<Alpha
-				className="kl-h-5 kl-rounded-full kl-overflow-hidden"
+				className="kl:h-5 kl:rounded-full kl:overflow-hidden"
 				hsva={hsvaColor}
 				pointer={ColorPickerPalettePointer}
 				onChange={(value) => {
@@ -90,7 +94,7 @@ const ColorPickerPalette = ({ color, onChange }: Props) => {
 				}}
 			/>
 
-			<div className="kl-grid kl-grid-cols-1 tablet:kl-grid-cols-2 kl-gap-2">
+			<div className="kl:grid kl:grid-cols-1 kl:tablet:grid-cols-2 kl:gap-2">
 				<HexInput color={color} onChange={onChange} />
 				<AlphaInput color={color} onChange={onChange} />
 			</div>

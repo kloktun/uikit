@@ -1,23 +1,19 @@
-import { ButtonProps } from "../button"
+import { ButtonProps } from "../button";
 
 export const PopupOkayButton = (props: ButtonProps) => {
+	const children = props.children ?? "Okay";
 
-    const children = props.children ?? "Okay";
-
-    return {
-        ...props,
-        children
-    }
-
-}
+	return {
+		...props,
+		children,
+	};
+};
 
 export const PopupCancelButton = (props: ButtonProps) => {
+	const children = props.children ?? "Cancel";
 
-    const children = props.children ?? "Cancel";
-
-    return {
-        ...props,
-        children
-    }
-
-}
+	return {
+		...props,
+		children,
+	};
+};

@@ -23,7 +23,7 @@ const Backdrop = ({ children, onClick, className }: Props) => {
 			ref={ref}
 			onClick={handleClick}
 			className={classNames(
-				"kl-bg-background-backdrop/50 kl-flex kl-flex-col kl-items-center kl-w-screen kl-h-screen kl-min-h-full kl-max-h-full kl-overflow-y-auto",
+				"kl:bg-background-backdrop/50 kl:flex kl:flex-col kl:items-center kl:w-screen kl:h-screen kl:min-h-full kl:max-h-full kl:overflow-y-auto",
 				className
 			)}
 		>

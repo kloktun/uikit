@@ -1,5 +1,5 @@
+import classNames from "classnames";
 import React, {
-	EventHandler,
 	MouseEventHandler,
 	ReactElement,
 	createContext,
@@ -10,7 +10,6 @@ import React, {
 	useState,
 } from "react";
 import Tab, { TabProps } from "../tab";
-import classNames from "classnames";
 
 export type TabUnderlineStyle = "default" | "full-width";
 
@@ -165,13 +164,13 @@ const TabsPanel = () => {
 	return (
 		<div
 			ref={viewportRef}
-			className="kl-flex kl-flex-row kl-overflow-x-auto kl-no-scrollbar"
+			className="kl:flex kl:flex-row kl:overflow-x-auto kl:no-scrollbar"
 			onMouseDown={onMouseDown}
 		>
 			<div
 				ref={contentRef}
-				className={classNames("kl-flex kl-flex-row", {
-					"kl-w-full kl-items-stretch": expandedTabs,
+				className={classNames("kl:flex kl:flex-row", {
+					"kl:w-full kl:items-stretch": expandedTabs,
 				})}
 			>
 				{tabs.map((tab, index) => {
@@ -259,4 +258,4 @@ const Tabs = ({
 	return <Context.Provider value={contextValues}>{children}</Context.Provider>;
 };
 
-export { Tabs, TabsPanel, TabsCurrent };
+export { Tabs, TabsCurrent, TabsPanel };

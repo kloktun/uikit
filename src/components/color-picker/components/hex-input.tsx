@@ -1,8 +1,7 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
+import { isHexColor } from "../../../utils/colors";
 import Input from "../../input";
 import ColorPreview from "./color-preview";
-import React from "react";
-import { isHexColor } from "../../../utils/colors";
 
 interface Props {
 	color: string;
@@ -40,7 +39,7 @@ const HexInput = ({ color, onChange }: Props) => {
 	return (
 		<Input
 			size="large"
-			className="kl-flex-1 kl-w-full"
+			className="kl:flex-1 kl:w-full"
 			prefixIcon={<ColorPreview color={color} />}
 			value={value}
 			htmlSize={9}

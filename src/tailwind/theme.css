@@ -1,0 +1,114 @@
+@theme inline {
+	--color-stroke: rgb(var(--kloktun-stroke, 229, 231, 235));
+	--color-front: rgb(var(--kloktun-front, 64, 64, 64));
+	--color-front-hint: rgb(var(--kloktun-front-hint, 170, 170, 170));
+	--color-front-secondary: rgb(var(--kloktun-front-secondary, 128, 128, 128));
+	--color-background: rgb(var(--kloktun-background, 255, 255, 255));
+	--color-background-body: rgb(var(--kloktun-background-body, 255, 255, 255));
+	--color-background-backdrop: rgb(var(--kloktun-background-backdrop, 255, 255, 255));
+	--color-background-hover: rgb(var(--kloktun-background-hover, 250, 250, 250));
+	--color-background-active: rgb(var(--kloktun-background-active, 249, 249, 249));
+	--color-primary: rgb(var(--kloktun-primary, 145,96,248));
+	--color-primary-front: rgb(var(--kloktun-primary-front, 255,255,255));
+	--color-primary-hover: rgb(var(--kloktun-primary-hover, 244, 239, 254));
+	--color-primary-active: rgb(var(--kloktun-primary-active, 233, 223, 253));
+	--color-primary-light: rgb(var(--kloktun-primary-light, 195, 167, 255));
+	--color-primary-accent-hover: rgb(var(--kloktun-primary-accent-hover, 167, 128, 249));
+	--color-primary-accent-active: rgb(var(--kloktun-primary-accent-active, 139, 85, 253));
+	--color-primary-plain: rgb(var(--kloktun-primary-plain, 244, 239, 254));
+	--color-primary-plain-hover: rgb(var(--kloktun-primary-plain-hover, 235, 225, 255));
+	--color-primary-plain-active: rgb(var(--kloktun-primary-plain-active, 242, 235, 255));
+	--color-error: rgb(var(--kloktun-error, 241, 105, 105));
+	--color-error-front: rgb(var(--kloktun-error-front, 255, 255, 255));
+	--color-error-hover: rgb(var(--kloktun-error-hover, 255, 245, 245));
+	--color-error-active: rgb(var(--kloktun-error-active, 255, 238, 238));
+	--color-error-light: rgb(var(--kloktun-error-light, 255, 236, 239));
+	--color-error-accent-hover: rgb(var(--kloktun-error-accent-hover, 251, 124, 124));
+	--color-error-accent-active: rgb(var(--kloktun-error-accent-active, 242, 93, 93));
+	--color-error-plain: rgb(var(--kloktun-error-plain, 255, 236, 239));
+	--color-error-plain-hover: rgb(var(--kloktun-error-plain-hover, 255, 232, 235));
+	--color-error-plain-active: rgb(var(--kloktun-error-plain-active, 255, 228, 233));
+	--color-warning: rgb(var(--kloktun-warning, 248, 151, 96));
+	--color-warning-front: rgb(var(--kloktun-warning-front, 255, 255, 255));
+	--color-warning-hover: rgb(var(--kloktun-warning-hover, 255, 246, 241));
+	--color-warning-active: rgb(var(--kloktun-warning-active, 255, 240, 232));
+	--color-warning-light: rgb(var(--kloktun-warning-light, 251, 198, 169));
+	--color-warning-accent-hover: rgb(var(--kloktun-warning-accent-hover, 255, 167, 117));
+	--color-warning-accent-active: rgb(var(--kloktun-warning-accent-active, 242, 136, 76));
+	--color-warning-plain: rgb(var(--kloktun-warning-plain, 255, 243, 237));
+	--color-warning-plain-hover: rgb(var(--kloktun-warning-plain-hover, 255, 240, 232));
+	--color-warning-plain-active: rgb(var(--kloktun-warning-plain-active, 255, 232, 220));
+	--color-success: rgb(var(--kloktun-success, 103, 194, 58));
+	--color-success-front: rgb(var(--kloktun-success-front, 255, 255, 255));
+	--color-success-hover: rgb(var(--kloktun-success-hover, 247, 255, 245));
+	--color-success-active: rgb(var(--kloktun-success-active, 239, 255, 235));
+	--color-success-light: rgb(var(--kloktun-success-light, 172, 222, 148));
+	--color-success-accent-hover: rgb(var(--kloktun-success-accent-hover, 133, 206, 97));
+	--color-success-accent-active: rgb(var(--kloktun-success-accent-active, 93, 175, 52));
+	--color-success-plain: rgb(var(--kloktun-success-plain, 240, 249, 235));
+	--color-success-plain-hover: rgb(var(--kloktun-success-plain-hover, 242, 255, 238));
+	--color-success-plain-active: rgb(var(--kloktun-success-plain-active, 228, 255, 221));
+	--radius-control: var(--kloktun-control-rounded, 0.75rem);
+	--radius-modal: var(--kloktun-modal-rounded, 1.5rem);
+}
+
+@theme {
+	--animate-spin: kl-spin 1s linear infinite;
+	--animate-pulse: kl-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+	--breakpoint-mobile: 30rem;
+	--breakpoint-tablet: 48rem;
+	--breakpoint-desktop: 80rem;
+	--shadow-modal: 0px 0px 15px rgba(0, 0, 0, 0.1);
+	--animate-scale-in: kl-scale-in 0.2s ease-out;
+	--animate-scale-out: kl-scale-out 0.2s ease-out;
+	--animate-fade-in: kl-fade-in 0.2s ease-out;
+	--animate-fade-out: kl-fade-out 0.2s ease-out;
+
+	@keyframes kl-spin {
+		to {
+			transform: rotate(360deg);
+		}
+	}
+
+	@keyframes kl-pulse {
+		50% {
+			opacity: 0.5;
+		}
+	}
+
+	@keyframes kl-scale-in {
+		0% {
+			transform: scale(0.95);
+		}
+		100% {
+			transform: scale(1);
+		}
+	}
+
+	@keyframes kl-scale-out {
+		0% {
+			transform: scale(1);
+		}
+		100% {
+			transform: scale(0.95);
+		}
+	}
+
+	@keyframes kl-fade-in {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+
+	@keyframes kl-fade-out {
+		0% {
+			opacity: 1;
+		}
+		100% {
+			opacity: 0;
+		}
+	}
+}

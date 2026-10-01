@@ -1,23 +1,23 @@
-import React, { useCallback, useRef, useState } from "react";
 import {
-	useFloating,
 	autoUpdate,
 	flip,
-	shift,
 	offset,
-	size,
-	useTransitionStyles,
-	useHover,
 	safePolygon,
+	shift,
+	size,
+	useFloating,
+	useHover,
 	useInteractions,
+	useTransitionStyles,
 } from "@floating-ui/react";
+import React, { useCallback, useRef, useState } from "react";
 
-import { Placement } from "../../common/controls.type";
 import classNames from "classnames";
+import { Placement } from "../../common/controls.type";
 
 export interface HoverPopoverProps {
-	button: React.ReactNode | JSX.Element;
-	children: React.ReactNode | JSX.Element;
+	button: React.ReactNode | React.JSX.Element;
+	children: React.ReactNode | React.JSX.Element;
 	placement?: Placement;
 	className?: string;
 	popoverClassName?: string;
@@ -36,8 +36,8 @@ const HoverPopover = ({
 	openDelay,
 	closeDelay,
 }: HoverPopoverProps) => {
-	const buttonRef = useRef<HTMLDivElement>();
-	const popoverRef = useRef<HTMLDivElement>();
+	const buttonRef = useRef<HTMLDivElement>(null);
+	const popoverRef = useRef<HTMLDivElement>(null);
 
 	const [visible, setVisible] = useState<boolean>(false);
 
@@ -65,7 +65,7 @@ const HoverPopover = ({
 	});
 
 	const handleButtonRef = useCallback(
-		(ref: HTMLDivElement) => {
+		(ref: HTMLDivElement | null) => {
 			refs.setReference(ref);
 			buttonRef.current = ref;
 		},
@@ -73,7 +73,7 @@ const HoverPopover = ({
 	);
 
 	const handleRef = useCallback(
-		(ref: HTMLDivElement) => {
+		(ref: HTMLDivElement | null) => {
 			refs.setFloating(ref);
 			popoverRef.current = ref;
 		},
@@ -120,7 +120,7 @@ const HoverPopover = ({
 						minWidth: `${minFloatingWidth}px`,
 					}}
 					{...getFloatingProps()}
-					className={classNames("kl-z-[1]")}
+					className={classNames("kl:z-[1]")}
 				>
 					<div style={styles} className={popoverClassName}>
 						{children}

@@ -1,8 +1,7 @@
-// Window.jsx
-import React, { useEffect, useState } from "react";
-import Overlay, { OverlayChildrenProps } from "../overlay";
-import Backdrop from "../backdrop";
 import classNames from "classnames";
+import React, { useEffect, useState } from "react";
+import Backdrop from "../backdrop";
+import Overlay, { OverlayChildrenProps } from "../overlay";
 
 export interface WindowProps {
 	children:
@@ -42,13 +41,13 @@ const Window = ({ children, show, onClose, onBackdropClick }: WindowProps) => {
 		<Overlay visible={isVisible} onVisibleChange={handleOverlayVisibleChange}>
 			{({ close }) => (
 				<Backdrop
-					className={show ? "kl-animate-fade-in" : "kl-animate-fade-out"}
+					className={show ? "kl:animate-fade-in" : "kl:animate-fade-out"}
 					onClick={onBackdropClick ?? close}
 				>
 					<div
 						className={classNames(
-							"kl-flex kl-flex-col kl-my-auto",
-							show ? "kl-animate-scale-in" : "kl-animate-scale-out"
+							"kl:flex kl:flex-col kl:my-auto",
+							show ? "kl:animate-scale-in" : "kl:animate-scale-out"
 						)}
 					>
 						{el({ close })}

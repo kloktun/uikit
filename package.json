@@ -1,6 +1,6 @@
 {
 	"name": "@kloktun/uikit",
-	"version": "1.0.81",
+	"version": "2.0.0",
 	"description": "KLOKTUN UI Kit for React",
 	"source": "src/index.ts",
 	"type": "module",
@@ -9,9 +9,9 @@
 	"types": "lib/index.d.ts",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"build": "microbundle --jsx React.createElement --jsxFragment React.Fragment --jsxImportSource react",
-		"dev": "NODE_ENV=dev; microbundle watch --jsx React.createElement --jsxFragment React.Fragment --jsxImportSource react",
-		"pub": "npm run build; npm publish --access=public"
+		"build": "microbundle --format esm,cjs --jsxImportSource react && tailwindcss -i src/styles/tailwind.css -o lib/styles.css --minify",
+		"dev": "NODE_ENV=dev microbundle watch --format esm,cjs --jsxImportSource react & tailwindcss -i src/styles/tailwind.css -o lib/styles.css --watch",
+		"pub": "npm run build && npm publish --access=public"
 	},
 	"np": {
 		"publish": false,
@@ -21,25 +21,37 @@
 	"license": "MIT",
 	"devDependencies": {
 		"@babel/core": "^7.20.12",
-		"@types/react": "^18.2.0",
-		"@types/react-dom": "^18.0.11",
-		"autoprefixer": "^10.4.13",
+		"@tailwindcss/cli": "~4.3.3",
+		"@tailwindcss/postcss": "~4.3.3",
+		"@types/react": "^19.3.0",
+		"@types/react-dom": "^19.3.0",
 		"babel-loader": "^8.3.0",
 		"microbundle": "^0.15.1",
-		"microbundle-crl": "^0.13.11",
 		"postcss": "^8.4.21",
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0",
-		"tailwindcss": "^3.2.7",
-		"typescript": "^4.1.2"
+		"react": "^19.2.8",
+		"react-dom": "^19.2.8",
+		"tailwindcss": "~4.3.3",
+		"typescript": "~5.9.3"
 	},
 	"peerDependencies": {
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0"
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0"
 	},
 	"dependencies": {
+		"@babel/runtime": "^7.29.7",
 		"@floating-ui/react": "^0.27.5",
-		"@uiw/react-color": "^1.4.2",
+		"@uiw/color-convert": "^2.10.3",
+		"@uiw/react-color-alpha": "^2.10.3",
+		"@uiw/react-color-hue": "^2.10.3",
+		"@uiw/react-color-saturation": "^2.10.3",
 		"classnames": "^2.3.2"
-	}
+	},
+	"files": [
+		"lib",
+		"src",
+		"theme.css"
+	],
+	"sideEffects": [
+		"**/*.css"
+	]
 }

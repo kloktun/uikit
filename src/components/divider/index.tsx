@@ -28,10 +28,10 @@ const Divider = ({
 }: Props) => {
 	const line = (
 		<div
-			className={classNames("kl-flex-1 kl-rounded-full", {
-				"kl-border-stroke": !color,
-				"kl-border-t kl-max-h-0": orientation == "horizontal",
-				"kl-border-l kl-max-w-0": orientation == "vertical",
+			className={classNames("kl:flex-1 kl:rounded-full", {
+				"kl:border-stroke": !color,
+				"kl:border-t kl:max-h-0": orientation == "horizontal",
+				"kl:border-l kl:max-w-0": orientation == "vertical",
 			})}
 			style={{
 				borderTopWidth:
@@ -52,17 +52,17 @@ const Divider = ({
 	if (children) {
 		row = (
 			<div
-				className={classNames("kl-flex kl-flex-1", {
-					"kl-gap-2": !childrenGap,
+				className={classNames("kl:flex kl:flex-1", {
+					"kl:gap-2": !childrenGap,
 
-					"kl-flex-row kl-items-center kl-w-full kl-min-w-full":
+					"kl:flex-row kl:items-center kl:w-full kl:min-w-full":
 						orientation == "horizontal",
-					"kl-flex-col kl-items-center kl-h-full kl-min-h-full":
+					"kl:flex-col kl:items-center kl:h-full kl:min-h-full":
 						orientation == "vertical",
 
-					"kl-text-start": childrenAlign == "start",
-					"kl-text-center": childrenAlign == "center",
-					"kl-text-end": childrenAlign == "end",
+					"kl:text-start": childrenAlign == "start",
+					"kl:text-center": childrenAlign == "center",
+					"kl:text-end": childrenAlign == "end",
 				})}
 				style={{
 					gap: !!childrenGap ? `${childrenGap}px` : undefined,
@@ -96,10 +96,10 @@ const Divider = ({
 
 	return (
 		<div
-			className={classNames("kl-flex kl-text-front-hint", {
-				"kl-flex-row kl-items-center kl-w-full kl-min-w-full":
+			className={classNames("kl:flex kl:text-front-hint", {
+				"kl:flex-row kl:items-center kl:w-full kl:min-w-full":
 					orientation == "horizontal",
-				"kl-flex-col kl-items-center kl-h-full kl-min-h-full":
+				"kl:flex-col kl:items-center kl:h-full kl:min-h-full":
 					orientation == "vertical",
 			})}
 			style={{

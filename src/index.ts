@@ -1,5 +1,3 @@
-import "./styles/tailwind.css";
-
 // Components
 export { default as KloktunUI } from "./components/wrapper";
 
@@ -61,6 +59,3 @@ export { useModalState } from "./hooks/modal";
 export { usePopupContext, usePopup } from "./components/popup/context";
 export { useMessagePopup } from "./components/popup/message";
 export { useConfirmPopup } from "./components/popup/confirm";
-
-// Tailwind Config
-export { default as TailwindPreset } from "./tailwind/tailwind-preset.cjs";
