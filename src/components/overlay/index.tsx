@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useId } from "react";
 import { createPortal } from "react-dom";
 import classnames from "classnames";
-import { useOverlayContext } from "./context";
+import { CurrentOverlayContext, useOverlayContext } from "./context";
 import { OVERLAY_CONTAINER_ID } from "./constaints";
 
 type VisibleChangeFunction = (visible: boolean) => void;
@@ -52,7 +52,9 @@ const OverlayChildren = (props: Props) => {
 
 const Overlay = (props: Props): React.ReactElement | null => {
 	const overlayContext = useOverlayContext();
-	const id = Math.random().toString();
+	// The same for the overlay's whole life: its content knows which overlay
+	// it's in
+	const id = useId();
 
 	useEffect(() => {
 		if (props.visible) {
@@ -70,7 +72,9 @@ const Overlay = (props: Props): React.ReactElement | null => {
 		return (
 			<>
 				{createPortal(
-					<OverlayChildren {...props}></OverlayChildren>,
+					<CurrentOverlayContext.Provider value={id}>
+						<OverlayChildren {...props}></OverlayChildren>
+					</CurrentOverlayContext.Provider>,
 					document.getElementById(OVERLAY_CONTAINER_ID)!
 				)}
 			</>
