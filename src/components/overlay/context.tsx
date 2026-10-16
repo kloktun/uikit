@@ -13,17 +13,34 @@ export const OverlayContainer = () => {
 
 interface OverlayContextProps {
 	count: number;
+	/** The open overlays in the order they opened: the last one is on top */
+	ids: string[];
 	show: (id: string) => void;
 	close: (id: string) => void;
 }
 
 const OverlayContext = createContext<OverlayContextProps>({
 	count: 0,
+	ids: [],
 	show: (id: string) => {},
 	close: (id: string) => {},
 });
 
 export const useOverlayContext = () => useContext(OverlayContext);
+
+/** The overlay a component is rendered in; null — the page */
+export const CurrentOverlayContext = createContext<string | null>(null);
+
+/**
+ * Whether an overlay opened over the component covers it: true on the page
+ * while any window is open, in a window while another opened over it. E.g.
+ * a covered video stops, covered hotkeys don't act
+ */
+export const useIsCoveredByOverlay = () => {
+	const current = useContext(CurrentOverlayContext);
+	const { ids } = useOverlayContext();
+	return (ids[ids.length - 1] ?? null) !== current;
+};
 
 export const OverlayProvider = ({
 	children,
@@ -53,28 +70,24 @@ export const OverlayProvider = ({
 		});
 	};
 
+	// Only the document stops scrolling: an overflow on <body> too would make
+	// it the scroll container of sticky elements, and they'd jump. The
+	// scrollbar's width goes to the body's padding so the page doesn't shift
 	const hideScrollBar = () => {
-		const currentWidth = document.body.offsetWidth;
-
-		const html = document.getElementsByTagName("html")[0];
-		const body = document.body;
+		const html = document.documentElement;
+		const widthBefore = html.clientWidth;
 
 		html.classList.add("kl-overflow-hidden");
-		body.classList.add("kl-overflow-hidden");
 
-		const afterWidth = body.offsetWidth;
-
-		body.setAttribute("style", `padding-right: ${afterWidth - currentWidth}px`);
+		const scrollbarWidth = html.clientWidth - widthBefore;
+		if (scrollbarWidth > 0) {
+			document.body.style.paddingRight = `${scrollbarWidth}px`;
+		}
 	};
 
 	const getBackScrollBar = () => {
-		const html = document.getElementsByTagName("html")[0];
-		const body = document.body;
-
-		html.classList.remove("kl-overflow-hidden");
-		body.classList.remove("kl-overflow-hidden");
-
-		body.removeAttribute("style");
+		document.documentElement.classList.remove("kl-overflow-hidden");
+		document.body.style.removeProperty("padding-right");
 	};
 
 	useEffect(() => {
@@ -90,7 +103,7 @@ export const OverlayProvider = ({
 	}, [count]);
 
 	return (
-		<OverlayContext.Provider value={{ count, show, close }}>
+		<OverlayContext.Provider value={{ count, ids: overlayIds, show, close }}>
 			{children}
 			<OverlayContainer></OverlayContainer>
 		</OverlayContext.Provider>

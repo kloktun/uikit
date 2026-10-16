@@ -36,6 +36,7 @@ export { default as Helper } from "./components/helper";
 export { default as Divider } from "./components/divider";
 
 export { default as Overlay } from "./components/overlay";
+export { useIsCoveredByOverlay } from "./components/overlay/context";
 export { default as Window } from "./components/window";
 export { default as Backdrop } from "./components/backdrop";
 export { default as Modal } from "./components/modal";
