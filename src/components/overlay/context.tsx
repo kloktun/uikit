@@ -31,15 +31,20 @@ export const useOverlayContext = () => useContext(OverlayContext);
 /** The overlay a component is rendered in; null — the page */
 export const CurrentOverlayContext = createContext<string | null>(null);
 
-/**
- * Whether an overlay opened over the component covers it: true on the page
- * while any window is open, in a window while another opened over it. E.g.
- * a covered video stops, covered hotkeys don't act
- */
-export const useIsCoveredByOverlay = () => {
+export interface OverlayLayer {
+	/**
+	 * The component is on the top layer: on the page while no overlay is
+	 * open, or in the overlay opened last. Under an open window it's false —
+	 * e.g. a video stops, hotkeys don't act
+	 */
+	isTopLayer: boolean;
+}
+
+/** Where the component is among the open overlays */
+export const useOverlayLayer = (): OverlayLayer => {
 	const current = useContext(CurrentOverlayContext);
 	const { ids } = useOverlayContext();
-	return (ids[ids.length - 1] ?? null) !== current;
+	return { isTopLayer: (ids[ids.length - 1] ?? null) === current };
 };
 
 export const OverlayProvider = ({
