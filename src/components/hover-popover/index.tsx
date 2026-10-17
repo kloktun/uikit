@@ -24,6 +24,11 @@ export interface HoverPopoverProps {
 	minPopoverSize?: "button";
 	openDelay?: number;
 	closeDelay?: number;
+	/**
+	 * Opens only under a mouse: a tap on a touch screen doesn't open it, so
+	 * it isn't left hanging after the tap
+	 */
+	mouseOnly?: boolean;
 }
 
 const HoverPopover = ({
@@ -35,6 +40,7 @@ const HoverPopover = ({
 	minPopoverSize,
 	openDelay,
 	closeDelay,
+	mouseOnly,
 }: HoverPopoverProps) => {
 	const buttonRef = useRef<HTMLDivElement>();
 	const popoverRef = useRef<HTMLDivElement>();
@@ -102,6 +108,7 @@ const HoverPopover = ({
 			close: closeDelay ?? 1000,
 		},
 		handleClose: safePolygon(),
+		mouseOnly,
 	});
 
 	const { getReferenceProps, getFloatingProps } = useInteractions([hover]);

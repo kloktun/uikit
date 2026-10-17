@@ -17,6 +17,8 @@ const Tooltip = ({ content, children, ...restProps }: Props) => {
 		<HoverPopover
 			popoverClassName="kl-flex kl-flex-col kl-bg-black kl-bg-opacity-70 kl-backdrop-blur-sm kl-text-white kl-px-2.5 kl-py-1 kl-rounded-control"
 			button={children}
+			// A hint for the pointer: on a touch screen the tap is the action
+			mouseOnly
 			{...restProps}
 		>
 			{content}
